@@ -1,15 +1,81 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
   <script src="scripts/index.js" type="module"></script>
 
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/index.css" />
 </head>
-<body>
-<h1>Note App</h1>
 
+<body>
+  <div class="container">
+    <div class="create-note">
+      <button>Create new Note</button>
+    </div>
+    <div class="color-palette-selector">
+      <select name="colorPalette">
+        <option value="blackWhiteStyle">BlackWhite-Style</option>
+        <option value="darkMode">Dark Mode</option>
+        <option value="rainbow">Rainbow</option>
+      </select>
+    </div>
+    <div class="by-finish-date"><button>By finish Date</button></div>
+    <div class="by-created-date"><button>By created Date</button></div>
+    <div class="by-importance"><button>By Importance</button></div>
+    <div class="show-finished"><button>Show finished</button></div>
+
+    <!-- Start of for loop -->
+    <div>
+      <p>Nächsten Mittwoch</p>
+      <p>CAS FEE Selbststudium / Projekt Aufgabe erledigen</p>
+      <img src="./assets/black-lightning-bolt.png" height="50" alt="Black Lighting Bolt" />
+      <img src="./assets/black-lightning-bolt.png" height="50" alt="Black Lighting Bolt" />
+      <input type="checkbox" checked />Finished <span>[ Today ]</span>
+      <div>
+        <p>
+          HTML für die note App erstellen. <br />
+          CSS erstellen für die note App [...]
+        </p>
+        <span class="arrow-down"></span>
+      </div>
+      <button>Edit</button>
+    </div>
+    <!-- Split between elements in for loop -->
+    <div>
+      <p>Heute</p>
+      <p>
+        Butler <br />
+        Eier [...]
+      </p>
+      <img src="./assets/black-lightning-bolt.png" height="50" alt="Black Lighting Bolt" />
+      <input type="checkbox" />Finished <span>[ Today ]</span>
+      <div>
+        <p>
+          HTML für die note App erstellen. <br />
+          CSS erstellen für die note App [...]
+        </p>
+        <span class="arrow-down"></span>
+      </div>
+      <button>Edit</button>
+    </div>
+    <!-- Split between elements in for loop -->
+    <div>
+      <p>Irgendwann</p>
+      <p>Mami anrufen</p>
+      <input type="checkbox" />Finished <span>[ Today ]</span>
+      <div>
+        <p>
+          HTML für die note App erstellen. <br />
+          CSS erstellen für die note App [...]
+        </p>
+      </div>
+      <button>Edit</button>
+    </div>
+  </div>
 </body>
+
 </html>
