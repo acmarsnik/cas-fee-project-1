@@ -6,7 +6,7 @@
   <title>Create/Edit Note</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
     integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
-  <script src="scripts/create-edit-note.js$" type="module"></script>
+  <script src="scripts/create-edit-note.js" type="module"></script>
   <link rel="stylesheet" href="styles/common.css" />
   <link rel="stylesheet" href="styles/create-edit-note.css" />
 </head>
@@ -40,7 +40,7 @@ CSS erstellen für die note App [...]</textarea>
     <label class="erledigt-bis-label">Erledigt bis:</label>
     <input class="erledigt-bis-input" type="date">
     <button class="speichern">Speichern</button>
-    <button class="cancel">Cancel</button>
+    <button onclick="window.location.assign('./index.html')" class="cancel">Cancel</button>
   </div>
 </body>
 
