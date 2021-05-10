@@ -134,9 +134,13 @@ select {
 }
 
 .arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid black;
+    justify-content: flex-end;
+}
+
+.arrow-down:after {
+    content: '\25bc';
+    -webkit-text-stroke: 5px black;
+    color: transparent;
+    font-size: 57px;
+    width: 55px;
 }
