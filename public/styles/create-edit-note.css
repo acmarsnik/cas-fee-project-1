@@ -1,0 +1,44 @@
+.create-edit-note-page-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 3rem;
+}
+
+.space-between-beschreibung-and-wichtigkeit-labels {
+    grid-row: span 2;
+}
+
+.beschreibung-input {
+    grid-row: span 3;
+}
+
+.title-label,
+.space-between-beschreibung-and-wichtigkeit-labels,
+.beschreibung-label,
+.wichtigkeit-label,
+.erledigt-bis-label {
+    grid-column: 2 / 3;
+}
+
+.speichern {
+    grid-column: 2 / 8;
+}
+
+.wichtigkeit-value-container,
+.erledigt-bis-input {
+    grid-column: 3 / 5;
+}
+
+.title-input,
+.beschreibung-input {
+    grid-column: 3 / 7;
+}
+
+.cancel {
+    grid-column: 6 / 8;
+}
+
+input,
+textarea {
+    width: 100%;
+    height: 100%;
+}

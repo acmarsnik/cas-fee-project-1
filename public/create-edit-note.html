@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Create/Edit Note</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
+    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+  <script src="scripts/create-edit-note.js$" type="module"></script>
+  <link rel="stylesheet" href="styles/common.css" />
+  <link rel="stylesheet" href="styles/create-edit-note.css" />
+</head>
+
+<body>
+  <div class="create-edit-note-page-container">
+    <label class="title-label">Title</label>
+    <input type="text" class="title-input">
+    <label class="beschreibung-label">Beschreibung</label>
+    <textarea class="beschreibung-input">HTML für die note App erstellen.
+CSS erstellen für die note App [...]</textarea>
+    <div class="space-between-beschreibung-and-wichtigkeit-labels"></div>
+    <label class="wichtigkeit-label">Wichtigkeit</label>
+    <div class="wichtigkeit-value-container">
+      <div class="bolt-container">
+        <div class="bolt black"></div>
+      </div>
+      <div class="bolt-container">
+        <div class="bolt black"></div>
+      </div>
+      <div class="bolt-container">
+        <div class="bolt gray"></div>
+      </div>
+      <div class="bolt-container">
+        <div class="bolt gray"></div>
+      </div>
+      <div class="bolt-container">
+        <div class="bolt gray"></div>
+      </div>
+    </div>
+    <label class="erledigt-bis-label">Erledigt bis:</label>
+    <input class="erledigt-bis-input" type="date">
+    <button class="speichern">Speichern</button>
+    <button class="cancel">Cancel</button>
+  </div>
+</body>
+
+</html>
