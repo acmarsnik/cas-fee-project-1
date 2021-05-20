@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="index-page-container">
+  <div id="index-page-container" class="index-page-container">
     <div class="create-note">
       <button>Create new Note</button>
     </div>
@@ -28,136 +28,43 @@
     <div class="by-created-date"><button>By created Date</button></div>
     <div class="by-importance"><button>By Importance</button></div>
     <div class="show-finished"><button>Show finished</button></div>
+    <div id="notes-template" class="hidden">
+      {{#each notes}}
+      <div class="finish-by-date">
+        <p>{{finishByDate}}</p>
+      </div>
+      <div class="title-padding-left"></div>
+      <div class="title">
+        <p>{{title}}</p>
+      </div>
+      <div class="space-between-title-and-importance"></div>
+      <div class="importance">
+      </div>
+      <div class="importance-padding-right"></div>
+      <div class="finished">
+        <input type="checkbox" checked />
+        <span>Finished</span>
+        <span class="date">&nbsp;{{finishedDate}}</span>
+      </div>
 
-    <!-- Start of for loop -->
-    <div class="finish-by-date">
-      <p>Nächsten Mittwoch</p>
-    </div>
-    <div class="title-padding-left"></div>
-    <div class="title">
-      <p>CAS FEE Selbststudium / Projekt Aufgabe erledigen</p>
-    </div>
-    <div class="space-between-title-and-importance"></div>
-    <div class="importance">
-      <div class="bolt-container">
-        <div class="bolt black"></div>
+      <div class="description-padding-left"></div>
+      <div class="description">
+        <p>
+          {{{description}}}
+        </p>
       </div>
-      <div class="bolt-container">
-        <div class="bolt black"></div>
+      <div class="space-between-description-and-arrow-down"></div>
+      <div class="arrow-down-container">
+        {{#if hasArrowDown}}
+        <div class="arrow-down"></div>
+        {{/if}}
       </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
+      <div class="arrow-down-padding-right"></div>
+      <div class="move-edit-down"></div>
+      <div class="edit-button">
+        <button note-id="{{id}}">Edit</button>
       </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
-      </div>
-    </div>
-    <div class="importance-padding-right"></div>
-    <div class="finished">
-      <input type="checkbox" checked />
-      <span>Finished</span>
-      <span class="date">&nbsp;[ Today ]</span>
-    </div>
-
-    <div class="description-padding-left"></div>
-    <div class="description">
-      <p>
-        HTML für die note App erstellen. <br />
-        CSS erstellen für die note App [...]
-      </p>
-    </div>
-    <div class="space-between-description-and-arrow-down"></div>
-    <div class="arrow-down-container">
-      <div class="arrow-down"></div>
-    </div>
-    <div class="arrow-down-padding-right"></div>
-    <div class="move-edit-down"></div>
-    <div class="edit-button">
-      <button note-id="1">Edit</button>
-    </div>
-    <!-- Split between elements in for loop -->
-    <div class="finish-by-date">
-      <p>Heute</p>
-    </div>
-    <div class="title-padding-left"></div>
-    <div class="title">
-      <p>Einkaufen</p>
-    </div>
-    <div class="space-between-title-and-importance"></div>
-    <div class="importance">
-      <div class="bolt-container">
-        <div class="bolt black"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt black hidden"></div>
-      </div>
-    </div>
-    <div class="importance-padding-right"></div>
-    <div class="finished">
-      <input type="checkbox" checked />
-      <span class="text">Finished</span>
-      <span class="date"></span>
-    </div>
-
-    <div class="description-padding-left"></div>
-    <div class="description">
-      <p>
-        Butler <br />
-        Eier [...]
-      </p>
-    </div>
-    <div class="space-between-description-and-arrow-down"></div>
-    <div class="arrow-down-container">
-      <div class="arrow-down"></div>
-    </div>
-    <div class="arrow-down-padding-right"></div>
-    <div class="move-edit-down"></div>
-    <div class="edit-button">
-      <button note-id="2">Edit</button>
-    </div>
-    <!-- Split between elements in for loop -->
-    <div class="finish-by-date">
-      <p>Irgendwann</p>
-    </div>
-    <div class="title-padding-left"></div>
-    <div class="title">
-      <p>Mami anrufen</p>
-    </div>
-    <div class="space-between-title-and-importance"></div>
-    <div class="importance">
-    </div>
-    <div class="importance-padding-right"></div>
-    <div class="finished">
-      <input type="checkbox" />
-      <span class="text">Finished</span>
-      <span class="date"></span>
-    </div>
-    <div class="description-padding-left"></div>
-    <div class="description">
-      <p>
-        888 888 88 88
-      </p>
-    </div>
-    <div class="space-between-description-and-arrow-down"></div>
-    <div class="arrow-down-container">
-      <!-- <span class="arrow-down"></span> -->
-    </div>
-    <div class="arrow-down-padding-right"></div>
-    <div class="move-edit-down"></div>
-    <div class="edit-button">
-      <button note-id="3">Edit</button>
+      {{/each}}
     </div>
   </div>
 </body>
