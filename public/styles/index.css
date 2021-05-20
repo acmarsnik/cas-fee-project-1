@@ -18,6 +18,7 @@
 
 .space-between-create-note-and-color-palette {
     grid-row: span 2;
+    grid-column: 7 / 23;
 }
 
 .move-edit-down {
@@ -51,10 +52,6 @@
 
 .by-finish-date {
     grid-column: 2 / 8;
-}
-
-.space-between-create-note-and-color-palette {
-    grid-column: 7 / 23;
 }
 
 .title-padding-left,
@@ -137,7 +134,7 @@ select {
     justify-content: flex-end;
 }
 
-.arrow-down:after {
+.arrow-down::after {
     content: '\25bc';
     -webkit-text-stroke: 5px black;
     color: transparent;

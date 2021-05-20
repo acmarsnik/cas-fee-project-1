@@ -6,6 +6,7 @@
     display: grid;
     align-items: flex-start;
     grid-auto-rows: 1fr;
+    margin-top: 2rem;
 }
 
 div {
@@ -33,7 +34,7 @@ select {
     transform-origin: 50% 50% 0;
 }
 
-.bolt:after {
+.bolt::after {
     content: '';
     top: -9px;
     left: -8px;
@@ -58,7 +59,7 @@ select {
     border-bottom: 22px solid black;
 }
 
-.black:after {
+.black::after {
     border-bottom: 25px solid black;
 }
 
@@ -66,7 +67,7 @@ select {
     border-bottom: 22px solid lightgray;
 }
 
-.gray:after {
+.gray::after {
     border-bottom: 25px solid lightgray;
 }
 
