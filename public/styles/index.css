@@ -1,5 +1,5 @@
 .index-page-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(28, 1fr);
     row-gap: 1rem;
     grid-auto-flow: dense;
 }
@@ -7,6 +7,7 @@
 .create-note,
 .color-palette-selector {
     grid-row: 1 / 3;
+    min-height: 2rem;
 }
 
 .by-finish-date,
@@ -14,6 +15,7 @@
 .by-importance,
 .show-finished {
     grid-row: 3 / 5;
+    min-height: 2rem;
 }
 
 .space-between-create-note-and-color-palette {
@@ -34,9 +36,9 @@
 .finished,
 .description-padding-left,
 .description,
-.space-between-description-and-arrow-down,
-.arrow-down-container,
-.arrow-down-padding-right {
+.space-between-description-and-arrow,
+.arrow-container,
+.arrow-padding-right {
     grid-row: span 4;
 }
 
@@ -73,17 +75,17 @@
 }
 
 .space-between-title-and-importance,
-.space-between-description-and-arrow-down {
+.space-between-description-and-arrow {
     grid-column: 18 / 19;
 }
 
 .importance,
-.arrow-down-container {
+.arrow-container {
     grid-column: 19 / 23;
 }
 
 .importance-padding-right,
-.arrow-down-padding-right {
+.arrow-padding-right {
     grid-column: 23 / 24;
 }
 
@@ -102,7 +104,7 @@ div {
     align-items: center;
 }
 
-.arrow-down-container {
+.arrow-container {
     justify-content: flex-end;
 }
 
@@ -115,9 +117,9 @@ select {
 
 .description-padding-left,
 .description,
-.space-between-description-and-arrow-down,
-.arrow-down-container,
-.arrow-down-padding-right {
+.space-between-description-and-arrow,
+.arrow-container,
+.arrow-padding-right {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
@@ -126,12 +128,14 @@ select {
     border-left: 1px solid black;
 }
 
-.arrow-down-padding-right {
+.arrow-padding-right {
     border-right: 1px solid black;
 }
 
-.arrow-down {
+.arrow-down,
+.arrow-up {
     justify-content: flex-end;
+    cursor: pointer;
 }
 
 .arrow-down::after {
@@ -140,4 +144,12 @@ select {
     color: transparent;
     font-size: 57px;
     width: 55px;
+}
+
+.arrow-up::after {
+    content: '\25b3';
+    -webkit-text-stroke: 2px black;
+    color: black;
+    font-size: 62px;
+    width: 51px;
 }

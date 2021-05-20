@@ -49,17 +49,30 @@
 
       <div class="description-padding-left"></div>
       <div class="description">
-        <p>
-          {{{description}}}
+        {{#if shortDescription}}
+        <p id="description-{{id}}-short">
+          {{{shortDescription}}}
         </p>
-      </div>
-      <div class="space-between-description-and-arrow-down"></div>
-      <div class="arrow-down-container">
-        {{#if hasArrowDown}}
-        <div class="arrow-down"></div>
+        <p id="description-{{id}}-full" class="hidden">
+          {{{fullDescription}}}
+        </p>
+        {{else}}
+        <p id="description-{{id}}-short" class="hidden">
+          {{{shortDescription}}}
+        </p>
+        <p id="description-{{id}}-full">
+          {{{fullDescription}}}
+        </p>
         {{/if}}
       </div>
-      <div class="arrow-down-padding-right"></div>
+      <div class="space-between-description-and-arrow"></div>
+      <div class="arrow-container">
+        {{#if hasExpand}}
+        <div id="arrow-{{id}}-down" note-id="{{id}}" class="arrow-down"></div>
+        <div id="arrow-{{id}}-up" note-id="{{id}}" class="arrow-up hidden"></div>
+        {{/if}}
+      </div>
+      <div class="arrow-padding-right"></div>
       <div class="move-edit-down"></div>
       <div class="edit-button">
         <button note-id="{{id}}">Edit</button>
