@@ -42,9 +42,13 @@
       </div>
       <div class="importance-padding-right"></div>
       <div class="finished">
+        {{#if isFinished}}
         <input type="checkbox" checked />
+        {{else}}
+        <input type="checkbox" />
+        {{/if}}
         <span>Finished</span>
-        <span class="date">&nbsp;{{finishedDate}}</span>
+        <span class="date">{{#if finishedDate}}&nbsp;[ {{finishedDate}} ]{{/if}}</span>
       </div>
 
       <div class="description-padding-left"></div>

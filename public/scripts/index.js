@@ -1,8 +1,7 @@
 function navigateToEdit($event) {
     const attributes = $event?.target?.attributes;
     const noteId = attributes ? attributes['note-id'].value : null;
-    alert(noteId);
-    window.location.assign('/create-edit-note.html');
+    window.location.assign(`/create-edit-note.html?noteId=${noteId}`);
 }
 
 const notesContainer = document.getElementById('notes-template').innerHTML;
@@ -55,7 +54,7 @@ const notesContext = {
             title: 'CAS FEE Selbststudium / Projekt Aufgabe erledigen',
             importance: 2,
             isFinished: true,
-            finishDate: 'Today',
+            finishedDate: 'Today',
             shortDescription:
                 'HTML für die note App erstellen. <br /> CSS erstellen für die note App [...]',
             fullDescription:
@@ -68,7 +67,7 @@ const notesContext = {
             title: 'Einkaufen',
             importance: 1,
             isFinished: false,
-            finishDate: null,
+            finishedDate: null,
             shortDescription: 'Butler <br /> Eier [...]',
             fullDescription: 'Butler <br /> Eier <br /> Brot',
             hasExpand: true,
@@ -79,7 +78,7 @@ const notesContext = {
             title: 'Mami anrufen',
             importance: 0,
             isFinished: false,
-            finishDate: null,
+            finishedDate: null,
             shortDescription: null,
             fullDescription: '888 888 88 88',
             hasExpand: false,
