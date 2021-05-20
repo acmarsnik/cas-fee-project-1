@@ -3,19 +3,19 @@
     row-gap: 3rem;
 }
 
-.space-between-beschreibung-and-wichtigkeit-labels {
+.space-between-description-and-importance-labels {
     grid-row: span 2;
 }
 
-.beschreibung-input {
+.description-input {
     grid-row: span 3;
 }
 
 .title-label,
-.space-between-beschreibung-and-wichtigkeit-labels,
-.beschreibung-label,
-.wichtigkeit-label,
-.erledigt-bis-label {
+.space-between-description-and-importance-labels,
+.description-label,
+.importance-label,
+.finished-by-label {
     grid-column: 2 / 3;
 }
 
@@ -23,13 +23,13 @@
     grid-column: 2 / 8;
 }
 
-.wichtigkeit-value-container,
-.erledigt-bis-input {
+.importance-value-container,
+.finished-by-input {
     grid-column: 3 / 5;
 }
 
 .title-input,
-.beschreibung-input {
+.description-input {
     grid-column: 3 / 7;
 }
 

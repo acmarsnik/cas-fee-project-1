@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Note App</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"
-    integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.runtime.min.js"></script>
+  <script src="templatesCompiled.js"></script>
   <script src="scripts/index.js" type="module"></script>
   <link rel="stylesheet" href="styles/common.css" />
   <link rel="stylesheet" href="styles/index.css" />
@@ -28,61 +28,6 @@
     <div class="by-created-date"><button>By created Date</button></div>
     <div class="by-importance"><button>By Importance</button></div>
     <div class="show-finished"><button>Show finished</button></div>
-    <div id="notes-template" class="hidden">
-      {{#each notes}}
-      <div class="finish-by-date">
-        <p>{{finishByDate}}</p>
-      </div>
-      <div class="title-padding-left"></div>
-      <div class="title">
-        <p>{{title}}</p>
-      </div>
-      <div class="space-between-title-and-importance"></div>
-      <div class="importance">
-      </div>
-      <div class="importance-padding-right"></div>
-      <div class="finished">
-        {{#if isFinished}}
-        <input type="checkbox" checked />
-        {{else}}
-        <input type="checkbox" />
-        {{/if}}
-        <span>Finished</span>
-        <span class="date">{{#if finishedDateDisplay}}&nbsp;[ {{finishedDateDisplay}} ]{{/if}}</span>
-      </div>
-
-      <div class="description-padding-left"></div>
-      <div class="description">
-        {{#if shortDescription}}
-        <p id="description-{{id}}-short">
-          {{{shortDescription}}}
-        </p>
-        <p id="description-{{id}}-full" class="hidden">
-          {{{fullDescription}}}
-        </p>
-        {{else}}
-        <p id="description-{{id}}-short" class="hidden">
-          {{{shortDescription}}}
-        </p>
-        <p id="description-{{id}}-full">
-          {{{fullDescription}}}
-        </p>
-        {{/if}}
-      </div>
-      <div class="space-between-description-and-arrow"></div>
-      <div class="arrow-container">
-        {{#if hasExpand}}
-        <div id="arrow-{{id}}-down" note-id="{{id}}" class="arrow-down"></div>
-        <div id="arrow-{{id}}-up" note-id="{{id}}" class="arrow-up hidden"></div>
-        {{/if}}
-      </div>
-      <div class="arrow-padding-right"></div>
-      <div class="move-edit-down"></div>
-      <div class="edit-button">
-        <button note-id="{{id}}">Edit</button>
-      </div>
-      {{/each}}
-    </div>
   </div>
 </body>
 
