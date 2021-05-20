@@ -13,7 +13,7 @@
 
 <body>
   <div id="index-page-container" class="index-page-container">
-    <div class="create-note">
+    <div id="create-note" class="create-note">
       <button>Create new Note</button>
     </div>
     <div class="space-between-create-note-and-color-palette"></div>
@@ -48,7 +48,7 @@
         <input type="checkbox" />
         {{/if}}
         <span>Finished</span>
-        <span class="date">{{#if finishedDate}}&nbsp;[ {{finishedDate}} ]{{/if}}</span>
+        <span class="date">{{#if finishedDateDisplay}}&nbsp;[ {{finishedDateDisplay}} ]{{/if}}</span>
       </div>
 
       <div class="description-padding-left"></div>
