@@ -2,6 +2,18 @@
 
 (function () {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['bolt'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
+        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+          return parent[propertyName];
+        }
+        return undefined
+    };
+
+  return "<div class='bolt-container'>\r\n    <div class='bolt black"
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"hidden") || (depth0 != null ? lookupProperty(depth0,"hidden") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"hidden","hash":{},"data":data,"loc":{"start":{"line":2,"column":26},"end":{"line":2,"column":36}}}) : helper)))
+    + "'></div>\r\n</div>";
+},"useData":true});
 templates['notes'] = template({"1":function(container,depth0,helpers,partials,data,blockParams,depths) {
     var stack1, helper, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), alias4=container.hooks.helperMissing, alias5="function", lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {

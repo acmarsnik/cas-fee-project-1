@@ -11,6 +11,16 @@ function navigateToEdit($event) {
     window.location.assign(`/create-edit-note.html${queryParameters}`);
 }
 
+function removeAllNotesTemplateElements(notesTemplateIdPrefix) {
+    document
+        .querySelectorAll(
+            `[id^="${getTopLevelIdPrefix(notesTemplateIdPrefix)}"`,
+        )
+        .forEach((notesTemplateElement) => {
+            notesTemplateElement.remove();
+        });
+}
+
 function getNotesContext(notes, templateIdPrefix) {
     return {
         notes,
@@ -50,6 +60,10 @@ function addNotesEventListeners(notes) {
         .addEventListener('click', navigateToEdit);
 }
 
+function getBoltContext(importance, boltNumber) {
+    return { hidden: importance && importance >= boltNumber ? '' : ' hidden' };
+}
+
 function addImportanceElements(importanceList) {
     const maxBolts = 5;
     const importanceElements = document.querySelectorAll('.importance');
@@ -62,24 +76,13 @@ function addImportanceElements(importanceList) {
         const importance = importanceList[importanceElementIndex];
         const importanceElement = importanceElements[importanceElementIndex];
         for (let boltNumber = 1; boltNumber < maxBolts; boltNumber++) {
-            importanceElement.innerHTML += `
-            <div class="bolt-container">
-                <div class="bolt black${
-                    importance && importance >= boltNumber ? '' : ' hidden'
-                }"></div>
-            </div>`;
+            // eslint-disable-next-line
+            const boltContainerHtml = Handlebars.templates.bolt(
+                getBoltContext(importance, boltNumber),
+            );
+            importanceElement.innerHTML += boltContainerHtml;
         }
     }
-}
-
-function removeAllNotesTemplateElements(notesTemplateIdPrefix) {
-    document
-        .querySelectorAll(
-            `[id^="${getTopLevelIdPrefix(notesTemplateIdPrefix)}"`,
-        )
-        .forEach((notesTemplateElement) => {
-            notesTemplateElement.remove();
-        });
 }
 
 export default function updateNotes() {
