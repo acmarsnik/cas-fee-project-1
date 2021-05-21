@@ -1,25 +1,34 @@
 {{#each notes}}
-    <div id='template__notes__finish-by-date' class='finish-by-date'>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}finish-by-date-{{id}}'
+        class='finish-by-date'
+    >
         <p>{{finishByDate}}</p>
     </div>
     <div
-        id='template__notes__title-padding-left'
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}title-padding-left-{{id}}'
         class='title-padding-left'
     ></div>
     <div class='title'>
         <p>{{title}}</p>
     </div>
     <div
-        id='template__notes__space-between-title-and-importance'
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}space-between-title-and-importance-{{id}}'
         class='space-between-title-and-importance'
     ></div>
-    <div id='template__notes__importance' class='importance'>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}importance-{{id}}'
+        class='importance'
+    >
     </div>
     <div
-        id='template__notes__importance-padding-right'
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}importance-padding-right-{{id}}'
         class='importance-padding-right'
     ></div>
-    <div id='template__notes__finished' class='finished'>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}finished-{{id}}'
+        class='finished'
+    >
         {{#if isFinished}}
             <input type='checkbox' checked />
         {{else}}
@@ -32,10 +41,13 @@
     </div>
 
     <div
-        id='template__notes__description-padding-left'
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}description-padding-left-{{id}}'
         class='description-padding-left'
     ></div>
-    <div id='template__notes__description' class='description'>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}description-{{id}}'
+        class='description'
+    >
         {{#if shortDescription}}
             <p id='description-{{id}}-short'>
                 {{{shortDescription}}}
@@ -53,10 +65,13 @@
         {{/if}}
     </div>
     <div
-        id='template__notes__space-between-description-and-arrow'
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}space-between-description-and-arrow-{{id}}'
         class='space-between-description-and-arrow'
     ></div>
-    <div id='template__notes__arrow-container' class='arrow-container'>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}arrow-container-{{id}}'
+        class='arrow-container'
+    >
         {{#if hasExpand}}
             <div
                 id='arrow-{{id}}-down'
@@ -71,11 +86,17 @@
         {{/if}}
     </div>
     <div
-        id='template__notes__arrow-padding-right'
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}arrow-padding-right-{{id}}'
         class='arrow-padding-right'
     ></div>
-    <div id='template__notes__move-edit-down' class='move-edit-down'></div>
-    <div id='template__notes__edit-button' class='edit-button'>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}move-edit-down-{{id}}'
+        class='move-edit-down'
+    ></div>
+    <div
+        id='{{../idPrefixes.template}}{{../idPrefixes.topLevel}}edit-button-{{id}}'
+        class='edit-button'
+    >
         <button note-id='{{id}}'>Edit</button>
     </div>
 {{/each}}

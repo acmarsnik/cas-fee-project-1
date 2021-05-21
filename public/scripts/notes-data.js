@@ -4,8 +4,7 @@ yesterday.setDate(today.getDate() - 1);
 const twoDaysAgo = new Date();
 twoDaysAgo.setDate(today.getDate() - 2);
 
-// eslint-disable-next-line
-export const notes = [
+const notes = [
     {
         id: 1,
         finishByDate: 'Nächsten Mittwoch',
@@ -45,3 +44,5 @@ export const notes = [
         hasExpand: false,
     },
 ];
+
+export default notes;

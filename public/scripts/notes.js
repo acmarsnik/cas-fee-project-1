@@ -1,4 +1,5 @@
 import * as NotesService from './notes-service.js';
+import getTopLevelIdPrefix from './top-level.js';
 
 function navigateToEdit($event) {
     const attributes = $event?.target?.attributes;
@@ -10,9 +11,13 @@ function navigateToEdit($event) {
     window.location.assign(`/create-edit-note.html${queryParameters}`);
 }
 
-function getNotesContext(notes) {
+function getNotesContext(notes, templateIdPrefix) {
     return {
         notes,
+        idPrefixes: {
+            template: templateIdPrefix,
+            topLevel: getTopLevelIdPrefix(),
+        },
     };
 }
 
@@ -49,10 +54,6 @@ function addImportanceElements(importanceList) {
     const maxBolts = 5;
     const importanceElements = document.querySelectorAll('.importance');
 
-    function getHiddenString(importance, boltNumber) {
-        return importance && importance >= boltNumber ? '' : ' hidden';
-    }
-
     for (
         let importanceElementIndex = 0;
         importanceElementIndex < importanceElements.length;
@@ -61,59 +62,33 @@ function addImportanceElements(importanceList) {
         const importance = importanceList[importanceElementIndex];
         const importanceElement = importanceElements[importanceElementIndex];
         for (let boltNumber = 1; boltNumber < maxBolts; boltNumber++) {
-            const hiddenString = getHiddenString(importance, boltNumber);
-            importanceElement.innerHTML += `<div class="bolt-container">
-                                            <div class="bolt black${hiddenString}"></div>
-                                        </div>`;
+            importanceElement.innerHTML += `
+            <div class="bolt-container">
+                <div class="bolt black${
+                    importance && importance >= boltNumber ? '' : ' hidden'
+                }"></div>
+            </div>`;
         }
     }
 }
 
-function removeAllNotesTemplateElements() {
-    const notesTemplateElementSelectors = [
-        '.finish-by-date',
-        '.title-padding-left',
-        '.title',
-        '.space-between-title-and-importance',
-        '.importance',
-        '.importance-padding-right',
-        '.finished',
-        '.description-padding-left',
-        '.description',
-        '.space-between-description-and-arrow',
-        '.arrow-container',
-        '.arrow-padding-right',
-        '.move-edit-down',
-        '.edit-button',
-    ];
-    const notesTemplateElements = [];
-    notesTemplateElementSelectors.forEach((notesTemplateElementSelector) => {
-        notesTemplateElements.push(
-            document.querySelectorAll(notesTemplateElementSelector),
-        );
-    });
-    notesTemplateElements.forEach((notesTemplateElement) => {
-        notesTemplateElement.forEach((item) => {
-            item.remove();
+function removeAllNotesTemplateElements(notesTemplateIdPrefix) {
+    document
+        .querySelectorAll(
+            `[id^="${getTopLevelIdPrefix(notesTemplateIdPrefix)}"`,
+        )
+        .forEach((notesTemplateElement) => {
+            notesTemplateElement.remove();
         });
-    });
-}
-
-function removeTemplate() {
-    const notesTemplateElement = document.getElementById('notes-template');
-    if (document.body.contains(notesTemplateElement)) {
-        document.getElementById('notes-template').remove();
-    } else {
-        removeAllNotesTemplateElements();
-    }
 }
 
 export default function updateNotes() {
-    removeTemplate();
+    const notesTemplateIdPrefix = 'template__notes__';
+    removeAllNotesTemplateElements(notesTemplateIdPrefix);
     const notes = NotesService.getNotes();
     // eslint-disable-next-line
     const notesContainerHtml = Handlebars.templates.notes(
-        getNotesContext(notes),
+        getNotesContext(notes, notesTemplateIdPrefix),
     );
     const indexPageContainer = document.getElementById('index-page-container');
     indexPageContainer.innerHTML += notesContainerHtml;
