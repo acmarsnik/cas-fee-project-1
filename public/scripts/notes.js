@@ -111,6 +111,7 @@ function removeTemplate() {
 export default function updateNotes() {
     removeTemplate();
     const notes = NotesService.getNotes();
+    // eslint-disable-next-line
     const notesContainerHtml = Handlebars.templates.notes(
         getNotesContext(notes),
     );

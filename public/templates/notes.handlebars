@@ -1,16 +1,25 @@
 {{#each notes}}
-    <div class='finish-by-date'>
+    <div id='template__notes__finish-by-date' class='finish-by-date'>
         <p>{{finishByDate}}</p>
     </div>
-    <div class='title-padding-left'></div>
+    <div
+        id='template__notes__title-padding-left'
+        class='title-padding-left'
+    ></div>
     <div class='title'>
         <p>{{title}}</p>
     </div>
-    <div class='space-between-title-and-importance'></div>
-    <div class='importance'>
+    <div
+        id='template__notes__space-between-title-and-importance'
+        class='space-between-title-and-importance'
+    ></div>
+    <div id='template__notes__importance' class='importance'>
     </div>
-    <div class='importance-padding-right'></div>
-    <div class='finished'>
+    <div
+        id='template__notes__importance-padding-right'
+        class='importance-padding-right'
+    ></div>
+    <div id='template__notes__finished' class='finished'>
         {{#if isFinished}}
             <input type='checkbox' checked />
         {{else}}
@@ -22,8 +31,11 @@
                 ]{{/if}}</span>
     </div>
 
-    <div class='description-padding-left'></div>
-    <div class='description'>
+    <div
+        id='template__notes__description-padding-left'
+        class='description-padding-left'
+    ></div>
+    <div id='template__notes__description' class='description'>
         {{#if shortDescription}}
             <p id='description-{{id}}-short'>
                 {{{shortDescription}}}
@@ -40,8 +52,11 @@
             </p>
         {{/if}}
     </div>
-    <div class='space-between-description-and-arrow'></div>
-    <div class='arrow-container'>
+    <div
+        id='template__notes__space-between-description-and-arrow'
+        class='space-between-description-and-arrow'
+    ></div>
+    <div id='template__notes__arrow-container' class='arrow-container'>
         {{#if hasExpand}}
             <div
                 id='arrow-{{id}}-down'
@@ -55,9 +70,12 @@
             ></div>
         {{/if}}
     </div>
-    <div class='arrow-padding-right'></div>
-    <div class='move-edit-down'></div>
-    <div class='edit-button'>
+    <div
+        id='template__notes__arrow-padding-right'
+        class='arrow-padding-right'
+    ></div>
+    <div id='template__notes__move-edit-down' class='move-edit-down'></div>
+    <div id='template__notes__edit-button' class='edit-button'>
         <button note-id='{{id}}'>Edit</button>
     </div>
 {{/each}}
