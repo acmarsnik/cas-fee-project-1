@@ -1,4 +1,4 @@
-function getBoltContext(importance, boltNumber) {
+function getImportanceContext(importance, boltNumber) {
     return { hidden: importance && importance >= boltNumber ? '' : ' hidden' };
 }
 
@@ -15,10 +15,10 @@ export default function addImportanceElements(importanceList) {
         const importanceElement = importanceElements[importanceElementIndex];
         for (let boltNumber = 1; boltNumber < maxBolts; boltNumber++) {
             // eslint-disable-next-line
-            const boltContainerHtml = Handlebars.templates.bolt(
-                getBoltContext(importance, boltNumber),
+            const importanceContainerHtml = Handlebars.templates.importance(
+                getImportanceContext(importance, boltNumber),
             );
-            importanceElement.innerHTML += boltContainerHtml;
+            importanceElement.innerHTML += importanceContainerHtml;
         }
     }
 }
