@@ -2,13 +2,12 @@ import * as NotesService from './notes-service.js';
 
 function navigateToEdit($event) {
     const attributes = $event?.target?.attributes;
-    let noteId = null;
-    if (attributes && attributes['note-id']) {
-        noteId = attributes['note-id'].value;
+    let queryParameters = '';
+    if (attributes && attributes['note-id'] && attributes['note-id'].value) {
+        const noteId = attributes['note-id'].value;
+        queryParameters = `?noteId=${noteId}`;
     }
-    window.location.assign(
-        `/create-edit-note.html${noteId ? '?noteId=' + noteId : ''}`
-    );
+    window.location.assign(`/create-edit-note.html${queryParameters}`);
 }
 
 function getNotesContext(notes) {
@@ -21,7 +20,7 @@ function toggleDescriptionsAndArrows($event) {
     const attributes = $event?.target?.attributes;
     const noteId = attributes ? attributes['note-id'].value : null;
     const arrowAndDescriptionsElements = document.querySelectorAll(
-        `[id^="arrow-${noteId}"], [id^="description-${noteId}"]`
+        `[id^="arrow-${noteId}"], [id^="description-${noteId}"]`,
     );
     arrowAndDescriptionsElements.forEach((arrowAndDescriptionsElement) => {
         arrowAndDescriptionsElement.classList.toggle('hidden');
@@ -35,7 +34,7 @@ function addNotesEventListeners(notes) {
             .addEventListener('click', navigateToEdit);
     });
 
-    const arrowElements = document.querySelectorAll(`[id^="arrow-"]`);
+    const arrowElements = document.querySelectorAll('[id^="arrow-"]');
 
     arrowElements.forEach((arrowElement) => {
         arrowElement.addEventListener('click', toggleDescriptionsAndArrows);
@@ -47,26 +46,27 @@ function addNotesEventListeners(notes) {
 }
 
 function addImportanceElements(importanceList) {
-    const bolts = [1, 2, 3, 4, 5];
+    const maxBolts = 5;
     const importanceElements = document.querySelectorAll('.importance');
 
     function getHiddenString(importance, boltNumber) {
         return importance && importance >= boltNumber ? '' : ' hidden';
     }
 
-    let importanceListIndex = 0;
-
-    importanceElements.forEach((importanceElement) => {
-        let importance = importanceList[importanceListIndex].importance;
-        bolts.forEach((boltNumber) => {
-            let hiddenString = getHiddenString(importance, boltNumber);
+    for (
+        let importanceElementIndex = 0;
+        importanceElementIndex < importanceElements.length;
+        importanceElementIndex++
+    ) {
+        const importance = importanceList[importanceElementIndex];
+        const importanceElement = importanceElements[importanceElementIndex];
+        for (let boltNumber = 1; boltNumber < maxBolts; boltNumber++) {
+            const hiddenString = getHiddenString(importance, boltNumber);
             importanceElement.innerHTML += `<div class="bolt-container">
                                             <div class="bolt black${hiddenString}"></div>
                                         </div>`;
-        });
-
-        importanceListIndex++;
-    });
+        }
+    }
 }
 
 function removeAllNotesTemplateElements() {
@@ -89,7 +89,7 @@ function removeAllNotesTemplateElements() {
     const notesTemplateElements = [];
     notesTemplateElementSelectors.forEach((notesTemplateElementSelector) => {
         notesTemplateElements.push(
-            document.querySelectorAll(notesTemplateElementSelector)
+            document.querySelectorAll(notesTemplateElementSelector),
         );
     });
     notesTemplateElements.forEach((notesTemplateElement) => {
@@ -108,14 +108,14 @@ function removeTemplate() {
     }
 }
 
-export function updateNotes() {
+export default function updateNotes() {
     removeTemplate();
     const notes = NotesService.getNotes();
     const notesContainerHtml = Handlebars.templates.notes(
-        getNotesContext(notes)
+        getNotesContext(notes),
     );
-    document.getElementById('index-page-container').innerHTML +=
-        notesContainerHtml;
+    const indexPageContainer = document.getElementById('index-page-container');
+    indexPageContainer.innerHTML += notesContainerHtml;
 
     addNotesEventListeners(notes);
     addImportanceElements(notes.map((note) => note.importance));

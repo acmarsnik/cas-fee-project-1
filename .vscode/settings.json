@@ -5,5 +5,6 @@
     "prettier.enableDebugLogs": true,
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
-    }
+    },
+    "prettier.trailingComma": "all"
 }

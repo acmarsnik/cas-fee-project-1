@@ -1,3 +1,3 @@
-import { updateNotes } from './notes.js';
+import updateNotes from './notes.js';
 
 updateNotes();

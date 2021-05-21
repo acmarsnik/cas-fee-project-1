@@ -1,16 +1,3 @@
-export function getNotes() {
-    return notes;
-}
-
-export function getNote(id) {
-    return notes.find((note) => note.id === id);
-}
-
-export function updateNote(note) {
-    const indexOfNoteToUpdate = notes.findIndex((n) => n.id === note.id);
-    notes[indexOfNoteToUpdate] = note;
-}
-
 const today = new Date();
 const yesterday = new Date();
 yesterday.setDate(today.getDate() - 1);
@@ -57,3 +44,16 @@ const notes = [
         hasExpand: false,
     },
 ];
+
+export function getNotes() {
+    return notes;
+}
+
+export function getNote(id) {
+    return notes.find((note) => note.id === id);
+}
+
+export function updateNote(note) {
+    const indexOfNoteToUpdate = notes.findIndex((n) => n.id === note.id);
+    notes[indexOfNoteToUpdate] = note;
+}

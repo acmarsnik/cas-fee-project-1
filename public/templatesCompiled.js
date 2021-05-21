@@ -1,4 +1,6 @@
-(function() {
+/* eslint-disable */
+
+(function () {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['notes'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.hooks.helperMissing, alias3="function", alias4=container.escapeExpression, lookupProperty = container.lookupProperty || function(parent, propertyName) {
