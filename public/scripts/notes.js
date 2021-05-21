@@ -1,5 +1,6 @@
 import * as NotesService from './notes-service.js';
 import getTopLevelIdPrefix from './top-level.js';
+import addImportanceElements from './importance.js';
 
 function navigateToEdit($event) {
     const attributes = $event?.target?.attributes;
@@ -58,31 +59,6 @@ function addNotesEventListeners(notes) {
     document
         .getElementById('create-note')
         .addEventListener('click', navigateToEdit);
-}
-
-function getBoltContext(importance, boltNumber) {
-    return { hidden: importance && importance >= boltNumber ? '' : ' hidden' };
-}
-
-function addImportanceElements(importanceList) {
-    const maxBolts = 5;
-    const importanceElements = document.querySelectorAll('.importance');
-
-    for (
-        let importanceElementIndex = 0;
-        importanceElementIndex < importanceElements.length;
-        importanceElementIndex++
-    ) {
-        const importance = importanceList[importanceElementIndex];
-        const importanceElement = importanceElements[importanceElementIndex];
-        for (let boltNumber = 1; boltNumber < maxBolts; boltNumber++) {
-            // eslint-disable-next-line
-            const boltContainerHtml = Handlebars.templates.bolt(
-                getBoltContext(importance, boltNumber),
-            );
-            importanceElement.innerHTML += boltContainerHtml;
-        }
-    }
 }
 
 export default function updateNotes() {
