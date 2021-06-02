@@ -36,7 +36,53 @@ Folgende Befehle sind dann möglich
 ## Command to compile templates:
 
 ```
-handlebars ./public/templates -f ./public/templatesCompiled.js
+handlebars ./public/templates -f ./public/templatesCompiled.mjs
+```
+
+after compilation replace through line where 1st function is with the following:
+
+```
+/* eslint-disable */
+export default function (Handlebars) {
+```
+
+and then clean up end of file by replacing:
+
+```
+};
+```
+
+with:
+
+```
+};
+```
+
+## Unit Testing
+
+[JS unit testing with karma and jasmine](https://codeburst.io/js-unit-testing-with-karma-and-jasmine-8f8f4cbcb718)
+
+```
+npm install karma --save-dev
+npm install karma-jasmine --save-dev
+npm install jasmine-core --save-dev
+npm install karma-chrome-launcher --save-dev
+npm install karma-coverage --save-dev
+npm install karma-webpack --save-dev
+npm install webpack --save-dev
+```
+
+## Webpack
+
+[Tutorial: how to build a Webpack app with Vanilla JS or React](https://medium.com/jeremy-gottfrieds-tech-blog/tutorial-how-to-build-a-webpack-app-with-vanilla-js-or-react-72ca2cc7e14)
+
+```
+npm install webpack --save-dev
+npm install webpack-cli --save-dev
+npm install webpack-dev-server --save-dev
+npm install style-loader --save-dev
+npm install css-loader --save-dev
+npm install script-loader --save-dev
 ```
 
 ---

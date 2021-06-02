@@ -1,4 +1,4 @@
-import notes from './notes-data.js';
+import notes from './notes-data.mjs';
 
 export function getNotes() {
     return notes;

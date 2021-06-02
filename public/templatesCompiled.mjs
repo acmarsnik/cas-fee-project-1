@@ -1,6 +1,5 @@
 /* eslint-disable */
-
-(function () {
+export default function (Handlebars) {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['importance'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -178,4 +177,4 @@ templates['notes'] = template({"1":function(container,depth0,helpers,partials,da
 
   return ((stack1 = lookupProperty(helpers,"each").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"notes") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0, blockParams, depths),"inverse":container.noop,"data":data,"loc":{"start":{"line":1,"column":0},"end":{"line":102,"column":9}}})) != null ? stack1 : "");
 },"useData":true,"useDepths":true});
-})();
+};

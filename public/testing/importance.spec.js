@@ -1,18 +1,23 @@
-import addImportanceElements from '../scripts/importance.js';
+import addImportanceElements from '../scripts/importance.mjs';
+import Handlebars from 'handlebars/runtime.js';
+import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
 
-function addImportanceContainersToBody(
-    numberOfImportanceContainers,
-    hidden = true,
-) {
+addCompiledTemplatesToHandlebars(Handlebars);
+
+function addImportanceContainersToBody(numberOfImportanceContainers) {
     const allImportanceElementsDiv = document.getElementById(
         'all-test-importance-elements',
     );
-    allImportanceElementsDiv ? allImportanceElementsDiv.remove() : '';
+
+    if (allImportanceElementsDiv) {
+        allImportanceElementsDiv.remove();
+    }
+
+    const showImportanceElements = true;
+    const display = showImportanceElements ? '' : 'display:none; ';
     document.body.insertAdjacentHTML(
         'beforeend',
-        `<div id="all-test-importance-elements" ${
-            hidden ? 'style="display:none"' : ''
-        }></div>`,
+        `<div id="all-test-importance-elements" style="${display}margin-top: 30px"></div>`,
     );
     for (let i = 0; i < numberOfImportanceContainers; i++) {
         document
@@ -30,7 +35,7 @@ describe('Importance component', () => {
     it('should create 15 bolt elements when there are 3 importance containers', () => {
         const importanceList = [2, 1, 0];
         addImportanceContainersToBody(importanceList.length);
-        addImportanceElements(importanceList);
+        addImportanceElements(Handlebars, importanceList);
         const importanceContainersLength = document.querySelectorAll(
             '[id^="template__notes__top-level__importance-"]',
         ).length;
@@ -46,7 +51,7 @@ describe('Importance component', () => {
     it('should have visible bolts that match the numbers in the importance list', () => {
         const importanceList = [2, 1, 0];
         addImportanceContainersToBody(importanceList.length);
-        addImportanceElements(importanceList);
+        addImportanceElements(Handlebars, importanceList);
         const allVisibleBoltElementsLength = document.querySelectorAll(
             '.bolt.black:not(.hidden)',
         ).length;

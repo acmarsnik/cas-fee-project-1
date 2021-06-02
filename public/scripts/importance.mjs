@@ -2,7 +2,7 @@ function getImportanceContext(importance, boltNumber) {
     return { hidden: importance && importance >= boltNumber ? '' : ' hidden' };
 }
 
-export default function addImportanceElements(importanceList) {
+export default function addImportanceElements(Handlebars, importanceList) {
     const maxBolts = 5;
     const importanceElements = document.querySelectorAll('.importance');
 

@@ -5,8 +5,10 @@
     "main": "public/scripts/main.js",
     "type": "module",
     "scripts": {
-        "start": "node index.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "webpack serve --config webpack.config.cjs --mode development --open chrome",
+        "start": "webpack -p && node server.js",
+        "unit": "karma start karma.conf.cjs ",
+        "test": "npm run unit",
         "stylelint": "stylelint \"**/*.css\"",
         "w3c": "html-validator --file ./public/index.html  --verbose",
         "eslint": "eslint ./**/*.js",
@@ -15,12 +17,25 @@
     "author": "Michael Gfeller",
     "license": "ISC",
     "devDependencies": {
+        "css-loader": "^5.2.6",
         "eslint": "^7.21.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-plugin-import": "^2.22.1",
+        "handlebars": "^4.7.7",
         "html-validator-cli": "^7.0.1",
+        "jasmine-core": "^3.7.1",
+        "karma": "^6.3.3",
+        "karma-chrome-launcher": "^3.1.0",
+        "karma-coverage": "^2.0.3",
+        "karma-jasmine": "^4.0.1",
+        "karma-webpack": "^5.0.0",
+        "script-loader": "^0.7.2",
+        "style-loader": "^2.0.0",
         "stylelint": "^13.12.0",
-        "stylelint-config-standard": "^21.0.0"
+        "stylelint-config-standard": "^21.0.0",
+        "webpack": "^5.38.1",
+        "webpack-cli": "^4.7.0",
+        "webpack-dev-server": "^3.11.2"
     },
     "dependencies": {
         "express": "^4.17.1"

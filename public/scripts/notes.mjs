@@ -1,6 +1,6 @@
-import * as NotesService from './notes-service.js';
-import getTopLevelIdPrefix from './top-level.js';
-import addImportanceElements from './importance.js';
+import * as NotesService from './notes-service.mjs';
+import getTopLevelIdPrefix from './top-level.mjs';
+import addImportanceElements from './importance.mjs';
 
 function navigateToEdit($event) {
     const attributes = $event?.target?.attributes;
@@ -9,7 +9,7 @@ function navigateToEdit($event) {
         const noteId = attributes['note-id'].value;
         queryParameters = `?noteId=${noteId}`;
     }
-    window.location.assign(`/create-edit-note.html${queryParameters}`);
+    window.location.assign(`/public/create-edit-note.html${queryParameters}`);
 }
 
 function removeAllNotesTemplateElements(notesTemplateIdPrefix) {
@@ -59,7 +59,7 @@ function addNotesEventListeners(notes) {
         .addEventListener('click', navigateToEdit);
 }
 
-export default function updateNotes() {
+export default function updateNotes(Handlebars) {
     const notesTemplateIdPrefix = 'template__notes__';
     removeAllNotesTemplateElements(notesTemplateIdPrefix);
     const notes = NotesService.getNotes();
@@ -71,5 +71,8 @@ export default function updateNotes() {
     indexPageContainer.innerHTML += notesContainerHtml;
 
     addNotesEventListeners(notes);
-    addImportanceElements(notes.map((note) => note.importance));
+    addImportanceElements(
+        Handlebars,
+        notes.map((note) => note.importance),
+    );
 }
