@@ -1,5 +1,5 @@
-import addImportanceElements from '../scripts/importance.mjs';
 import Handlebars from 'handlebars/runtime.js';
+import addImportanceElements from '../scripts/importance.mjs';
 import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
@@ -13,7 +13,7 @@ function addImportanceContainersToBody(numberOfImportanceContainers) {
         allImportanceElementsDiv.remove();
     }
 
-    const showImportanceElements = true;
+    const showImportanceElements = false;
     const display = showImportanceElements ? '' : 'display:none; ';
     document.body.insertAdjacentHTML(
         'beforeend',

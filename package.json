@@ -10,8 +10,8 @@
         "unit": "karma start karma.conf.cjs ",
         "test": "npm run unit",
         "stylelint": "stylelint \"**/*.css\"",
-        "w3c": "html-validator --file ./public/index.html  --verbose",
-        "eslint": "eslint ./**/*.js",
+        "w3c": "html-validator --file ./index.html  --verbose",
+        "eslint": "eslint ./**/*.js ./**/*.mjs",
         "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
     },
     "author": "Michael Gfeller",
@@ -22,7 +22,6 @@
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-plugin-import": "^2.22.1",
         "express-favicon": "^2.0.1",
-        "handlebars": "^4.7.7",
         "html-validator-cli": "^7.0.1",
         "jasmine-core": "^3.7.1",
         "karma": "^6.3.3",
@@ -41,6 +40,7 @@
         "webpack-dev-server": "^3.11.2"
     },
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "handlebars": "^4.7.7"
     }
 }
