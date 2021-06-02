@@ -9,7 +9,7 @@ export default function addImportanceElements(importanceList) {
     for (let i = 0; i < importanceElements.length; i++) {
         const importance = importanceList[i];
         const importanceElement = importanceElements[i];
-        for (let boltNumber = 1; boltNumber < maxBolts; boltNumber++) {
+        for (let boltNumber = 1; boltNumber <= maxBolts; boltNumber++) {
             // eslint-disable-next-line
             const importanceContainerHtml = Handlebars.templates.importance(
                 getImportanceContext(importance, boltNumber),

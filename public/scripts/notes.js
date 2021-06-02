@@ -25,10 +25,8 @@ function removeAllNotesTemplateElements(notesTemplateIdPrefix) {
 function getNotesContext(notes, templateIdPrefix) {
     return {
         notes,
-        idPrefixes: {
-            template: templateIdPrefix,
-            topLevel: getTopLevelIdPrefix(),
-        },
+        topLevelIdPrefix: getTopLevelIdPrefix(templateIdPrefix),
+        templateIdPrefix,
     };
 }
 
