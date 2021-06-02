@@ -11,7 +11,7 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
-        files: ['public/testing/*spec.js'],
+        files: ['public/testing/**/*.spec.js'],
 
         // list of files / patterns to exclude
         exclude: [],
@@ -20,7 +20,7 @@ module.exports = function (config) {
         // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
         preprocessors: {
             'dist/*.js': ['coverage'],
-            'public/testing/*spec.js': ['webpack'],
+            'public/testing/**/*.spec.js': ['webpack'],
         },
 
         // test results reporter to use

@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/runtime.js';
-import addImportanceElements from '../scripts/importance.mjs';
-import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
+import addImportanceElements from '../../scripts/importance.mjs';
+import addCompiledTemplatesToHandlebars from '../../templatesCompiled.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
 
