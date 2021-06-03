@@ -4,8 +4,8 @@ yesterday.setDate(today.getDate() - 1);
 const twoDaysAgo = new Date();
 twoDaysAgo.setDate(today.getDate() - 2);
 
-export const allNotes = {
-    project1Wireframe: [
+export default class SampleNotes {
+    static project1Wireframe = [
         {
             id: 1,
             finishByDate: 'Nächsten Mittwoch',
@@ -44,7 +44,5 @@ export const allNotes = {
             fullDescription: '888 888 88 88',
             hasExpand: false,
         },
-    ],
-};
-
-export let activeNotes = allNotes.project1Wireframe;
+    ];
+}

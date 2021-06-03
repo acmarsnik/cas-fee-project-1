@@ -1,28 +1,27 @@
-import { allNotes, activeNotes } from './notes.mock.data.mjs';
-
 export default class NotesMockService {
+    constructor(notes) {
+        this.notes = notes;
+    }
     getNotes() {
-        return activeNotes;
+        return this.notes;
     }
 
     getNote(id) {
-        return activeNotes.find((note) => note.id === id);
+        return this.notes.find((note) => note.id === id);
     }
 
-    updateNote(note) {
-        const indexOfNoteToUpdate = activeNotes.findIndex(
+    updateOrCreateNote(note) {
+        const indexOfNoteToUpdate = this.notes.findIndex(
             (n) => n.id === note.id,
         );
-        activeNotes[indexOfNoteToUpdate] = note;
+        if (indexOfNoteToUpdate >= 0) {
+            this.notes[indexOfNoteToUpdate] = note;
+        } else {
+            this.notes.push(note);
+        }
     }
 
-    setNotes(allNotesKey = null, notes = null) {
-        if (allNotesKey) {
-            activeNotes = allNotes[allNotesKey];
-        } else if (notes) {
-            activeNotes = notes;
-        } else {
-            activeNotes = [];
-        }
+    setNotes(notes = []) {
+        this.notes = notes;
     }
 }
