@@ -3,7 +3,7 @@ import NotesComponent from '../../scripts/notes.component.mjs';
 import NotesMockService from './mocks/notes.mock.service.mjs';
 import addCompiledTemplatesToHandlebars from '../../templatesCompiled.mjs';
 import ImportanceComponent from '../../scripts/importance.component.mjs';
-import TestingHelpersUtil from '../helpers/testing-helpers.util.mjs';
+import NotesHelpersUtil from './helpers/notes-helpers.util.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
 
@@ -18,7 +18,7 @@ const showIndexPageContainer = false;
 
 describe('Notes component', () => {
     it('should have 39 top level elements', () => {
-        TestingHelpersUtil.addIndexPageContainer(showIndexPageContainer);
+        NotesHelpersUtil.addIndexPageContainer(showIndexPageContainer);
         notesComponent.updateNotes(
             'template__notes',
             'template__notes__top-level__',
@@ -29,7 +29,7 @@ describe('Notes component', () => {
         expect(notesTopLevelElementsLength).toBe(39);
     });
     it('should create 1 importance container per item the in importance list', () => {
-        TestingHelpersUtil.addIndexPageContainer(showIndexPageContainer);
+        NotesHelpersUtil.addIndexPageContainer(showIndexPageContainer);
         notesComponent.updateNotes(
             'template__notes',
             'template__notes__top-level__',

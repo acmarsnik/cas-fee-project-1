@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/runtime.js';
 import ImportanceComponent from '../../scripts/importance.component.mjs';
 import addCompiledTemplatesToHandlebars from '../../templatesCompiled.mjs';
-import TestingHelpersUtil from '../helpers/testing-helpers.util.mjs';
+import ImportanceHelpersUtil from './helpers/importance-helpers.util.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
 const importanceComponent = new ImportanceComponent(Handlebars);
@@ -10,7 +10,7 @@ const showImportanceElements = false;
 describe('Importance component', () => {
     it('should create 15 bolt containers when there are 3 importance containers', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -24,7 +24,7 @@ describe('Importance component', () => {
     });
     it('should create 15 bolt elements when there are 3 importance containers', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -39,7 +39,7 @@ describe('Importance component', () => {
 
     it('should generate as many visible bolts as the sum of the numbers in the importance list', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -55,7 +55,7 @@ describe('Importance component', () => {
 
     it('should generate as many hidden bolts as 5 * importanceList.length - the sum of the numbers in the importance list', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -70,7 +70,7 @@ describe('Importance component', () => {
 
     it('should generate 2 visible bolts in 1st importance container when 1st importance number is 2', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -86,7 +86,7 @@ describe('Importance component', () => {
     });
     it('should generate 3 hidden bolts in 1st importance container when 1st importance number is 2', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -102,7 +102,7 @@ describe('Importance component', () => {
     });
     it('should generate 1 visible bolt in 1st importance container when 2nd importance number is 1', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -118,7 +118,7 @@ describe('Importance component', () => {
     });
     it('should generate 4 hidden bolts in 1st importance container when 2nd importance number is 1', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -134,7 +134,7 @@ describe('Importance component', () => {
     });
     it('should generate 0 visible bolts in 3rd importance container when 3rd importance number is 0', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
@@ -150,7 +150,7 @@ describe('Importance component', () => {
     });
     it('should generate 5 hidden bolts in 3rd importance container when 3rd importance number is 1', () => {
         const importanceList = [2, 1, 0];
-        TestingHelpersUtil.addImportanceContainersToBody(
+        ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
         );
