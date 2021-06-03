@@ -1,4 +1,4 @@
-.bolt {
+.notes-app [class$='-page-container'] .importance .bolt {
     border: 4px solid rgba(0, 0, 0, 0);
     transform: rotateZ(-160deg);
     padding: 2px;
@@ -11,7 +11,7 @@
     transform-origin: 50% 50% 0;
 }
 
-.bolt::after {
+.notes-app [class$='-page-container'] .importance .bolt::after {
     content: '';
     top: -9px;
     left: -8px;
@@ -28,22 +28,22 @@
     transform-origin: 50% 50% 0;
 }
 
-.bolt-container {
+.notes-app [class$='-page-container'] .importance .bolt-container {
     min-width: 1px;
 }
 
-.black {
+.notes-app [class$='-page-container'] .importance .black {
     border-bottom: 22px solid black;
 }
 
-.black::after {
+.notes-app [class$='-page-container'] .importance .black::after {
     border-bottom: 25px solid black;
 }
 
-.gray {
+.notes-app [class$='-page-container'] .importance .gray {
     border-bottom: 22px solid lightgray;
 }
 
-.gray::after {
+.notes-app [class$='-page-container'] .importance .gray::after {
     border-bottom: 25px solid lightgray;
 }

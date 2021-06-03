@@ -3,42 +3,44 @@
     row-gap: 3rem;
 }
 
-.space-between-description-and-importance-labels {
+.create-edit-note-page-container
+    .space-between-description-and-importance-labels {
     grid-row: span 2;
 }
 
-.description-input {
+.create-edit-note-page-container .description-input {
     grid-row: span 3;
 }
 
-.title-label,
-.space-between-description-and-importance-labels,
-.description-label,
-.importance-label,
-.finished-by-label {
+.create-edit-note-page-container .title-label,
+.create-edit-note-page-container
+    .space-between-description-and-importance-labels,
+.create-edit-note-page-container .description-label,
+.create-edit-note-page-container .importance-label,
+.create-edit-note-page-container .finished-by-label {
     grid-column: 2 / 3;
 }
 
-.speichern {
+.create-edit-note-page-container .speichern {
     grid-column: 2 / 8;
 }
 
-.importance-value-container,
-.finished-by-input {
+.create-edit-note-page-container .importance-value-container,
+.create-edit-note-page-container .finished-by-input {
     grid-column: 3 / 5;
 }
 
-.title-input,
-.description-input {
+.create-edit-note-page-container .title-input,
+.create-edit-note-page-container .description-input {
     grid-column: 3 / 7;
 }
 
-.cancel {
+.create-edit-note-page-container .cancel {
     grid-column: 6 / 8;
 }
 
-input,
-textarea {
+.create-edit-note-page-container input,
+.create-edit-note-page-container textarea {
     width: 100%;
     height: 100%;
 }

@@ -12,35 +12,37 @@
 </head>
 
 <body>
-  <div id="create-edit-note-page-container" class="create-edit-note-page-container">
-    <label class="title-label">Title</label>
-    <input type="text" class="title-input">
-    <label class="description-label">Beschreibung</label>
-    <textarea class="description-input">HTML für die note App erstellen.
+  <div id="notes-app" class="notes-app">
+    <div id="create-edit-note-page-container" class="create-edit-note-page-container">
+      <label class="title-label">Title</label>
+      <input type="text" class="title-input">
+      <label class="description-label">Beschreibung</label>
+      <textarea class="description-input">HTML für die note App erstellen.
 CSS erstellen für die note App [...]</textarea>
-    <div class="space-between-description-and-importance-labels"></div>
-    <label class="importance-label">Wichtigkeit</label>
-    <div class="importance-value-container">
-      <div class="bolt-container">
-        <div class="bolt black"></div>
+      <div class="space-between-description-and-importance-labels"></div>
+      <label class="importance-label">Wichtigkeit</label>
+      <div class="importance-value-container">
+        <div class="bolt-container">
+          <div class="bolt black"></div>
+        </div>
+        <div class="bolt-container">
+          <div class="bolt black"></div>
+        </div>
+        <div class="bolt-container">
+          <div class="bolt gray"></div>
+        </div>
+        <div class="bolt-container">
+          <div class="bolt gray"></div>
+        </div>
+        <div class="bolt-container">
+          <div class="bolt gray"></div>
+        </div>
       </div>
-      <div class="bolt-container">
-        <div class="bolt black"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt gray"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt gray"></div>
-      </div>
-      <div class="bolt-container">
-        <div class="bolt gray"></div>
-      </div>
+      <label class="finished-by-label">Erledigt bis:</label>
+      <input class="finished-by-input" type="date">
+      <button class="speichern">Speichern</button>
+      <button onclick="window.location.assign('../index.html')" class="cancel">Cancel</button>
     </div>
-    <label class="finished-by-label">Erledigt bis:</label>
-    <input class="finished-by-input" type="date">
-    <button class="speichern">Speichern</button>
-    <button onclick="window.location.assign('../index.html')" class="cancel">Cancel</button>
   </div>
 </body>
 

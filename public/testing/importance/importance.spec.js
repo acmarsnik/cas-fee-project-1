@@ -54,7 +54,7 @@ describe('Importance component', () => {
     });
 
     it('should generate as many hidden bolts as 5 * importanceList.length - the sum of the numbers in the importance list', () => {
-        const importanceList = [2, 1, 0];
+        const importanceList = [4, 3, 2, 1, 0, 5, 1, 2];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -65,7 +65,9 @@ describe('Importance component', () => {
         );
         const allHiddenBoltElementsLength =
             document.querySelectorAll('.bolt.black.hidden').length;
-        expect(allHiddenBoltElementsLength).toBe(15 - importanceList.length);
+        expect(allHiddenBoltElementsLength).toBe(
+            importanceList.length * 5 - importanceList.reduce((a, b) => a + b),
+        );
     });
 
     it('should generate 2 visible bolts in 1st importance container when 1st importance number is 2', () => {
