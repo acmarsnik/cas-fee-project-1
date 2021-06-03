@@ -17,12 +17,26 @@ const notesComponent = new NotesComponent(
 const showIndexPageContainer = false;
 
 describe('Notes component', () => {
-    it('should do something', () => {
+    it('should have 39 top level elements', () => {
         TestingHelpersUtil.addIndexPageContainer(showIndexPageContainer);
         notesComponent.updateNotes(
             'template__notes',
             'template__notes__top-level__',
         );
-        expect(true).toBe(true);
+        const notesTopLevelElementsLength = document.querySelectorAll(
+            '[id^="template__notes__top-level__"]',
+        ).length;
+        expect(notesTopLevelElementsLength).toBe(39);
+    });
+    it('should create 1 importance container per item the in importance list', () => {
+        TestingHelpersUtil.addIndexPageContainer(showIndexPageContainer);
+        notesComponent.updateNotes(
+            'template__notes',
+            'template__notes__top-level__',
+        );
+        const importanceContainersLength = document.querySelectorAll(
+            '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
+        ).length;
+        expect(importanceContainersLength).toBe(3);
     });
 });

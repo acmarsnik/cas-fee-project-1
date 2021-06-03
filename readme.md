@@ -37,6 +37,28 @@ npm install webpack --save-dev
 
 ```
 
+### Links to HTML Specs:
+
+-   [Importance Spec](http://localhost:8080/public/testing/importance/importance.spec.html)
+
+\*\*\* you need to comment out the 1st line in this file: `~/public/testing/importance/importance.spec.js`
+otherwise you will see the following error: `Error during loading: Uncaught TypeError: Failed to resolve module specifier "handlebars/runtime.js". Relative references must start with either "/", "./", or "../". in http://localhost:8080/public/testing/importance/importance.spec.html line 0`
+
+-   [Notes Spec](http://localhost:8080/public/testing/notes/notes.spec.html)
+
+\*\*\* you need to comment out the 1st line in this file: `~/public/testing/notes/notes.spec.js`
+otherwise you will see the following error: `Error during loading: Uncaught TypeError: Failed to resolve module specifier "handlebars/runtime.js". Relative references must start with either "/", "./", or "../". in http://localhost:8080/public/testing/importance/importance.spec.html line 0`
+
+```
+import Handlebars from 'handlebars/runtime.js';
+```
+
+=>
+
+```
+// import Handlebars from 'handlebars/runtime.js';
+```
+
 ## Webpack
 
 [Tutorial: how to build a Webpack app with Vanilla JS or React](https://medium.com/jeremy-gottfrieds-tech-blog/tutorial-how-to-build-a-webpack-app-with-vanilla-js-or-react-72ca2cc7e14)
