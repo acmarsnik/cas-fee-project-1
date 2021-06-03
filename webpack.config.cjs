@@ -1,7 +1,7 @@
 // webpack.config.js
 module.exports = {
     entry: [
-        './public/scripts/index.mjs',
+        './public/scripts/index.component.mjs',
         './public/styles/index.css',
         './public/styles/importance.css',
         './public/styles/common.css',
