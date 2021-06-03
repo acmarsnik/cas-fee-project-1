@@ -22,8 +22,8 @@ describe('Importance component', () => {
             document.querySelectorAll('.bolt-container').length;
         expect(boltContainersLength).toBe(15);
     });
-    it('should create 15 bolt elements when there are 3 importance containers', () => {
-        const importanceList = [2, 1, 0];
+    it('should create 0 bolt elements when there are 0 importance containers', () => {
+        const importanceList = [];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -34,11 +34,11 @@ describe('Importance component', () => {
         );
         const boltElementsLength =
             document.querySelectorAll('.bolt.black').length;
-        expect(boltElementsLength).toBe(15);
+        expect(boltElementsLength).toBe(0);
     });
 
     it('should generate as many visible bolts as the sum of the numbers in the importance list', () => {
-        const importanceList = [2, 1, 0];
+        const importanceList = [1, 5, 2, 4, 3, 3, 5, 4, 3, 2, 1, 2, 3, 4, 5];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -50,7 +50,8 @@ describe('Importance component', () => {
         const allVisibleBoltElementsLength = document.querySelectorAll(
             '.bolt.black:not(.hidden)',
         ).length;
-        expect(allVisibleBoltElementsLength).toBe(3);
+        const importanceListSum = importanceList.reduce((a, b) => a + b);
+        expect(allVisibleBoltElementsLength).toBe(importanceListSum);
     });
 
     it('should generate as many hidden bolts as 5 * importanceList.length - the sum of the numbers in the importance list', () => {
@@ -65,13 +66,14 @@ describe('Importance component', () => {
         );
         const allHiddenBoltElementsLength =
             document.querySelectorAll('.bolt.black.hidden').length;
+        const importanceListSum = importanceList.reduce((a, b) => a + b);
         expect(allHiddenBoltElementsLength).toBe(
-            importanceList.length * 5 - importanceList.reduce((a, b) => a + b),
+            importanceList.length * 5 - importanceListSum,
         );
     });
 
-    it('should generate 2 visible bolts in 1st importance container when 1st importance number is 2', () => {
-        const importanceList = [2, 1, 0];
+    it('should generate 0 visible bolts in 1st importance container when 1st importance number is 0', () => {
+        const importanceList = [0];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -84,10 +86,10 @@ describe('Importance component', () => {
             document.querySelectorAll(
                 '[id="template__notes__top-level__importance-1"] .bolt.black:not(.hidden)',
             ).length;
-        expect(firstImportanceContainerVisibleBoltElementsLength).toBe(2);
+        expect(firstImportanceContainerVisibleBoltElementsLength).toBe(0);
     });
-    it('should generate 3 hidden bolts in 1st importance container when 1st importance number is 2', () => {
-        const importanceList = [2, 1, 0];
+    it('should generate 5 hidden bolts in 1st importance container when 1st importance number is 0', () => {
+        const importanceList = [0];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -100,10 +102,10 @@ describe('Importance component', () => {
             document.querySelectorAll(
                 '[id="template__notes__top-level__importance-1"] .bolt.black.hidden',
             ).length;
-        expect(firstImportanceContainerHiddenBoltElementsLength).toBe(3);
+        expect(firstImportanceContainerHiddenBoltElementsLength).toBe(5);
     });
-    it('should generate 1 visible bolt in 1st importance container when 2nd importance number is 1', () => {
-        const importanceList = [2, 1, 0];
+    it('should generate 3 visible bolt in 2nd importance container when 2nd importance number is 3', () => {
+        const importanceList = [5, 3, 0, 1, 2];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -116,10 +118,10 @@ describe('Importance component', () => {
             document.querySelectorAll(
                 '[id="template__notes__top-level__importance-2"] .bolt.black:not(.hidden)',
             ).length;
-        expect(secondImportanceContainerVisibleBoltElementsLength).toBe(1);
+        expect(secondImportanceContainerVisibleBoltElementsLength).toBe(3);
     });
-    it('should generate 4 hidden bolts in 1st importance container when 2nd importance number is 1', () => {
-        const importanceList = [2, 1, 0];
+    it('should generate 2 hidden bolts in 1st importance container when 2nd importance number is 3', () => {
+        const importanceList = [1, 3, 4, 4, 0];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -132,10 +134,10 @@ describe('Importance component', () => {
             document.querySelectorAll(
                 '[id="template__notes__top-level__importance-2"] .bolt.black.hidden',
             ).length;
-        expect(secondImportanceContainerHiddenBoltElementsLength).toBe(4);
+        expect(secondImportanceContainerHiddenBoltElementsLength).toBe(2);
     });
-    it('should generate 0 visible bolts in 3rd importance container when 3rd importance number is 0', () => {
-        const importanceList = [2, 1, 0];
+    it('should generate 5 visible bolts in last importance container when last importance number is 5', () => {
+        const importanceList = [1, 2, 3, 4, 2, 3, 2, 4, 0, 5, 1, 2, 3, 5];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -146,12 +148,12 @@ describe('Importance component', () => {
         );
         const thirdImportanceContainerVisibleBoltElementsLength =
             document.querySelectorAll(
-                '[id="template__notes__top-level__importance-3"] .bolt.black:not(.hidden)',
+                '[id="template__notes__top-level__importance-14"] .bolt.black:not(.hidden)',
             ).length;
-        expect(thirdImportanceContainerVisibleBoltElementsLength).toBe(0);
+        expect(thirdImportanceContainerVisibleBoltElementsLength).toBe(5);
     });
-    it('should generate 5 hidden bolts in 3rd importance container when 3rd importance number is 1', () => {
-        const importanceList = [2, 1, 0];
+    it('should generate 0 hidden bolts in last importance container when last importance number is 5', () => {
+        const importanceList = [0, 5];
         ImportanceHelpersUtil.addImportanceContainersToBody(
             importanceList.length,
             showImportanceElements,
@@ -162,8 +164,8 @@ describe('Importance component', () => {
         );
         const thirdImportanceContainerHiddenBoltElementsLength =
             document.querySelectorAll(
-                '[id="template__notes__top-level__importance-3"] .bolt.black.hidden',
+                '[id="template__notes__top-level__importance-2"] .bolt.black.hidden',
             ).length;
-        expect(thirdImportanceContainerHiddenBoltElementsLength).toBe(5);
+        expect(thirdImportanceContainerHiddenBoltElementsLength).toBe(0);
     });
 });
