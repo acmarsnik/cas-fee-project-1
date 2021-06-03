@@ -1,47 +1,25 @@
 import Handlebars from 'handlebars/runtime.js';
 import ImportanceComponent from '../../scripts/importance.component.mjs';
 import addCompiledTemplatesToHandlebars from '../../templatesCompiled.mjs';
+import TestingHelpersUtil from '../helpers/testing-helpers.util.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
 const importanceComponent = new ImportanceComponent(Handlebars);
-
-function addImportanceContainersToBody(numberOfImportanceContainers) {
-    const allImportanceElementsDiv = document.getElementById(
-        'all-test-importance-elements',
-    );
-
-    if (allImportanceElementsDiv) {
-        allImportanceElementsDiv.remove();
-    }
-
-    const showImportanceElements = false;
-    const display = showImportanceElements ? '' : 'display:none; ';
-    document.body.insertAdjacentHTML(
-        'beforeend',
-        `<div id="all-test-importance-elements" style="${display}margin-top: 30px"></div>`,
-    );
-    for (let i = 0; i < numberOfImportanceContainers; i++) {
-        document
-            .getElementById('all-test-importance-elements')
-            .insertAdjacentHTML(
-                'beforeend',
-                `<div id="template__notes__top-level__importance-${
-                    i + 1
-                }" class="importance"></div>`,
-            );
-    }
-}
+const showImportanceElements = true;
 
 describe('Importance component', () => {
     it('should create 15 bolt elements when there are 3 importance containers', () => {
         const importanceList = [2, 1, 0];
-        addImportanceContainersToBody(importanceList.length);
+        TestingHelpersUtil.addImportanceContainersToBody(
+            importanceList.length,
+            showImportanceElements,
+        );
         importanceComponent.addImportanceElements(
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
         const importanceContainersLength = document.querySelectorAll(
-            '[id^="template__notes__top-level__importance-"]',
+            '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         ).length;
         const boltContainersLength =
             document.querySelectorAll('.bolt-container').length;
@@ -54,7 +32,10 @@ describe('Importance component', () => {
 
     it('should have visible bolts that match the numbers in the importance list', () => {
         const importanceList = [2, 1, 0];
-        addImportanceContainersToBody(importanceList.length);
+        TestingHelpersUtil.addImportanceContainersToBody(
+            importanceList.length,
+            showImportanceElements,
+        );
         importanceComponent.addImportanceElements(
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',

@@ -3,7 +3,7 @@ import NotesComponent from './notes.component.mjs';
 import NotesService from './notes.service.mjs';
 import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
 import ImportanceComponent from './importance.component.mjs';
-import TemplateIdUtils from './template-id.utils.mjs';
+import TemplateIdUtils from './template-id.util.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
 

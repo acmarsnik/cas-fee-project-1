@@ -1,4 +1,4 @@
-import notes from './notes-data.mjs';
+import notes from './notes.data.mjs';
 
 export default class NotesService {
     getNotes() {
