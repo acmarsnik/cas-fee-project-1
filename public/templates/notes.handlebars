@@ -1,18 +1,18 @@
-<div id="create-note" class="create-note">
+<div id="{{topLevelIdPrefix}}create-note" class="create-note">
     <button>Create new Note</button>
 </div>
-<div class="space-between-create-note-and-color-palette"></div>
-<div class="color-palette-selector">
-<select name="colorPalette">
+<div id="{{topLevelIdPrefix}}space-between-create-note-and-color-palette" class="space-between-create-note-and-color-palette"></div>
+<div id="{{topLevelIdPrefix}}color-palette-selector" class="color-palette-selector">
+<select  name="colorPalette">
     <option value="blackWhiteStyle">BlackWhite-Style</option>
     <option value="darkMode">Dark Mode</option>
     <option value="rainbow">Rainbow</option>
 </select>
 </div>
-<div class="by-finish-date"><button>By finish Date</button></div>
-<div class="by-created-date"><button>By created Date</button></div>
-<div class="by-importance"><button>By Importance</button></div>
-<div class="show-finished"><button>Show finished</button></div>
+<div id="{{topLevelIdPrefix}}by-finish-date" class="by-finish-date"><button>By finish Date</button></div>
+<div id="{{topLevelIdPrefix}}by-created-date" class="by-created-date"><button>By created Date</button></div>
+<div id="{{topLevelIdPrefix}}by-importance" class="by-importance"><button>By Importance</button></div>
+<div id="{{topLevelIdPrefix}}show-finished" class="show-finished"><button>Show finished</button></div>
 {{#each notes}}
     <div
         id='{{../topLevelIdPrefix}}finish-by-date-{{id}}'
@@ -24,7 +24,7 @@
         id='{{../topLevelIdPrefix}}title-padding-left-{{id}}'
         class='title-padding-left'
     ></div>
-    <div class='title'>
+    <div id='{{../topLevelIdPrefix}}title-{{id}}' class='title'>
         <p>{{title}}</p>
     </div>
     <div

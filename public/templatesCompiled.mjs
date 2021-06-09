@@ -476,7 +476,38 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                           })
                         : helper),
                 ) +
-                "'\r\n        class='title-padding-left'\r\n    ></div>\r\n    <div class='title'>\r\n        <p>" +
+                "'\r\n        class='title-padding-left'\r\n    ></div>\r\n    <div id='" +
+                alias2(
+                    alias1(
+                        depths[1] != null
+                            ? lookupProperty(depths[1], 'topLevelIdPrefix')
+                            : depths[1],
+                        depth0,
+                    ),
+                ) +
+                'title-' +
+                alias2(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'id') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'id')
+                                : depth0)) != null
+                            ? helper
+                            : alias4),
+                    typeof helper === alias5
+                        ? helper.call(alias3, {
+                              name: 'id',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 27, column: 42 },
+                                  end: { line: 27, column: 48 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "' class='title'>\r\n        <p>" +
                 alias2(
                     ((helper =
                         (helper =
@@ -1362,6 +1393,11 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
             depths,
         ) {
             var stack1,
+                helper,
+                alias1 = depth0 != null ? depth0 : container.nullContext || {},
+                alias2 = container.hooks.helperMissing,
+                alias3 = 'function',
+                alias4 = container.escapeExpression,
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
@@ -1377,9 +1413,163 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     };
 
             return (
-                '<div id="create-note" class="create-note">\r\n    <button>Create new Note</button>\r\n</div>\r\n<div class="space-between-create-note-and-color-palette"></div>\r\n<div class="color-palette-selector">\r\n<select name="colorPalette">\r\n    <option value="blackWhiteStyle">BlackWhite-Style</option>\r\n    <option value="darkMode">Dark Mode</option>\r\n    <option value="rainbow">Rainbow</option>\r\n</select>\r\n</div>\r\n<div class="by-finish-date"><button>By finish Date</button></div>\r\n<div class="by-created-date"><button>By created Date</button></div>\r\n<div class="by-importance"><button>By Importance</button></div>\r\n<div class="show-finished"><button>Show finished</button></div>\r\n' +
+                '<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 1, column: 9 },
+                                  end: { line: 1, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'create-note" class="create-note">\r\n    <button>Create new Note</button>\r\n</div>\r\n<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 4, column: 9 },
+                                  end: { line: 4, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'space-between-create-note-and-color-palette" class="space-between-create-note-and-color-palette"></div>\r\n<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 5, column: 9 },
+                                  end: { line: 5, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'color-palette-selector" class="color-palette-selector">\r\n<select  name="colorPalette">\r\n    <option value="blackWhiteStyle">BlackWhite-Style</option>\r\n    <option value="darkMode">Dark Mode</option>\r\n    <option value="rainbow">Rainbow</option>\r\n</select>\r\n</div>\r\n<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 12, column: 9 },
+                                  end: { line: 12, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'by-finish-date" class="by-finish-date"><button>By finish Date</button></div>\r\n<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 13, column: 9 },
+                                  end: { line: 13, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'by-created-date" class="by-created-date"><button>By created Date</button></div>\r\n<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 14, column: 9 },
+                                  end: { line: 14, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'by-importance" class="by-importance"><button>By Importance</button></div>\r\n<div id="' +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 15, column: 9 },
+                                  end: { line: 15, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                'show-finished" class="show-finished"><button>Show finished</button></div>\r\n' +
                 ((stack1 = lookupProperty(helpers, 'each').call(
-                    depth0 != null ? depth0 : container.nullContext || {},
+                    alias1,
                     depth0 != null ? lookupProperty(depth0, 'notes') : depth0,
                     {
                         name: 'each',

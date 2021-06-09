@@ -6,7 +6,6 @@ export default class CreateEditNoteComponent {
     }
 
     navigateToNotes() {
-        console.log('Navigate to Notes!!!');
         window.history.replaceState('notes', 'Notes', '/');
     }
 
@@ -35,24 +34,9 @@ export default class CreateEditNoteComponent {
         );
         saveButton.addEventListener('click', this.navigateToNotes);
         cancelButton.addEventListener('click', this.navigateToNotes);
-
-        const descriptionTextArea = document.getElementById(
-            `${topLevelIdPrefix}description-input`,
-        );
-
-        descriptionTextArea.addEventListener('focusout', () => {
-            console.log({
-                descriptionTextAreaValue: descriptionTextArea.value,
-            });
-        });
     }
 
     updateNote(idPrefix, topLevelIdPrefix, noteExists = false, noteId = null) {
-        console.log({ idPrefix });
-        console.log({ topLevelIdPrefix });
-        console.log({ noteExists });
-        console.log({ noteId });
-
         this.removeTopLevelElements(topLevelIdPrefix);
 
         let note = {

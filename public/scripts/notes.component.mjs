@@ -41,24 +41,26 @@ export default class NotesComponent {
 
     getContext(notes, idPrefix, topLevelIdPrefix) {
         // const a = notes.map(note => note ? {...note, baz: [11,22,33]} : note)
-        const adjustedBreakNotes = notes.map((note) =>
-            note.shortDescription?.includes('\n') ||
-            note.fullDescription?.includes('\n')
-                ? {
-                      ...note,
-                      shortDescription: note.shortDescription
-                          ? note.shortDescription.replaceAll('\n', '<br />')
-                          : note.shortDescription,
-                      fullDescription: note.fullDescription
-                          ? note.fullDescription.replaceAll('\n', '<br />')
-                          : note.fullDescription,
-                  }
-                : note,
-        );
+        const notesAdjustedForDisplay = notes.map((note) => {
+            return {
+                ...note,
+                finishedDate: note.finishedDate
+                    ? note.finishedDate.toLocaleDateString()
+                    : note.finishedDate,
+                finishByDate: note.finishByDate
+                    ? note.finishByDate.toLocaleDateString()
+                    : note.finishByDate,
+                shortDescription: note.shortDescription
+                    ? note.shortDescription.replaceAll('\n', '<br />')
+                    : note.shortDescription,
+                fullDescription: note.fullDescription
+                    ? note.fullDescription.replaceAll('\n', '<br />')
+                    : note.fullDescription,
+            };
+        });
 
-        console.log({ adjustedBreakNotes });
         return {
-            notes: adjustedBreakNotes,
+            notes: notesAdjustedForDisplay,
             topLevelIdPrefix,
             idPrefix,
         };
@@ -75,7 +77,7 @@ export default class NotesComponent {
         });
     }
 
-    addEventListeners(notes) {
+    addEventListeners(idPrefix, topLevelIdPrefix, notes) {
         notes.forEach((note) => {
             document
                 .querySelector(`.edit-button button[note-id="${note.id}"]`)
@@ -92,13 +94,47 @@ export default class NotesComponent {
         });
 
         document
-            .getElementById('create-note')
-            .addEventListener('click', this.navigateToCreate);
+            .getElementById(`${topLevelIdPrefix}create-note`)
+            .addEventListener('click', () => this.navigateToCreate());
+        document
+            .getElementById(`${topLevelIdPrefix}by-finish-date`)
+            .addEventListener('click', () => {
+                const state = window.history.state;
+                console.log({ state });
+                let direction = 'descending';
+                if (
+                    state.includes('sortProperty=finishedDate') &&
+                    state.includes('direction=descending')
+                ) {
+                    direction = 'ascending';
+                }
+                this.updateNotes(idPrefix, topLevelIdPrefix, {
+                    property: 'finishedDate',
+                    direction,
+                });
+                window.history.replaceState(
+                    `notes?sortProperty=finishedDate&direction=${direction}`,
+                    'Notes',
+                    `?sortProperty=finishedDate&direction=${direction}`,
+                );
+            });
     }
 
-    updateNotes(idPrefix, topLevelIdPrefix) {
+    updateNotes(idPrefix, topLevelIdPrefix, sortObject = null) {
         this.removeTopLevelElements(topLevelIdPrefix);
-        const notes = this.notesService.getNotes();
+        let notes = this.notesService.getNotes();
+        console.log({ notes });
+        if (sortObject) {
+            notes = notes.slice().sort((a, b) => {
+                const sortProperty = sortObject.property;
+                const direction = sortObject.direction;
+                const bTime = b[sortProperty] ? b[sortProperty].getTime() : 0;
+                const aTime = a[sortProperty] ? a[sortProperty].getTime() : 0;
+                if (direction === 'descending') return bTime - aTime;
+                else return aTime - bTime;
+            });
+        }
+
         // eslint-disable-next-line
         const notesContainerHtml = this.handlebars.templates.notes(
             this.getContext(notes, idPrefix, topLevelIdPrefix),
@@ -108,7 +144,7 @@ export default class NotesComponent {
         );
         indexPageContainer.innerHTML += notesContainerHtml;
 
-        this.addEventListeners(notes);
+        this.addEventListeners(idPrefix, topLevelIdPrefix, notes);
         this.importanceComponent.addImportanceElements(
             notes.map((note) => note.importance),
             `[id^="${topLevelIdPrefix}importance-"]:not([id*="padding"]).importance`,

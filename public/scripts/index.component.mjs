@@ -14,16 +14,6 @@ function hide(elementId) {
     document.getElementById(elementId).classList.add('hidden');
 }
 
-function getParameterByName(name, url = window.location.href) {
-    console.log({ url });
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
 addCompiledTemplatesToHandlebars(Handlebars);
 
 const templateIdPrefixes = {
@@ -49,8 +39,6 @@ const notesComponent = new NotesComponent(
     notesImportanceComponent,
 );
 
-console.log({ window });
-
 (function (history) {
     var replaceState = history.replaceState;
     history.replaceState = function (state) {
@@ -63,9 +51,7 @@ console.log({ window });
     };
 })(window.history);
 
-window.onreplacestate = history.onreplacestate = function (e) {
-    console.log({ e });
-    console.log({ history: window.history });
+function showCorrectComponents(e) {
     if (e.state?.includes('edit')) {
         createEditNoteComponent.updateNote(
             TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
@@ -90,43 +76,22 @@ window.onreplacestate = history.onreplacestate = function (e) {
         makeVisible('index-page-container');
         hide('create-edit-note-page-container');
     }
+}
 
-    console.log('location changed!');
-};
+window.onreplacestate = history.onreplacestate = (e) =>
+    showCorrectComponents(e);
+
+const stateObject = { state: '' };
+
+if (window.location.href.includes('noteId')) {
+    stateObject.state = `edit-note-${window.location.href.split('=')[1]}`;
+} else if (window.location.href.includes('create')) {
+    stateObject.state = 'create-note';
+}
+
+showCorrectComponents(stateObject);
 
 notesComponent.updateNotes(
     TemplateIdUtils.getPrefix(templateIdPrefixes.notes),
     TemplateIdUtils.getTopLevelPrefix(templateIdPrefixes.notes),
 );
-
-function insertParam(key, value) {
-    key = encodeURIComponent(key);
-    value = encodeURIComponent(value);
-
-    // kvp looks like ['key1=value1', 'key2=value2', ...]
-    var kvp = document.location.search.substr(1).split('&');
-    let i = 0;
-
-    for (; i < kvp.length; i++) {
-        if (kvp[i].startsWith(key + '=')) {
-            let pair = kvp[i].split('=');
-            pair[1] = value;
-            kvp[i] = pair.join('=');
-            break;
-        }
-    }
-
-    if (i >= kvp.length) {
-        kvp[kvp.length] = [key, value].join('=');
-    }
-
-    // can return this or...
-    let params = kvp.join('&');
-
-    return params;
-
-    // reload page with new params
-    // document.location.search = params;
-}
-
-console.log({ qp: insertParam('id', 25) });

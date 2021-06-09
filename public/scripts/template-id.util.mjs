@@ -1,9 +1,9 @@
 export default class TemplateIdUtils {
     static getPrefix(prefix = '') {
-        return `template__${prefix}`;
+        return `template__${prefix}__`;
     }
 
     static getTopLevelPrefix(prefix = '') {
-        return `${this.getPrefix(prefix)}__top-level__`;
+        return `${this.getPrefix(prefix)}top-level__`;
     }
 }
