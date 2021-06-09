@@ -1,11 +1,21 @@
 export default class ImportanceComponent {
-    constructor(handlebars) {
+    constructor(handlebars, isEditable = false) {
         this.handlebars = handlebars;
+        this.isEditable = isEditable;
     }
 
     getImportanceContext(importance, boltNumber) {
+        let color = 'black';
+        let visibility = 'hidden';
+
+        if (importance && importance >= boltNumber) {
+            visibility = 'visible';
+        } else if (this.isEditable) {
+            color = 'gray';
+        }
+
         return {
-            hidden: importance && importance >= boltNumber ? '' : ' hidden',
+            colorAndVisibility: `${color} ${visibility}`,
         };
     }
 

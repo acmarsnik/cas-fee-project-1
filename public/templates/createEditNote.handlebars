@@ -1,0 +1,38 @@
+<label id='{{topLevelIdPrefix}}title-label' class='title-label'>Title</label>
+<input
+    type='text'
+    id='{{topLevelIdPrefix}}title-input'
+    class='title-input'
+    value='{{note.title}}'
+/>
+<label
+    id='{{topLevelIdPrefix}}description-label'
+    class='description-label'
+>Beschreibung</label>
+<textarea
+    id='{{topLevelIdPrefix}}description-input'
+    class='description-input'
+>{{note.fullDescription}}</textarea>
+
+<div
+    id='{{topLevelIdPrefix}}space-between-description-and-importance-labels'
+    class='space-between-description-and-importance-labels'
+></div>
+<label
+    id='{{topLevelIdPrefix}}importance-label'
+    class='importance-label'
+>Wichtigkeit</label>
+<div id='{{topLevelIdPrefix}}importance' class='importance'>
+</div>
+<label
+    id='{{topLevelIdPrefix}}finished-by-label'
+    class='finished-by-label'
+>Erledigt bis:</label>
+<input
+    id='{{topLevelIdPrefix}}finished-by-input'
+    class='finished-by-input'
+    type='date'
+    value='{{note.finishByDate}}'
+/>
+<button id='{{topLevelIdPrefix}}speichern' class='speichern'>Speichern</button>
+<button id='{{topLevelIdPrefix}}cancel' class='cancel'>Cancel</button>

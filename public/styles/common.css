@@ -27,6 +27,7 @@
     min-height: 1.3rem;
 }
 
-.notes-app [class$='-page-container'] .hidden {
+.notes-app [class$='-page-container'] .hidden,
+.notes-app [class*='-page-container'].hidden {
     display: none;
 }

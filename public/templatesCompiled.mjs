@@ -1,6 +1,314 @@
-export default function (Handlebars) {
+export default function addCompiledTemplatesToHandlebars(Handlebars) {
     var template = Handlebars.template,
         templates = (Handlebars.templates = Handlebars.templates || {});
+    templates['createEditNote'] = template({
+        compiler: [8, '>= 4.3.0'],
+        main: function (container, depth0, helpers, partials, data) {
+            var stack1,
+                helper,
+                alias1 = depth0 != null ? depth0 : container.nullContext || {},
+                alias2 = container.hooks.helperMissing,
+                alias3 = 'function',
+                alias4 = container.escapeExpression,
+                alias5 = container.lambda,
+                lookupProperty =
+                    container.lookupProperty ||
+                    function (parent, propertyName) {
+                        if (
+                            Object.prototype.hasOwnProperty.call(
+                                parent,
+                                propertyName,
+                            )
+                        ) {
+                            return parent[propertyName];
+                        }
+                        return undefined;
+                    };
+
+            return (
+                "<label id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 1, column: 11 },
+                                  end: { line: 1, column: 31 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "title-label' class='title-label'>Title</label>\r\n<input\r\n    type='text'\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 4, column: 8 },
+                                  end: { line: 4, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "title-input'\r\n    class='title-input'\r\n    value='" +
+                alias4(
+                    alias5(
+                        (stack1 =
+                            depth0 != null
+                                ? lookupProperty(depth0, 'note')
+                                : depth0) != null
+                            ? lookupProperty(stack1, 'title')
+                            : stack1,
+                        depth0,
+                    ),
+                ) +
+                "'\r\n/>\r\n<label\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 9, column: 8 },
+                                  end: { line: 9, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "description-label'\r\n    class='description-label'\r\n>Beschreibung</label>\r\n<textarea\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 13, column: 8 },
+                                  end: { line: 13, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "description-input'\r\n    class='description-input'\r\n>" +
+                alias4(
+                    alias5(
+                        (stack1 =
+                            depth0 != null
+                                ? lookupProperty(depth0, 'note')
+                                : depth0) != null
+                            ? lookupProperty(stack1, 'fullDescription')
+                            : stack1,
+                        depth0,
+                    ),
+                ) +
+                "</textarea>\r\n\r\n<div\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 18, column: 8 },
+                                  end: { line: 18, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "space-between-description-and-importance-labels'\r\n    class='space-between-description-and-importance-labels'\r\n></div>\r\n<label\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 22, column: 8 },
+                                  end: { line: 22, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "importance-label'\r\n    class='importance-label'\r\n>Wichtigkeit</label>\r\n<div id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 25, column: 9 },
+                                  end: { line: 25, column: 29 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "importance' class='importance'>\r\n</div>\r\n<label\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 28, column: 8 },
+                                  end: { line: 28, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "finished-by-label'\r\n    class='finished-by-label'\r\n>Erledigt bis:</label>\r\n<input\r\n    id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 32, column: 8 },
+                                  end: { line: 32, column: 28 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "finished-by-input'\r\n    class='finished-by-input'\r\n    type='date'\r\n    value='" +
+                alias4(
+                    alias5(
+                        (stack1 =
+                            depth0 != null
+                                ? lookupProperty(depth0, 'note')
+                                : depth0) != null
+                            ? lookupProperty(stack1, 'finishByDate')
+                            : stack1,
+                        depth0,
+                    ),
+                ) +
+                "'\r\n/>\r\n<button id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 37, column: 12 },
+                                  end: { line: 37, column: 32 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "speichern' class='speichern'>Speichern</button>\r\n<button id='" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'topLevelIdPrefix') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'topLevelIdPrefix')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'topLevelIdPrefix',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 38, column: 12 },
+                                  end: { line: 38, column: 32 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "cancel' class='cancel'>Cancel</button>"
+            );
+        },
+        useData: true,
+    });
     templates['importance'] = template({
         compiler: [8, '>= 4.3.0'],
         main: function (container, depth0, helpers, partials, data) {
@@ -20,13 +328,13 @@ export default function (Handlebars) {
                     };
 
             return (
-                "<div class='bolt-container'>\r\n    <div class='bolt black" +
+                "<div class='bolt-container'>\r\n    <div class='bolt " +
                 container.escapeExpression(
                     ((helper =
                         (helper =
-                            lookupProperty(helpers, 'hidden') ||
+                            lookupProperty(helpers, 'colorAndVisibility') ||
                             (depth0 != null
-                                ? lookupProperty(depth0, 'hidden')
+                                ? lookupProperty(depth0, 'colorAndVisibility')
                                 : depth0)) != null
                             ? helper
                             : container.hooks.helperMissing),
@@ -36,12 +344,12 @@ export default function (Handlebars) {
                                   ? depth0
                                   : container.nullContext || {},
                               {
-                                  name: 'hidden',
+                                  name: 'colorAndVisibility',
                                   hash: {},
                                   data: data,
                                   loc: {
-                                      start: { line: 2, column: 26 },
-                                      end: { line: 2, column: 36 },
+                                      start: { line: 2, column: 21 },
+                                      end: { line: 2, column: 43 },
                                   },
                               },
                           )
@@ -109,8 +417,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 3, column: 50 },
-                                  end: { line: 3, column: 56 },
+                                  start: { line: 18, column: 50 },
+                                  end: { line: 18, column: 56 },
                               },
                           })
                         : helper),
@@ -131,8 +439,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 6, column: 11 },
-                                  end: { line: 6, column: 27 },
+                                  start: { line: 21, column: 11 },
+                                  end: { line: 21, column: 27 },
                               },
                           })
                         : helper),
@@ -162,8 +470,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 9, column: 54 },
-                                  end: { line: 9, column: 60 },
+                                  start: { line: 24, column: 54 },
+                                  end: { line: 24, column: 60 },
                               },
                           })
                         : helper),
@@ -184,8 +492,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 13, column: 11 },
-                                  end: { line: 13, column: 20 },
+                                  start: { line: 28, column: 11 },
+                                  end: { line: 28, column: 20 },
                               },
                           })
                         : helper),
@@ -215,8 +523,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 16, column: 70 },
-                                  end: { line: 16, column: 76 },
+                                  start: { line: 31, column: 70 },
+                                  end: { line: 31, column: 76 },
                               },
                           })
                         : helper),
@@ -246,8 +554,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 20, column: 46 },
-                                  end: { line: 20, column: 52 },
+                                  start: { line: 35, column: 46 },
+                                  end: { line: 35, column: 52 },
                               },
                           })
                         : helper),
@@ -277,8 +585,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 25, column: 60 },
-                                  end: { line: 25, column: 66 },
+                                  start: { line: 40, column: 60 },
+                                  end: { line: 40, column: 66 },
                               },
                           })
                         : helper),
@@ -308,8 +616,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 29, column: 44 },
-                                  end: { line: 29, column: 50 },
+                                  start: { line: 44, column: 44 },
+                                  end: { line: 44, column: 50 },
                               },
                           })
                         : helper),
@@ -333,8 +641,8 @@ export default function (Handlebars) {
                         ),
                         data: data,
                         loc: {
-                            start: { line: 32, column: 8 },
-                            end: { line: 36, column: 15 },
+                            start: { line: 47, column: 8 },
+                            end: { line: 51, column: 15 },
                         },
                     },
                 )) != null
@@ -353,8 +661,8 @@ export default function (Handlebars) {
                         inverse: container.noop,
                         data: data,
                         loc: {
-                            start: { line: 38, column: 27 },
-                            end: { line: 40, column: 24 },
+                            start: { line: 53, column: 27 },
+                            end: { line: 55, column: 24 },
                         },
                     },
                 )) != null
@@ -385,8 +693,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 44, column: 60 },
-                                  end: { line: 44, column: 66 },
+                                  start: { line: 59, column: 60 },
+                                  end: { line: 59, column: 66 },
                               },
                           })
                         : helper),
@@ -416,8 +724,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 48, column: 47 },
-                                  end: { line: 48, column: 53 },
+                                  start: { line: 63, column: 47 },
+                                  end: { line: 63, column: 53 },
                               },
                           })
                         : helper),
@@ -441,8 +749,8 @@ export default function (Handlebars) {
                         ),
                         data: data,
                         loc: {
-                            start: { line: 51, column: 8 },
-                            end: { line: 65, column: 15 },
+                            start: { line: 66, column: 8 },
+                            end: { line: 80, column: 15 },
                         },
                     },
                 )) != null
@@ -473,8 +781,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 68, column: 71 },
-                                  end: { line: 68, column: 77 },
+                                  start: { line: 83, column: 71 },
+                                  end: { line: 83, column: 77 },
                               },
                           })
                         : helper),
@@ -504,8 +812,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 72, column: 51 },
-                                  end: { line: 72, column: 57 },
+                                  start: { line: 87, column: 51 },
+                                  end: { line: 87, column: 57 },
                               },
                           })
                         : helper),
@@ -523,8 +831,8 @@ export default function (Handlebars) {
                         inverse: container.noop,
                         data: data,
                         loc: {
-                            start: { line: 75, column: 8 },
-                            end: { line: 86, column: 15 },
+                            start: { line: 90, column: 8 },
+                            end: { line: 101, column: 15 },
                         },
                     },
                 )) != null
@@ -555,8 +863,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 89, column: 55 },
-                                  end: { line: 89, column: 61 },
+                                  start: { line: 104, column: 55 },
+                                  end: { line: 104, column: 61 },
                               },
                           })
                         : helper),
@@ -586,8 +894,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 93, column: 50 },
-                                  end: { line: 93, column: 56 },
+                                  start: { line: 108, column: 50 },
+                                  end: { line: 108, column: 56 },
                               },
                           })
                         : helper),
@@ -617,8 +925,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 97, column: 47 },
-                                  end: { line: 97, column: 53 },
+                                  start: { line: 112, column: 47 },
+                                  end: { line: 112, column: 53 },
                               },
                           })
                         : helper),
@@ -639,8 +947,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 100, column: 25 },
-                                  end: { line: 100, column: 31 },
+                                  start: { line: 115, column: 25 },
+                                  end: { line: 115, column: 31 },
                               },
                           })
                         : helper),
@@ -691,8 +999,8 @@ export default function (Handlebars) {
                                   hash: {},
                                   data: data,
                                   loc: {
-                                      start: { line: 39, column: 16 },
-                                      end: { line: 39, column: 39 },
+                                      start: { line: 54, column: 16 },
+                                      end: { line: 54, column: 39 },
                                   },
                               },
                           )
@@ -739,8 +1047,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 52, column: 31 },
-                                  end: { line: 52, column: 37 },
+                                  start: { line: 67, column: 31 },
+                                  end: { line: 67, column: 37 },
                               },
                           })
                         : helper),
@@ -761,8 +1069,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 53, column: 16 },
-                                  end: { line: 53, column: 38 },
+                                  start: { line: 68, column: 16 },
+                                  end: { line: 68, column: 38 },
                               },
                           })
                         : helper)) != null
@@ -784,8 +1092,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 55, column: 31 },
-                                  end: { line: 55, column: 37 },
+                                  start: { line: 70, column: 31 },
+                                  end: { line: 70, column: 37 },
                               },
                           })
                         : helper),
@@ -806,8 +1114,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 56, column: 16 },
-                                  end: { line: 56, column: 37 },
+                                  start: { line: 71, column: 16 },
+                                  end: { line: 71, column: 37 },
                               },
                           })
                         : helper)) != null
@@ -854,8 +1162,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 59, column: 31 },
-                                  end: { line: 59, column: 37 },
+                                  start: { line: 74, column: 31 },
+                                  end: { line: 74, column: 37 },
                               },
                           })
                         : helper),
@@ -876,8 +1184,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 60, column: 16 },
-                                  end: { line: 60, column: 38 },
+                                  start: { line: 75, column: 16 },
+                                  end: { line: 75, column: 38 },
                               },
                           })
                         : helper)) != null
@@ -899,8 +1207,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 62, column: 31 },
-                                  end: { line: 62, column: 37 },
+                                  start: { line: 77, column: 31 },
+                                  end: { line: 77, column: 37 },
                               },
                           })
                         : helper),
@@ -921,8 +1229,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 63, column: 16 },
-                                  end: { line: 63, column: 37 },
+                                  start: { line: 78, column: 16 },
+                                  end: { line: 78, column: 37 },
                               },
                           })
                         : helper)) != null
@@ -968,8 +1276,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 77, column: 26 },
-                                  end: { line: 77, column: 32 },
+                                  start: { line: 92, column: 26 },
+                                  end: { line: 92, column: 32 },
                               },
                           })
                         : helper),
@@ -990,8 +1298,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 78, column: 25 },
-                                  end: { line: 78, column: 31 },
+                                  start: { line: 93, column: 25 },
+                                  end: { line: 93, column: 31 },
                               },
                           })
                         : helper),
@@ -1012,8 +1320,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 82, column: 26 },
-                                  end: { line: 82, column: 32 },
+                                  start: { line: 97, column: 26 },
+                                  end: { line: 97, column: 32 },
                               },
                           })
                         : helper),
@@ -1034,8 +1342,8 @@ export default function (Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 83, column: 25 },
-                                  end: { line: 83, column: 31 },
+                                  start: { line: 98, column: 25 },
+                                  end: { line: 98, column: 31 },
                               },
                           })
                         : helper),
@@ -1068,23 +1376,26 @@ export default function (Handlebars) {
                         return undefined;
                     };
 
-            return (stack1 = lookupProperty(helpers, 'each').call(
-                depth0 != null ? depth0 : container.nullContext || {},
-                depth0 != null ? lookupProperty(depth0, 'notes') : depth0,
-                {
-                    name: 'each',
-                    hash: {},
-                    fn: container.program(1, data, 0, blockParams, depths),
-                    inverse: container.noop,
-                    data: data,
-                    loc: {
-                        start: { line: 1, column: 0 },
-                        end: { line: 102, column: 9 },
+            return (
+                '<div id="create-note" class="create-note">\r\n    <button>Create new Note</button>\r\n</div>\r\n<div class="space-between-create-note-and-color-palette"></div>\r\n<div class="color-palette-selector">\r\n<select name="colorPalette">\r\n    <option value="blackWhiteStyle">BlackWhite-Style</option>\r\n    <option value="darkMode">Dark Mode</option>\r\n    <option value="rainbow">Rainbow</option>\r\n</select>\r\n</div>\r\n<div class="by-finish-date"><button>By finish Date</button></div>\r\n<div class="by-created-date"><button>By created Date</button></div>\r\n<div class="by-importance"><button>By Importance</button></div>\r\n<div class="show-finished"><button>Show finished</button></div>\r\n' +
+                ((stack1 = lookupProperty(helpers, 'each').call(
+                    depth0 != null ? depth0 : container.nullContext || {},
+                    depth0 != null ? lookupProperty(depth0, 'notes') : depth0,
+                    {
+                        name: 'each',
+                        hash: {},
+                        fn: container.program(1, data, 0, blockParams, depths),
+                        inverse: container.noop,
+                        data: data,
+                        loc: {
+                            start: { line: 16, column: 0 },
+                            end: { line: 117, column: 9 },
+                        },
                     },
-                },
-            )) != null
-                ? stack1
-                : '';
+                )) != null
+                    ? stack1
+                    : '')
+            );
         },
         useData: true,
         useDepths: true,

@@ -9,8 +9,14 @@ export default class NotesService {
         return notes.find((note) => note.id === id);
     }
 
-    updateNote(note) {
-        const indexOfNoteToUpdate = notes.findIndex((n) => n.id === note.id);
-        notes[indexOfNoteToUpdate] = note;
+    updateOrCreateNote(note) {
+        const indexOfNoteToUpdate = this.notes.findIndex(
+            (n) => n.id === note.id,
+        );
+        if (indexOfNoteToUpdate >= 0) {
+            this.notes[indexOfNoteToUpdate] = note;
+        } else {
+            this.notes.push(note);
+        }
     }
 }

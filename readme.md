@@ -12,7 +12,7 @@ The following commands are possible:
 | ...                                                             | `./public/templates` is the location of the templates to be compiled             |
 | ...                                                             | `./public/templatesCompiled.mjs` is the file that is generated from this command |
 | ...                                                             | after compilation replace: `(function() {` ( at very start of file )             |
-| ...                                                             | with: `export default function (Handlebars){ `                                   |
+| ...                                                             | with: `export default function addCompiledTemplatesToHandlebars(Handlebars){`    |
 | ...                                                             | and: `})();`                                                                     |
 | ...                                                             | with: `};` ( at very end of file )                                               |
 

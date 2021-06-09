@@ -5,6 +5,7 @@ module.exports = {
         './public/styles/index.css',
         './public/styles/importance.css',
         './public/styles/common.css',
+        './public/styles/create-edit-note.css',
     ],
     output: {
         path: __dirname,

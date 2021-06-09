@@ -12,6 +12,7 @@ app.use(favicon(__dirname + '\\favicon.ico'));
 app.use(express.static(__dirname));
 // send the user to index html page inspite of the url
 app.get('*', (req, res) => {
+    console.log({ __dirname });
     res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 app.listen(port);
