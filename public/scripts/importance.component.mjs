@@ -11,6 +11,7 @@ export default class ImportanceComponent {
         if (importance && importance >= boltNumber) {
             visibility = 'visible';
         } else if (this.isEditable) {
+            visibility = 'visible';
             color = 'gray';
         }
 

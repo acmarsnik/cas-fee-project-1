@@ -78,8 +78,8 @@ export default class CreateEditNoteComponent {
 
         this.addEventListeners(topLevelIdPrefix);
         this.importanceComponent.addImportanceElements(
-            [note],
-            `[id^="${topLevelIdPrefix}importance-"]:not([id*="padding"]).importance`,
+            [note.importance],
+            `[id^="${topLevelIdPrefix}importance"]:not([id*="label"]).importance`,
         );
     }
 }

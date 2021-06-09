@@ -652,7 +652,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 ((stack1 = lookupProperty(helpers, 'if').call(
                     alias3,
                     depth0 != null
-                        ? lookupProperty(depth0, 'finishedDateDisplay')
+                        ? lookupProperty(depth0, 'finishedDate')
                         : depth0,
                     {
                         name: 'if',
@@ -983,9 +983,9 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 container.escapeExpression(
                     ((helper =
                         (helper =
-                            lookupProperty(helpers, 'finishedDateDisplay') ||
+                            lookupProperty(helpers, 'finishedDate') ||
                             (depth0 != null
-                                ? lookupProperty(depth0, 'finishedDateDisplay')
+                                ? lookupProperty(depth0, 'finishedDate')
                                 : depth0)) != null
                             ? helper
                             : container.hooks.helperMissing),
@@ -995,12 +995,12 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                                   ? depth0
                                   : container.nullContext || {},
                               {
-                                  name: 'finishedDateDisplay',
+                                  name: 'finishedDate',
                                   hash: {},
                                   data: data,
                                   loc: {
                                       start: { line: 54, column: 16 },
-                                      end: { line: 54, column: 39 },
+                                      end: { line: 54, column: 32 },
                                   },
                               },
                           )
