@@ -5,6 +5,7 @@ import NotesService from './notes.service.mjs';
 import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
 import ImportanceComponent from './importance.component.mjs';
 import TemplateIdUtils from './template-id.util.mjs';
+import NotesState from './notes-state.mjs';
 
 function makeVisible(elementId) {
     document.getElementById(elementId).classList.remove('hidden');
@@ -52,18 +53,18 @@ const notesComponent = new NotesComponent(
 })(window.history);
 
 function showCorrectComponents(e) {
-    if (e.state?.includes('edit')) {
+    if (e.state?.page?.includes('edit')) {
         createEditNoteComponent.updateNote(
             TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
             TemplateIdUtils.getTopLevelPrefix(
                 templateIdPrefixes.createEditNote,
             ),
             true,
-            parseInt(e.state.replace('edit-note-', '')),
+            e.state?.noteId,
         );
         hide('index-page-container');
         makeVisible('create-edit-note-page-container');
-    } else if (e.state?.includes('create')) {
+    } else if (e.state?.page?.includes('create')) {
         createEditNoteComponent.updateNote(
             TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
             TemplateIdUtils.getTopLevelPrefix(
@@ -78,20 +79,15 @@ function showCorrectComponents(e) {
     }
 }
 
+const notesState = new NotesState(window.location.href);
+
 window.onreplacestate = history.onreplacestate = (e) =>
     showCorrectComponents(e);
 
-const stateObject = { state: '' };
-
-if (window.location.href.includes('noteId')) {
-    stateObject.state = `edit-note-${window.location.href.split('=')[1]}`;
-} else if (window.location.href.includes('create')) {
-    stateObject.state = 'create-note';
-}
-
-showCorrectComponents(stateObject);
+showCorrectComponents(notesState.getThisAsStateInObject());
 
 notesComponent.updateNotes(
     TemplateIdUtils.getPrefix(templateIdPrefixes.notes),
     TemplateIdUtils.getTopLevelPrefix(templateIdPrefixes.notes),
+    notesState.sortProperty && notesState.sortDirection ? notesState : null,
 );

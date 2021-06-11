@@ -1,3 +1,6 @@
+import NotesState from './notes-state.mjs';
+import SortUtils from './sort.util.mjs';
+
 export default class NotesComponent {
     constructor(handlebars, notesService, importanceComponent) {
         this.handlebars = handlebars;
@@ -6,27 +9,27 @@ export default class NotesComponent {
     }
 
     navigateToCreate() {
+        const notesState = new NotesState('', 'create');
         window.history.replaceState(
-            'create-note',
-            'Create Note',
-            `?create=true`,
+            notesState,
+            notesState.getReplaceStateTitle(),
+            notesState.getReplaceStateUrl(),
         );
     }
 
     navigateToEdit($event) {
         const attributes = $event?.target?.attributes;
-        let editQueryParameter = '';
         if (
             attributes &&
             attributes['note-id'] &&
             attributes['note-id'].value
         ) {
             const noteId = attributes['note-id'].value;
-            editQueryParameter = `noteId=${noteId}`;
+            const notesState = new NotesState('', 'edit', '', '', noteId);
             window.history.replaceState(
-                `edit-note-${noteId}`,
-                'Edit Note',
-                `?${editQueryParameter}`,
+                notesState,
+                notesState.getReplaceStateTitle(),
+                notesState.getReplaceStateUrl(),
             );
         }
     }
@@ -99,23 +102,25 @@ export default class NotesComponent {
         document
             .getElementById(`${topLevelIdPrefix}by-finish-date`)
             .addEventListener('click', () => {
-                const state = window.history.state;
-                console.log({ state });
-                let direction = 'descending';
-                if (
-                    state.includes('sortProperty=finishedDate') &&
-                    state.includes('direction=descending')
-                ) {
-                    direction = 'ascending';
-                }
+                const sortProperty = 'finishedDate';
+                const sortDirection = SortUtils.getSortDirection(
+                    window.history.state,
+                    sortProperty,
+                );
                 this.updateNotes(idPrefix, topLevelIdPrefix, {
-                    property: 'finishedDate',
-                    direction,
+                    sortProperty,
+                    sortDirection,
                 });
+                const sortedNotesState = new NotesState(
+                    '',
+                    'notes',
+                    sortProperty,
+                    sortDirection,
+                );
                 window.history.replaceState(
-                    `notes?sortProperty=finishedDate&direction=${direction}`,
-                    'Notes',
-                    `?sortProperty=finishedDate&direction=${direction}`,
+                    sortedNotesState,
+                    sortedNotesState.getReplaceStateTitle(),
+                    sortedNotesState.getReplaceStateUrl(),
                 );
             });
     }
@@ -123,15 +128,9 @@ export default class NotesComponent {
     updateNotes(idPrefix, topLevelIdPrefix, sortObject = null) {
         this.removeTopLevelElements(topLevelIdPrefix);
         let notes = this.notesService.getNotes();
-        console.log({ notes });
         if (sortObject) {
             notes = notes.slice().sort((a, b) => {
-                const sortProperty = sortObject.property;
-                const direction = sortObject.direction;
-                const bTime = b[sortProperty] ? b[sortProperty].getTime() : 0;
-                const aTime = a[sortProperty] ? a[sortProperty].getTime() : 0;
-                if (direction === 'descending') return bTime - aTime;
-                else return aTime - bTime;
+                return SortUtils.sortAbDates(a, b, sortObject);
             });
         }
 

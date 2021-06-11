@@ -1,3 +1,5 @@
+import NotesState from './notes-state.mjs';
+
 export default class CreateEditNoteComponent {
     constructor(handlebars, notesService, importanceComponent) {
         this.handlebars = handlebars;
@@ -6,7 +8,13 @@ export default class CreateEditNoteComponent {
     }
 
     navigateToNotes() {
-        window.history.replaceState('notes', 'Notes', '/');
+        const state = window.history.state;
+        const notesState = new NotesState('', 'notes');
+        window.history.replaceState(
+            notesState,
+            notesState.getReplaceStateTitle(),
+            notesState.getReplaceStateUrl(),
+        );
     }
 
     removeTopLevelElements(topLevelIdPrefix) {
