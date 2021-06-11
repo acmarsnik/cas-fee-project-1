@@ -139,7 +139,7 @@ export default class NotesComponent {
             this.getContext(notes, idPrefix, topLevelIdPrefix),
         );
         const indexPageContainer = document.getElementById(
-            'index-page-container',
+            'notes-page-container',
         );
         indexPageContainer.innerHTML += notesContainerHtml;
 

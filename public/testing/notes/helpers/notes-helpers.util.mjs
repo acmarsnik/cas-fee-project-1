@@ -15,7 +15,7 @@ export default class NotesHelpersUtil {
             'beforeend',
             `
             <div id="notes-app" class="notes-app">
-                <div id="index-page-container" class="index-page-container" style="${display}margin-top: 30px">
+                <div id="notes-page-container" class="notes-page-container" style="${display}margin-top: 30px">
                     <div id="create-note" class="create-note">
                         <button>Create new Note</button>
                     </div>

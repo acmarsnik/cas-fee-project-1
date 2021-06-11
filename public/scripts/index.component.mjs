@@ -53,6 +53,8 @@ const notesComponent = new NotesComponent(
 })(window.history);
 
 function showCorrectComponents(e) {
+    const notesPageContainer = 'notes-page-container';
+    const createEditPageContainer = 'create-edit-note-page-container';
     if (e.state?.page?.includes('edit')) {
         createEditNoteComponent.updateNote(
             TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
@@ -62,8 +64,8 @@ function showCorrectComponents(e) {
             true,
             e.state?.noteId,
         );
-        hide('index-page-container');
-        makeVisible('create-edit-note-page-container');
+        hide(notesPageContainer);
+        makeVisible(createEditPageContainer);
     } else if (e.state?.page?.includes('create')) {
         createEditNoteComponent.updateNote(
             TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
@@ -71,11 +73,11 @@ function showCorrectComponents(e) {
                 templateIdPrefixes.createEditNote,
             ),
         );
-        hide('index-page-container');
-        makeVisible('create-edit-note-page-container');
+        hide(notesPageContainer);
+        makeVisible(createEditPageContainer);
     } else {
-        makeVisible('index-page-container');
-        hide('create-edit-note-page-container');
+        makeVisible(notesPageContainer);
+        hide(createEditPageContainer);
     }
 }
 
