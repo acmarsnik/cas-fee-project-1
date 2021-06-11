@@ -60,12 +60,6 @@ export default class NotesState {
         return value ? `&${name}=${value}` : '';
     }
 
-    getPageFromHref(href = this.href) {
-        if (href?.includes('edit')) return 'edit';
-        else if (href?.includes('create')) return 'create';
-        else return 'notes';
-    }
-
     getPropertyFromHref(property, href = this.href) {
         if (href.indexOf(`${property}=`) >= 0) {
             const propertyValueToEnd = href.substring(
@@ -80,6 +74,10 @@ export default class NotesState {
                 return propertyValueToEnd;
             }
         } else return '';
+    }
+
+    getPageFromHref() {
+        return this.getPropertyFromHref('page');
     }
 
     getSortPropertyFromHref() {

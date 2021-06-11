@@ -52,7 +52,6 @@ export default class IndexComponent {
         this.showCorrectComponents(this.notesState.getThisAsStateInObject());
 
         this.notesComponent.updateNotes(
-            TemplateIdUtils.getPrefix(TemplateIdPrefixes.notes),
             TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
             this.notesState.sortProperty && this.notesState.sortDirection
                 ? this.notesState

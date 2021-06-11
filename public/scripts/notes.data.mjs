@@ -8,6 +8,7 @@ const notes = [
     {
         id: 1,
         finishByDate: null,
+        createdDate: twoDaysAgo,
         title: 'CAS FEE Selbststudium / Projekt Aufgabe erledigen',
         importance: 2,
         isFinished: true,
@@ -21,6 +22,7 @@ const notes = [
     {
         id: 2,
         finishByDate: today,
+        createdDate: yesterday,
         title: 'Einkaufen',
         importance: 1,
         isFinished: false,
@@ -32,6 +34,7 @@ const notes = [
     {
         id: 3,
         finishByDate: yesterday,
+        createdDate: today,
         title: 'Mami anrufen',
         importance: 0,
         isFinished: false,

@@ -14,10 +14,7 @@ describe('Notes component', () => {
             SampleNotes.project1Wireframe,
         );
         NotesHelpersUtil.addIndexPageContainer(showIndexPageContainer);
-        notesComponent.updateNotes(
-            'template__notes',
-            'template__notes__top-level__',
-        );
+        notesComponent.updateNotes('template__notes__top-level__');
         const notesTopLevelElementsLength = document.querySelectorAll(
             '[id^="template__notes__top-level__"]',
         ).length;
@@ -29,10 +26,7 @@ describe('Notes component', () => {
             SampleNotes.project1Wireframe,
         );
         NotesHelpersUtil.addIndexPageContainer(showIndexPageContainer);
-        notesComponent.updateNotes(
-            'template__notes',
-            'template__notes__top-level__',
-        );
+        notesComponent.updateNotes('template__notes__top-level__');
         const importanceContainersLength = document.querySelectorAll(
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         ).length;

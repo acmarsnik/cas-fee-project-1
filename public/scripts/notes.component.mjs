@@ -42,7 +42,7 @@ export default class NotesComponent {
             });
     }
 
-    getContext(notes, idPrefix, topLevelIdPrefix) {
+    getContext(notes, topLevelIdPrefix) {
         // const a = notes.map(note => note ? {...note, baz: [11,22,33]} : note)
         const notesAdjustedForDisplay = notes.map((note) => {
             return {
@@ -65,7 +65,6 @@ export default class NotesComponent {
         return {
             notes: notesAdjustedForDisplay,
             topLevelIdPrefix,
-            idPrefix,
         };
     }
 
@@ -80,13 +79,23 @@ export default class NotesComponent {
         });
     }
 
-    addEventListeners(idPrefix, topLevelIdPrefix, notes) {
+    addEventListeners(topLevelIdPrefix, notes) {
+        this.addEditButtonEventListeners(notes);
+        this.addArrowEventListeners();
+        this.addCreateNoteEventListener(topLevelIdPrefix);
+        this.addByFinishDateEventListener(topLevelIdPrefix);
+        this.addByCreatedDateEventListener(topLevelIdPrefix);
+    }
+
+    addEditButtonEventListeners(notes) {
         notes.forEach((note) => {
             document
                 .querySelector(`.edit-button button[note-id="${note.id}"]`)
                 .addEventListener('click', this.navigateToEdit);
         });
+    }
 
+    addArrowEventListeners() {
         const arrowElements = document.querySelectorAll('[id^="arrow-"]');
 
         arrowElements.forEach((arrowElement) => {
@@ -95,37 +104,55 @@ export default class NotesComponent {
                 this.toggleDescriptionsAndArrows,
             );
         });
+    }
 
+    addCreateNoteEventListener(topLevelIdPrefix) {
         document
             .getElementById(`${topLevelIdPrefix}create-note`)
             .addEventListener('click', () => this.navigateToCreate());
+    }
+
+    addByFinishDateEventListener(topLevelIdPrefix) {
         document
             .getElementById(`${topLevelIdPrefix}by-finish-date`)
             .addEventListener('click', () => {
                 const sortProperty = 'finishedDate';
-                const sortDirection = SortUtils.getSortDirection(
-                    window.history.state,
-                    sortProperty,
-                );
-                this.updateNotes(idPrefix, topLevelIdPrefix, {
-                    sortProperty,
-                    sortDirection,
-                });
-                const sortedNotesState = new NotesState(
-                    '',
-                    'notes',
-                    sortProperty,
-                    sortDirection,
-                );
-                window.history.replaceState(
-                    sortedNotesState,
-                    sortedNotesState.getReplaceStateTitle(),
-                    sortedNotesState.getReplaceStateUrl(),
-                );
+                this.sortBy(topLevelIdPrefix, sortProperty);
             });
     }
 
-    updateNotes(idPrefix, topLevelIdPrefix, sortObject = null) {
+    addByCreatedDateEventListener(topLevelIdPrefix) {
+        document
+            .getElementById(`${topLevelIdPrefix}by-created-date`)
+            .addEventListener('click', () => {
+                const sortProperty = 'createdDate';
+                this.sortBy(topLevelIdPrefix, sortProperty);
+            });
+    }
+
+    sortBy(topLevelIdPrefix, sortProperty) {
+        const sortDirection = SortUtils.getSortDirection(
+            window.history.state,
+            sortProperty,
+        );
+        this.updateNotes(topLevelIdPrefix, {
+            sortProperty,
+            sortDirection,
+        });
+        const sortedNotesState = new NotesState(
+            '',
+            'notes',
+            sortProperty,
+            sortDirection,
+        );
+        window.history.replaceState(
+            sortedNotesState,
+            sortedNotesState.getReplaceStateTitle(),
+            sortedNotesState.getReplaceStateUrl(),
+        );
+    }
+
+    updateNotes(topLevelIdPrefix, sortObject = null) {
         this.removeTopLevelElements(topLevelIdPrefix);
         let notes = this.notesService.getNotes();
         if (sortObject) {
@@ -136,14 +163,14 @@ export default class NotesComponent {
 
         // eslint-disable-next-line
         const notesContainerHtml = this.handlebars.templates.notes(
-            this.getContext(notes, idPrefix, topLevelIdPrefix),
+            this.getContext(notes, topLevelIdPrefix),
         );
         const indexPageContainer = document.getElementById(
             'notes-page-container',
         );
         indexPageContainer.innerHTML += notesContainerHtml;
 
-        this.addEventListeners(idPrefix, topLevelIdPrefix, notes);
+        this.addEventListeners(topLevelIdPrefix, notes);
         this.importanceComponent.addImportanceElements(
             notes.map((note) => note.importance),
             `[id^="${topLevelIdPrefix}importance-"]:not([id*="padding"]).importance`,
