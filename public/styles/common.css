@@ -31,3 +31,9 @@
 .notes-app [class*='-page-container'].hidden {
     display: none;
 }
+
+.notes-app [class$='-page-container'] button,
+.notes-app [class$='-page-container'] select,
+.notes-app [class$='-page-container'] input[type='checkbox'] {
+    cursor: pointer;
+}

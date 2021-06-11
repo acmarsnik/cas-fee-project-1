@@ -28,8 +28,9 @@
     transform-origin: 50% 50% 0;
 }
 
-.notes-app [class$='-page-container'] .importance .bolt-container {
+.notes-app [class$='-page-container'] .importance .bolt-container.editable {
     min-width: 1px;
+    cursor: pointer;
 }
 
 .notes-app [class$='-page-container'] .importance .black {

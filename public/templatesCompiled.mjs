@@ -313,6 +313,10 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
         compiler: [8, '>= 4.3.0'],
         main: function (container, depth0, helpers, partials, data) {
             var helper,
+                alias1 = depth0 != null ? depth0 : container.nullContext || {},
+                alias2 = container.hooks.helperMissing,
+                alias3 = 'function',
+                alias4 = container.escapeExpression,
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
@@ -328,8 +332,52 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     };
 
             return (
-                "<div class='bolt-container'>\r\n    <div class='bolt " +
-                container.escapeExpression(
+                "<div class='bolt-container " +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'editability') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'editability')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'editability',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 1, column: 27 },
+                                  end: { line: 1, column: 42 },
+                              },
+                          })
+                        : helper),
+                ) +
+                "' data-bolt-number=" +
+                alias4(
+                    ((helper =
+                        (helper =
+                            lookupProperty(helpers, 'boltNumber') ||
+                            (depth0 != null
+                                ? lookupProperty(depth0, 'boltNumber')
+                                : depth0)) != null
+                            ? helper
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'boltNumber',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 1, column: 61 },
+                                  end: { line: 1, column: 75 },
+                              },
+                          })
+                        : helper),
+                ) +
+                ">\r\n    <div class='bolt " +
+                alias4(
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'colorAndVisibility') ||
@@ -337,22 +385,17 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                                 ? lookupProperty(depth0, 'colorAndVisibility')
                                 : depth0)) != null
                             ? helper
-                            : container.hooks.helperMissing),
-                    typeof helper === 'function'
-                        ? helper.call(
-                              depth0 != null
-                                  ? depth0
-                                  : container.nullContext || {},
-                              {
-                                  name: 'colorAndVisibility',
-                                  hash: {},
-                                  data: data,
-                                  loc: {
-                                      start: { line: 2, column: 21 },
-                                      end: { line: 2, column: 43 },
-                                  },
+                            : alias2),
+                    typeof helper === alias3
+                        ? helper.call(alias1, {
+                              name: 'colorAndVisibility',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 2, column: 21 },
+                                  end: { line: 2, column: 43 },
                               },
-                          )
+                          })
                         : helper),
                 ) +
                 "'></div>\r\n</div>"

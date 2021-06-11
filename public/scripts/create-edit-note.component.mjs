@@ -8,7 +8,6 @@ export default class CreateEditNoteComponent {
     }
 
     navigateToNotes() {
-        const state = window.history.state;
         const notesState = new NotesState('', 'notes');
         window.history.replaceState(
             notesState,
