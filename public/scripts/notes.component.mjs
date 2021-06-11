@@ -44,7 +44,7 @@ export default class NotesComponent {
             });
     }
 
-    getContext(notes, topLevelIdPrefix) {
+    getContext(notes, topLevelIdPrefix, isFiltered) {
         // const a = notes.map(note => note ? {...note, baz: [11,22,33]} : note)
         const notesAdjustedForDisplay = notes.map((note) => {
             return {
@@ -67,6 +67,7 @@ export default class NotesComponent {
         return {
             notes: notesAdjustedForDisplay,
             topLevelIdPrefix,
+            isFiltered,
         };
     }
 
@@ -176,17 +177,17 @@ export default class NotesComponent {
         let filteredNotesState;
 
         if (
-            state.transformationType === 'filter' &&
-            state.transformationProperty === filterProperty
+            state?.transformationType !== 'filter' ||
+            state?.transformationProperty !== filterProperty
         ) {
-            filteredNotesState = new NotesState('', 'notes', 'filter');
-        } else {
             filteredNotesState = new NotesState(
                 '',
                 'notes',
                 'filter',
                 filterProperty,
             );
+        } else {
+            filteredNotesState = new NotesState('', 'notes');
         }
 
         window.history.replaceState(
@@ -216,6 +217,7 @@ export default class NotesComponent {
     updateNotes(topLevelIdPrefix, transformationOptions = null) {
         this.removeTopLevelElements(topLevelIdPrefix);
         let notes = this.notesService.getNotes();
+        let isFiltered = false;
         if (transformationOptions) {
             if (transformationOptions.type === 'sort') {
                 notes = this.getSortedNotes(
@@ -230,12 +232,13 @@ export default class NotesComponent {
                     notes,
                     transformationOptions.property,
                 );
+                isFiltered = true;
             }
         }
 
         // eslint-disable-next-line
         const notesContainerHtml = this.handlebars.templates.notes(
-            this.getContext(notes, topLevelIdPrefix),
+            this.getContext(notes, topLevelIdPrefix, isFiltered),
         );
         const indexPageContainer = document.getElementById(
             'notes-page-container',

@@ -361,7 +361,13 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
         useData: true,
     });
     templates['notes'] = template({
-        1: function (
+        1: function (container, depth0, helpers, partials, data) {
+            return '            Show all\r\n';
+        },
+        3: function (container, depth0, helpers, partials, data) {
+            return '            Show finished\r\n';
+        },
+        5: function (
             container,
             depth0,
             helpers,
@@ -417,8 +423,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 18, column: 50 },
-                                  end: { line: 18, column: 56 },
+                                  start: { line: 26, column: 50 },
+                                  end: { line: 26, column: 56 },
                               },
                           })
                         : helper),
@@ -439,8 +445,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 21, column: 11 },
-                                  end: { line: 21, column: 27 },
+                                  start: { line: 29, column: 11 },
+                                  end: { line: 29, column: 27 },
                               },
                           })
                         : helper),
@@ -470,8 +476,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 24, column: 54 },
-                                  end: { line: 24, column: 60 },
+                                  start: { line: 32, column: 54 },
+                                  end: { line: 32, column: 60 },
                               },
                           })
                         : helper),
@@ -501,8 +507,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 27, column: 42 },
-                                  end: { line: 27, column: 48 },
+                                  start: { line: 35, column: 42 },
+                                  end: { line: 35, column: 48 },
                               },
                           })
                         : helper),
@@ -523,8 +529,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 28, column: 11 },
-                                  end: { line: 28, column: 20 },
+                                  start: { line: 36, column: 11 },
+                                  end: { line: 36, column: 20 },
                               },
                           })
                         : helper),
@@ -554,8 +560,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 31, column: 70 },
-                                  end: { line: 31, column: 76 },
+                                  start: { line: 39, column: 70 },
+                                  end: { line: 39, column: 76 },
                               },
                           })
                         : helper),
@@ -585,8 +591,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 35, column: 46 },
-                                  end: { line: 35, column: 52 },
+                                  start: { line: 43, column: 46 },
+                                  end: { line: 43, column: 52 },
                               },
                           })
                         : helper),
@@ -616,8 +622,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 40, column: 60 },
-                                  end: { line: 40, column: 66 },
+                                  start: { line: 48, column: 60 },
+                                  end: { line: 48, column: 66 },
                               },
                           })
                         : helper),
@@ -647,8 +653,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 44, column: 44 },
-                                  end: { line: 44, column: 50 },
+                                  start: { line: 52, column: 44 },
+                                  end: { line: 52, column: 50 },
                               },
                           })
                         : helper),
@@ -662,9 +668,9 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(2, data, 0, blockParams, depths),
+                        fn: container.program(6, data, 0, blockParams, depths),
                         inverse: container.program(
-                            4,
+                            8,
                             data,
                             0,
                             blockParams,
@@ -672,8 +678,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                         ),
                         data: data,
                         loc: {
-                            start: { line: 47, column: 8 },
-                            end: { line: 51, column: 15 },
+                            start: { line: 55, column: 8 },
+                            end: { line: 59, column: 15 },
                         },
                     },
                 )) != null
@@ -688,12 +694,12 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(6, data, 0, blockParams, depths),
+                        fn: container.program(10, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
                         loc: {
-                            start: { line: 53, column: 27 },
-                            end: { line: 55, column: 24 },
+                            start: { line: 61, column: 27 },
+                            end: { line: 63, column: 24 },
                         },
                     },
                 )) != null
@@ -724,8 +730,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 59, column: 60 },
-                                  end: { line: 59, column: 66 },
+                                  start: { line: 67, column: 60 },
+                                  end: { line: 67, column: 66 },
                               },
                           })
                         : helper),
@@ -755,8 +761,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 63, column: 47 },
-                                  end: { line: 63, column: 53 },
+                                  start: { line: 71, column: 47 },
+                                  end: { line: 71, column: 53 },
                               },
                           })
                         : helper),
@@ -770,9 +776,9 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(8, data, 0, blockParams, depths),
+                        fn: container.program(12, data, 0, blockParams, depths),
                         inverse: container.program(
-                            10,
+                            14,
                             data,
                             0,
                             blockParams,
@@ -780,8 +786,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                         ),
                         data: data,
                         loc: {
-                            start: { line: 66, column: 8 },
-                            end: { line: 80, column: 15 },
+                            start: { line: 74, column: 8 },
+                            end: { line: 88, column: 15 },
                         },
                     },
                 )) != null
@@ -812,8 +818,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 83, column: 71 },
-                                  end: { line: 83, column: 77 },
+                                  start: { line: 91, column: 71 },
+                                  end: { line: 91, column: 77 },
                               },
                           })
                         : helper),
@@ -843,8 +849,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 87, column: 51 },
-                                  end: { line: 87, column: 57 },
+                                  start: { line: 95, column: 51 },
+                                  end: { line: 95, column: 57 },
                               },
                           })
                         : helper),
@@ -858,12 +864,12 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(12, data, 0, blockParams, depths),
+                        fn: container.program(16, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
                         loc: {
-                            start: { line: 90, column: 8 },
-                            end: { line: 101, column: 15 },
+                            start: { line: 98, column: 8 },
+                            end: { line: 109, column: 15 },
                         },
                     },
                 )) != null
@@ -894,8 +900,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 104, column: 55 },
-                                  end: { line: 104, column: 61 },
+                                  start: { line: 112, column: 55 },
+                                  end: { line: 112, column: 61 },
                               },
                           })
                         : helper),
@@ -925,8 +931,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 108, column: 50 },
-                                  end: { line: 108, column: 56 },
+                                  start: { line: 116, column: 50 },
+                                  end: { line: 116, column: 56 },
                               },
                           })
                         : helper),
@@ -956,8 +962,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 112, column: 47 },
-                                  end: { line: 112, column: 53 },
+                                  start: { line: 120, column: 47 },
+                                  end: { line: 120, column: 53 },
                               },
                           })
                         : helper),
@@ -978,8 +984,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 115, column: 25 },
-                                  end: { line: 115, column: 31 },
+                                  start: { line: 123, column: 25 },
+                                  end: { line: 123, column: 31 },
                               },
                           })
                         : helper),
@@ -987,13 +993,13 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "'>Edit</button>\r\n    </div>\r\n"
             );
         },
-        2: function (container, depth0, helpers, partials, data) {
+        6: function (container, depth0, helpers, partials, data) {
             return "            <input type='checkbox' checked />\r\n";
         },
-        4: function (container, depth0, helpers, partials, data) {
+        8: function (container, depth0, helpers, partials, data) {
             return "            <input type='checkbox' />\r\n";
         },
-        6: function (container, depth0, helpers, partials, data) {
+        10: function (container, depth0, helpers, partials, data) {
             var helper,
                 lookupProperty =
                     container.lookupProperty ||
@@ -1030,8 +1036,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                                   hash: {},
                                   data: data,
                                   loc: {
-                                      start: { line: 54, column: 16 },
-                                      end: { line: 54, column: 32 },
+                                      start: { line: 62, column: 16 },
+                                      end: { line: 62, column: 32 },
                                   },
                               },
                           )
@@ -1040,7 +1046,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 '\r\n                ]'
             );
         },
-        8: function (container, depth0, helpers, partials, data) {
+        12: function (container, depth0, helpers, partials, data) {
             var stack1,
                 helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
@@ -1078,8 +1084,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 67, column: 31 },
-                                  end: { line: 67, column: 37 },
+                                  start: { line: 75, column: 31 },
+                                  end: { line: 75, column: 37 },
                               },
                           })
                         : helper),
@@ -1100,8 +1106,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 68, column: 16 },
-                                  end: { line: 68, column: 38 },
+                                  start: { line: 76, column: 16 },
+                                  end: { line: 76, column: 38 },
                               },
                           })
                         : helper)) != null
@@ -1123,8 +1129,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 70, column: 31 },
-                                  end: { line: 70, column: 37 },
+                                  start: { line: 78, column: 31 },
+                                  end: { line: 78, column: 37 },
                               },
                           })
                         : helper),
@@ -1145,8 +1151,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 71, column: 16 },
-                                  end: { line: 71, column: 37 },
+                                  start: { line: 79, column: 16 },
+                                  end: { line: 79, column: 37 },
                               },
                           })
                         : helper)) != null
@@ -1155,7 +1161,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 '\r\n            </p>\r\n'
             );
         },
-        10: function (container, depth0, helpers, partials, data) {
+        14: function (container, depth0, helpers, partials, data) {
             var stack1,
                 helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
@@ -1193,8 +1199,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 74, column: 31 },
-                                  end: { line: 74, column: 37 },
+                                  start: { line: 82, column: 31 },
+                                  end: { line: 82, column: 37 },
                               },
                           })
                         : helper),
@@ -1215,8 +1221,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 75, column: 16 },
-                                  end: { line: 75, column: 38 },
+                                  start: { line: 83, column: 16 },
+                                  end: { line: 83, column: 38 },
                               },
                           })
                         : helper)) != null
@@ -1238,8 +1244,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 77, column: 31 },
-                                  end: { line: 77, column: 37 },
+                                  start: { line: 85, column: 31 },
+                                  end: { line: 85, column: 37 },
                               },
                           })
                         : helper),
@@ -1260,8 +1266,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 78, column: 16 },
-                                  end: { line: 78, column: 37 },
+                                  start: { line: 86, column: 16 },
+                                  end: { line: 86, column: 37 },
                               },
                           })
                         : helper)) != null
@@ -1270,7 +1276,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 '\r\n            </p>\r\n'
             );
         },
-        12: function (container, depth0, helpers, partials, data) {
+        16: function (container, depth0, helpers, partials, data) {
             var helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
                 alias2 = container.hooks.helperMissing,
@@ -1307,8 +1313,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 92, column: 26 },
-                                  end: { line: 92, column: 32 },
+                                  start: { line: 100, column: 26 },
+                                  end: { line: 100, column: 32 },
                               },
                           })
                         : helper),
@@ -1329,8 +1335,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 93, column: 25 },
-                                  end: { line: 93, column: 31 },
+                                  start: { line: 101, column: 25 },
+                                  end: { line: 101, column: 31 },
                               },
                           })
                         : helper),
@@ -1351,8 +1357,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 97, column: 26 },
-                                  end: { line: 97, column: 32 },
+                                  start: { line: 105, column: 26 },
+                                  end: { line: 105, column: 32 },
                               },
                           })
                         : helper),
@@ -1373,8 +1379,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               hash: {},
                               data: data,
                               loc: {
-                                  start: { line: 98, column: 25 },
-                                  end: { line: 98, column: 31 },
+                                  start: { line: 106, column: 25 },
+                                  end: { line: 106, column: 31 },
                               },
                           })
                         : helper),
@@ -1567,19 +1573,45 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                           })
                         : helper),
                 ) +
-                'show-finished" class="show-finished"><button>Show finished</button></div>\r\n' +
+                'show-finished" class="show-finished">\r\n    <button>\r\n' +
+                ((stack1 = lookupProperty(helpers, 'if').call(
+                    alias1,
+                    depth0 != null
+                        ? lookupProperty(depth0, 'isFiltered')
+                        : depth0,
+                    {
+                        name: 'if',
+                        hash: {},
+                        fn: container.program(1, data, 0, blockParams, depths),
+                        inverse: container.program(
+                            3,
+                            data,
+                            0,
+                            blockParams,
+                            depths,
+                        ),
+                        data: data,
+                        loc: {
+                            start: { line: 17, column: 8 },
+                            end: { line: 21, column: 15 },
+                        },
+                    },
+                )) != null
+                    ? stack1
+                    : '') +
+                '    </button>\r\n    </div>\r\n' +
                 ((stack1 = lookupProperty(helpers, 'each').call(
                     alias1,
                     depth0 != null ? lookupProperty(depth0, 'notes') : depth0,
                     {
                         name: 'each',
                         hash: {},
-                        fn: container.program(1, data, 0, blockParams, depths),
+                        fn: container.program(5, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
                         loc: {
-                            start: { line: 16, column: 0 },
-                            end: { line: 117, column: 9 },
+                            start: { line: 24, column: 0 },
+                            end: { line: 125, column: 9 },
                         },
                     },
                 )) != null

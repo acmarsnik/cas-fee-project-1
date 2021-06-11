@@ -12,7 +12,15 @@
 <div id="{{topLevelIdPrefix}}by-finish-date" class="by-finish-date"><button>By finish Date</button></div>
 <div id="{{topLevelIdPrefix}}by-created-date" class="by-created-date"><button>By created Date</button></div>
 <div id="{{topLevelIdPrefix}}by-importance" class="by-importance"><button>By Importance</button></div>
-<div id="{{topLevelIdPrefix}}show-finished" class="show-finished"><button>Show finished</button></div>
+<div id="{{topLevelIdPrefix}}show-finished" class="show-finished">
+    <button>
+        {{#if isFiltered}}
+            Show all
+        {{else}}
+            Show finished
+        {{/if}}
+    </button>
+    </div>
 {{#each notes}}
     <div
         id='{{../topLevelIdPrefix}}finish-by-date-{{id}}'
