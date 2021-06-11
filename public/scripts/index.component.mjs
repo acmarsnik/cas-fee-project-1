@@ -1,4 +1,3 @@
-import Handlebars from 'handlebars/runtime.js';
 import CreateEditNoteComponent from './create-edit-note.component.mjs';
 import NotesComponent from './notes.component.mjs';
 import NotesService from './notes.service.mjs';
@@ -6,90 +5,93 @@ import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
 import ImportanceComponent from './importance.component.mjs';
 import TemplateIdUtils from './template-id.util.mjs';
 import NotesState from './notes-state.mjs';
+import TemplateIdPrefixes from './template-id-prefixes.mjs';
 
-function makeVisible(elementId) {
-    document.getElementById(elementId).classList.remove('hidden');
-}
-
-function hide(elementId) {
-    document.getElementById(elementId).classList.add('hidden');
-}
-
-addCompiledTemplatesToHandlebars(Handlebars);
-
-const templateIdPrefixes = {
-    createEditNote: 'create-edit-note',
-    importance: 'importance',
-    notes: 'notes',
-};
-const notesImportanceComponent = new ImportanceComponent(Handlebars);
-const createEditNoteImportanceComponent = new ImportanceComponent(
-    Handlebars,
-    true,
-);
-const notesService = new NotesService();
-const createEditNoteComponent = new CreateEditNoteComponent(
-    Handlebars,
-    notesService,
-    createEditNoteImportanceComponent,
-    window,
-);
-const notesComponent = new NotesComponent(
-    Handlebars,
-    notesService,
-    notesImportanceComponent,
-);
-
-(function (history) {
-    var replaceState = history.replaceState;
-    history.replaceState = function (state) {
-        if (typeof history.onreplacestate == 'function') {
-            history.onreplacestate({ state: state });
-        }
-        // ... whatever else you want to do
-        // maybe call onhashchange e.handler
-        return replaceState.apply(history, arguments);
-    };
-})(window.history);
-
-function showCorrectComponents(e) {
-    const notesPageContainer = 'notes-page-container';
-    const createEditPageContainer = 'create-edit-note-page-container';
-    if (e.state?.page?.includes('edit')) {
-        createEditNoteComponent.updateNote(
-            TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
-            TemplateIdUtils.getTopLevelPrefix(
-                templateIdPrefixes.createEditNote,
-            ),
+export default class IndexComponent {
+    constructor(handlebars) {
+        this.notesPageContainer = 'notes-page-container';
+        this.createEditPageContainer = 'create-edit-note-page-container';
+        this.handlebars = handlebars;
+        addCompiledTemplatesToHandlebars(this.handlebars);
+        this.notesImportanceComponent = new ImportanceComponent(
+            this.handlebars,
+        );
+        this.createEditNoteImportanceComponent = new ImportanceComponent(
+            this.handlebars,
             true,
-            e.state?.noteId,
         );
-        hide(notesPageContainer);
-        makeVisible(createEditPageContainer);
-    } else if (e.state?.page?.includes('create')) {
-        createEditNoteComponent.updateNote(
-            TemplateIdUtils.getPrefix(templateIdPrefixes.createEditNote),
-            TemplateIdUtils.getTopLevelPrefix(
-                templateIdPrefixes.createEditNote,
-            ),
+        this.notesService = new NotesService();
+        this.createEditNoteComponent = new CreateEditNoteComponent(
+            this.handlebars,
+            this.notesService,
+            this.createEditNoteImportanceComponent,
+            window,
         );
-        hide(notesPageContainer);
-        makeVisible(createEditPageContainer);
-    } else {
-        makeVisible(notesPageContainer);
-        hide(createEditPageContainer);
+        this.notesComponent = new NotesComponent(
+            this.handlebars,
+            this.notesService,
+            this.notesImportanceComponent,
+        );
+        (function (history) {
+            var replaceState = history.replaceState;
+            history.replaceState = function (state) {
+                if (typeof history.onreplacestate == 'function') {
+                    history.onreplacestate({ state: state });
+                }
+                // ... whatever else you want to do
+                // maybe call onhashchange e.handler
+                return replaceState.apply(history, arguments);
+            };
+        })(window.history);
+
+        this.notesState = new NotesState(window.location.href);
+
+        window.onreplacestate = history.onreplacestate = (e) =>
+            this.showCorrectComponents(e);
+
+        this.showCorrectComponents(this.notesState.getThisAsStateInObject());
+
+        this.notesComponent.updateNotes(
+            TemplateIdUtils.getPrefix(TemplateIdPrefixes.notes),
+            TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
+            this.notesState.sortProperty && this.notesState.sortDirection
+                ? this.notesState
+                : null,
+        );
+    }
+
+    makeVisible(elementId) {
+        document.getElementById(elementId).classList.remove('hidden');
+    }
+
+    hide(elementId) {
+        document.getElementById(elementId).classList.add('hidden');
+    }
+
+    showCorrectComponents(e) {
+        if (e.state?.page?.includes('edit')) {
+            this.createEditNoteComponent.updateNote(
+                TemplateIdUtils.getPrefix(TemplateIdPrefixes.createEditNote),
+                TemplateIdUtils.getTopLevelPrefix(
+                    TemplateIdPrefixes.createEditNote,
+                ),
+                true,
+                e.state?.noteId,
+            );
+            this.hide(this.notesPageContainer);
+            this.makeVisible(this.createEditPageContainer);
+        } else if (e.state?.page?.includes('create')) {
+            this.createEditNoteComponent.updateNote(
+                TemplateIdUtils.getPrefix(TemplateIdPrefixes.createEditNote),
+                TemplateIdUtils.getTopLevelPrefix(
+                    TemplateIdPrefixes.createEditNote,
+                ),
+            );
+            this.hide(this.notesPageContainer);
+            this.makeVisible(this.createEditPageContainer);
+        } else {
+            this.makeVisible(this.notesPageContainer);
+            this.hide(this.createEditPageContainer);
+        }
     }
 }
-
-const notesState = new NotesState(window.location.href);
-
-window.onreplacestate = history.onreplacestate = (e) =>
-    showCorrectComponents(e);
-
-showCorrectComponents(notesState.getThisAsStateInObject());
-
-notesComponent.updateNotes(
-    TemplateIdUtils.getPrefix(templateIdPrefixes.notes),
-    TemplateIdUtils.getTopLevelPrefix(templateIdPrefixes.notes),
-    notesState.sortProperty && notesState.sortDirection ? notesState : null,
-);
