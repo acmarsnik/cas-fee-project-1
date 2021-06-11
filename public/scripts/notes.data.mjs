@@ -12,7 +12,7 @@ const notes = [
         title: 'CAS FEE Selbststudium / Projekt Aufgabe erledigen',
         importance: 2,
         isFinished: true,
-        finishedDate: twoDaysAgo,
+        finishedDate: null,
         shortDescription:
             'HTML für die note App erstellen.\nCSS erstellen für die note App [...]',
         fullDescription:

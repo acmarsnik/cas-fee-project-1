@@ -1,5 +1,7 @@
 import NotesState from './notes-state.mjs';
 import SortUtils from './sort.util.mjs';
+import SortOptions from './sort-options.mjs';
+import FilterUtils from './filter.util.mjs';
 
 export default class NotesComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -25,7 +27,7 @@ export default class NotesComponent {
             attributes['note-id'].value
         ) {
             const noteId = attributes['note-id'].value;
-            const notesState = new NotesState('', 'edit', '', '', noteId);
+            const notesState = new NotesState('', 'edit', '', '', '', noteId);
             window.history.replaceState(
                 notesState,
                 notesState.getReplaceStateTitle(),
@@ -85,6 +87,8 @@ export default class NotesComponent {
         this.addCreateNoteEventListener(topLevelIdPrefix);
         this.addByFinishDateEventListener(topLevelIdPrefix);
         this.addByCreatedDateEventListener(topLevelIdPrefix);
+        this.addByImportanceEventListener(topLevelIdPrefix);
+        this.addShowFinishedEventListener(topLevelIdPrefix);
     }
 
     addEditButtonEventListeners(notes) {
@@ -117,7 +121,7 @@ export default class NotesComponent {
             .getElementById(`${topLevelIdPrefix}by-finish-date`)
             .addEventListener('click', () => {
                 const sortProperty = 'finishedDate';
-                this.sortBy(topLevelIdPrefix, sortProperty);
+                this.sortBy(sortProperty);
             });
     }
 
@@ -126,22 +130,19 @@ export default class NotesComponent {
             .getElementById(`${topLevelIdPrefix}by-created-date`)
             .addEventListener('click', () => {
                 const sortProperty = 'createdDate';
-                this.sortBy(topLevelIdPrefix, sortProperty);
+                this.sortBy(sortProperty);
             });
     }
 
-    sortBy(topLevelIdPrefix, sortProperty) {
+    sortBy(sortProperty) {
         const sortDirection = SortUtils.getSortDirection(
             window.history.state,
             sortProperty,
         );
-        this.updateNotes(topLevelIdPrefix, {
-            sortProperty,
-            sortDirection,
-        });
         const sortedNotesState = new NotesState(
             '',
             'notes',
+            'sort',
             sortProperty,
             sortDirection,
         );
@@ -152,13 +153,84 @@ export default class NotesComponent {
         );
     }
 
-    updateNotes(topLevelIdPrefix, sortObject = null) {
+    addByImportanceEventListener(topLevelIdPrefix) {
+        document
+            .getElementById(`${topLevelIdPrefix}by-importance`)
+            .addEventListener('click', () => {
+                const sortProperty = 'importance';
+                this.sortBy(sortProperty);
+            });
+    }
+
+    addShowFinishedEventListener(topLevelIdPrefix) {
+        document
+            .getElementById(`${topLevelIdPrefix}show-finished`)
+            .addEventListener('click', () => {
+                const filterProperty = 'finishedDate';
+                this.filterBy(filterProperty);
+            });
+    }
+
+    filterBy(filterProperty) {
+        const state = window.history.state;
+        let filteredNotesState;
+
+        if (
+            state.transformationType === 'filter' &&
+            state.transformationProperty === filterProperty
+        ) {
+            filteredNotesState = new NotesState('', 'notes', 'filter');
+        } else {
+            filteredNotesState = new NotesState(
+                '',
+                'notes',
+                'filter',
+                filterProperty,
+            );
+        }
+
+        window.history.replaceState(
+            filteredNotesState,
+            filteredNotesState.getReplaceStateTitle(),
+            filteredNotesState.getReplaceStateUrl(),
+        );
+    }
+
+    getSortedNotes(notes, sortOptions) {
+        return notes.slice().sort((a, b) => {
+            if (
+                sortOptions.property === 'createdDate' ||
+                sortOptions.property === 'finishedDate'
+            )
+                return SortUtils.sortDates(a, b, sortOptions);
+            else if (sortOptions.property === 'importance')
+                return SortUtils.sortNumbers(a, b, sortOptions);
+            else return notes;
+        });
+    }
+
+    getFilteredNotes(notes, filterProperty) {
+        return FilterUtils.removeFalsy(notes, filterProperty);
+    }
+
+    updateNotes(topLevelIdPrefix, transformationOptions = null) {
         this.removeTopLevelElements(topLevelIdPrefix);
         let notes = this.notesService.getNotes();
-        if (sortObject) {
-            notes = notes.slice().sort((a, b) => {
-                return SortUtils.sortAbDates(a, b, sortObject);
-            });
+        if (transformationOptions) {
+            if (transformationOptions.type === 'sort') {
+                notes = this.getSortedNotes(
+                    notes,
+                    new SortOptions(
+                        transformationOptions.property,
+                        transformationOptions.sortDirection,
+                    ),
+                );
+            } else if (transformationOptions.type === 'filter') {
+                notes = this.getFilteredNotes(
+                    notes,
+                    transformationOptions.property,
+                );
+            }
         }
 
         // eslint-disable-next-line

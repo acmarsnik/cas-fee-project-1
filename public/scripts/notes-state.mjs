@@ -2,20 +2,24 @@ export default class NotesState {
     constructor(
         href = '',
         page = 'notes',
-        sortProperty = '',
+        transformationType = '',
+        transformationProperty = '',
         sortDirection = '',
         noteId = 0,
     ) {
         if (href) {
             this.href = href;
             this.page = this.getPageFromHref();
-            this.sortProperty = this.getSortPropertyFromHref();
+            this.transformationType = this.getTransformationTypeFromHref();
+            this.transformationProperty =
+                this.getTransformationPropertyFromHref();
             this.sortDirection = this.getSortDirectionFromHref();
             this.noteId = this.getNoteIdFromHref();
         } else {
             this.href = href;
             this.page = page;
-            this.sortProperty = sortProperty;
+            this.transformationType = transformationType;
+            this.transformationProperty = transformationProperty;
             this.sortDirection = sortDirection;
             this.noteId = noteId ? parseInt(noteId) : noteId;
         }
@@ -23,6 +27,17 @@ export default class NotesState {
 
     getThisAsStateInObject() {
         return { state: this };
+    }
+
+    static getNewFromStateProperty(e) {
+        return new NotesState(
+            e.state.href,
+            e.state.page,
+            e.state.transformationType,
+            e.state.transformationProperty,
+            e.state.sortDirection,
+            e.state.noteId,
+        );
     }
 
     getReplaceStateTitle(page = this.page, noteId = this.noteId) {
@@ -33,19 +48,26 @@ export default class NotesState {
 
     getReplaceStateUrl(
         page = this.page,
-        sortProperty = this.sortProperty,
+        transformationType = this.transformationType,
+        transformationProperty = this.transformationProperty,
         sortDirection = this.sortDirection,
         noteId = this.noteId,
     ) {
-        return `?page=${page}${this.getSortPropertyUrlFragment(
-            sortProperty,
+        return `?page=${page}${this.getTransformationTypeUrlFragment(
+            transformationType,
+        )}${this.getTransformationPropertyUrlFragment(
+            transformationProperty,
         )}${this.getSortDirectionUrlFragment(
             sortDirection,
         )}${this.getNoteIdUrlFragment(noteId)}`;
     }
 
-    getSortPropertyUrlFragment(sortProperty) {
-        return this.getUrlFragment('sortProperty', sortProperty);
+    getTransformationTypeUrlFragment(sortProperty) {
+        return this.getUrlFragment('transformationType', sortProperty);
+    }
+
+    getTransformationPropertyUrlFragment(sortProperty) {
+        return this.getUrlFragment('transformationProperty', sortProperty);
     }
 
     getSortDirectionUrlFragment(sortDirection) {
@@ -80,8 +102,12 @@ export default class NotesState {
         return this.getPropertyFromHref('page');
     }
 
-    getSortPropertyFromHref() {
-        return this.getPropertyFromHref('sortProperty');
+    getTransformationTypeFromHref() {
+        return this.getPropertyFromHref('transformationType');
+    }
+
+    getTransformationPropertyFromHref() {
+        return this.getPropertyFromHref('transformationProperty');
     }
 
     getSortDirectionFromHref() {

@@ -6,6 +6,7 @@ import ImportanceComponent from './importance.component.mjs';
 import TemplateIdUtils from './template-id.util.mjs';
 import NotesState from './notes-state.mjs';
 import TemplateIdPrefixes from './template-id-prefixes.mjs';
+import TransformationOptions from './tranformation-options.mjs';
 
 export default class IndexComponent {
     constructor(handlebars) {
@@ -51,11 +52,30 @@ export default class IndexComponent {
 
         this.showCorrectComponents(this.notesState.getThisAsStateInObject());
 
+        this.transformationOptions = new TransformationOptions();
+
         this.notesComponent.updateNotes(
             TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
-            this.notesState.sortProperty && this.notesState.sortDirection
-                ? this.notesState
-                : null,
+            this.getNotesTransformationOptions(this.notesState),
+        );
+    }
+
+    getNotesTransformationOptions(notesState) {
+        return this.areTransformationPropertiesValid(notesState)
+            ? new TransformationOptions(
+                  notesState.transformationType,
+                  notesState.transformationProperty,
+                  notesState.sortDirection,
+              )
+            : null;
+    }
+
+    areTransformationPropertiesValid(notesState) {
+        return (
+            notesState.transformationProperty &&
+            ((notesState.transformationType === 'sort' &&
+                notesState.sortDirection) ||
+                notesState.transformationType === 'filter')
         );
     }
 
@@ -91,6 +111,12 @@ export default class IndexComponent {
         } else {
             this.makeVisible(this.notesPageContainer);
             this.hide(this.createEditPageContainer);
+            this.notesComponent.updateNotes(
+                TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
+                this.getNotesTransformationOptions(
+                    NotesState.getNewFromStateProperty(e),
+                ),
+            );
         }
     }
 }

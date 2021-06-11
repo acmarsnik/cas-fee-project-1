@@ -2,7 +2,7 @@ export default class SortUtils {
     static getSortDirection(state, sortProperty) {
         let direction = 'descending';
         if (
-            state?.sortProperty?.includes(sortProperty) &&
+            state?.transformationProperty?.includes(sortProperty) &&
             state?.sortDirection?.includes('descending')
         ) {
             direction = 'ascending';
@@ -11,12 +11,21 @@ export default class SortUtils {
         return direction;
     }
 
-    static sortAbDates(a, b, sortObject) {
-        const sortProperty = sortObject.sortProperty;
-        const sortDirection = sortObject.sortDirection;
-        const bTime = b[sortProperty] ? b[sortProperty].getTime() : 0;
+    static sortDates(a, b, sortOptions) {
+        const sortProperty = sortOptions.property;
+        const sortDirection = sortOptions.direction;
         const aTime = a[sortProperty] ? a[sortProperty].getTime() : 0;
-        if (sortDirection === 'descending') return bTime - aTime;
-        else return aTime - bTime;
+        const bTime = b[sortProperty] ? b[sortProperty].getTime() : 0;
+        if (sortDirection === 'ascending') return aTime - bTime;
+        else return bTime - aTime;
+    }
+
+    static sortNumbers(a, b, sortOptions) {
+        const sortProperty = sortOptions.property;
+        const sortDirection = sortOptions.direction;
+        const aNumber = a[sortProperty] ? a[sortProperty] : 0;
+        const bNumber = b[sortProperty] ? b[sortProperty] : 0;
+        if (sortDirection === 'ascending') return aNumber - bNumber;
+        else return bNumber - aNumber;
     }
 }
