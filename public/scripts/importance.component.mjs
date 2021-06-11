@@ -23,7 +23,6 @@ export default class ImportanceComponent {
     }
 
     adjustImportanceVisually($event) {
-        console.log({ $event });
         let boltContainerElement;
         if ($event.target.classList?.value?.includes('bolt-container')) {
             boltContainerElement = $event.target;
@@ -84,7 +83,6 @@ export default class ImportanceComponent {
         }
 
         for (let i = 0; i < createEditBoltsToBeGrayElements.length; i++) {
-            console.log(createEditBoltsToBeGrayElements[i]);
             createEditBoltsToBeGrayElements[i].classList?.add('gray');
             createEditBoltsToBeGrayElements[i].classList?.remove('black');
         }
