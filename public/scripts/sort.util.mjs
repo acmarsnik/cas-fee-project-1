@@ -14,8 +14,8 @@ export default class SortUtils {
     static sortDates(a, b, sortOptions) {
         const sortProperty = sortOptions.property;
         const sortDirection = sortOptions.direction;
-        const aTime = a[sortProperty] ? a[sortProperty].getTime() : 0;
-        const bTime = b[sortProperty] ? b[sortProperty].getTime() : 0;
+        const aTime = a[sortProperty] ? new Date(a[sortProperty]).getTime() : 0;
+        const bTime = b[sortProperty] ? new Date(b[sortProperty]).getTime() : 0;
         if (sortDirection === 'ascending') return aTime - bTime;
         else return bTime - aTime;
     }

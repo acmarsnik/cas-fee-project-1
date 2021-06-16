@@ -1,4 +1,5 @@
 import NotesState from './notes-state.mjs';
+import Note from './note.mjs';
 
 export default class CreateEditNoteComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -14,6 +15,52 @@ export default class CreateEditNoteComponent {
             notesState.getReplaceStateTitle(),
             notesState.getReplaceStateUrl(),
         );
+    }
+
+    save(topLevelIdPrefix) {
+        const state = window.history.state;
+        const finishByDateValue = document.getElementById(
+            `${topLevelIdPrefix}finished-by-input`,
+        ).value;
+        const finishByDateYearMonthDay = finishByDateValue
+            ? finishByDateValue.split('-')
+            : null;
+        const finishByDate = finishByDateValue
+            ? new Date(
+                  finishByDateYearMonthDay[0],
+                  finishByDateYearMonthDay[1],
+                  finishByDateYearMonthDay[2],
+                  12,
+              ).toISOString()
+            : null;
+        const title = document.getElementById(
+            `${topLevelIdPrefix}title-input`,
+        ).value;
+        const importance = document.querySelectorAll(
+            '#create-edit-note-page-container .bolt.black',
+        ).length;
+        const description = document.getElementById(
+            `${topLevelIdPrefix}description-input`,
+        ).value;
+        const noteId = state?.noteId
+            ? state.noteId
+            : document.querySelectorAll(`.edit-button button[note-id]`).length +
+              1;
+
+        const note = new Note(
+            finishByDate,
+            title,
+            importance,
+            description,
+            noteId,
+        );
+        if (state?.page?.includes('create')) {
+            this.notesService.createNote(note);
+        } else {
+            this.notesService.updateNote(note);
+        }
+
+        this.navigateToNotes();
     }
 
     removeTopLevelElements(topLevelIdPrefix) {
@@ -39,7 +86,7 @@ export default class CreateEditNoteComponent {
         const cancelButton = document.getElementById(
             `${topLevelIdPrefix}cancel`,
         );
-        saveButton.addEventListener('click', this.navigateToNotes);
+        saveButton.addEventListener('click', () => this.save(topLevelIdPrefix));
         cancelButton.addEventListener('click', this.navigateToNotes);
     }
 

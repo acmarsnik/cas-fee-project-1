@@ -50,10 +50,10 @@ export default class NotesComponent {
             return {
                 ...note,
                 finishedDate: note.finishedDate
-                    ? note.finishedDate.toLocaleDateString()
+                    ? new Date(note.finishedDate).toLocaleDateString()
                     : note.finishedDate,
                 finishByDate: note.finishByDate
-                    ? note.finishByDate.toLocaleDateString()
+                    ? new Date(note.finishByDate).toLocaleDateString()
                     : note.finishByDate,
                 shortDescription: note.shortDescription
                     ? note.shortDescription.replaceAll('\n', '<br />')
