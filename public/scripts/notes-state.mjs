@@ -22,12 +22,8 @@ export default class NotesState {
             this.transformationType = transformationType;
             this.transformationProperty = transformationProperty;
             this.sortDirection = sortDirection;
-            this.noteId = noteId ? parseInt(noteId) : noteId;
+            this.noteId = noteId ? parseInt(noteId, 10) : noteId;
         }
-    }
-
-    getThisAsStateInObject() {
-        return { state: this };
     }
 
     static getNewFromStateProperty(e) {
@@ -59,57 +55,59 @@ export default class NotesState {
         );
     }
 
-    getReplaceStateTitle(page = this.page, noteId = this.noteId) {
-        if (page?.includes('edit')) return `Edit Note ${noteId}`;
-        else if (page?.includes('create')) return 'Create Note';
-        else return 'Notes';
-    }
-
-    getReplaceStateUrl(
-        page = this.page,
-        transformationType = this.transformationType,
-        transformationProperty = this.transformationProperty,
-        sortDirection = this.sortDirection,
-        noteId = this.noteId,
-    ) {
-        return `?page=${page}${this.getTransformationTypeUrlFragment(
-            transformationType,
-        )}${this.getTransformationPropertyUrlFragment(
-            transformationProperty,
-        )}${this.getSortDirectionUrlFragment(sortDirection)}${this.getNoteIdUrlFragment(noteId)}`;
-    }
-
-    getTransformationTypeUrlFragment(sortProperty) {
-        return this.getUrlFragment('transformationType', sortProperty);
-    }
-
-    getTransformationPropertyUrlFragment(sortProperty) {
-        return this.getUrlFragment('transformationProperty', sortProperty);
-    }
-
-    getSortDirectionUrlFragment(sortDirection) {
-        return this.getUrlFragment('sortDirection', sortDirection);
-    }
-
-    getNoteIdUrlFragment(noteId) {
-        return this.getUrlFragment('noteId', noteId);
-    }
-
-    getUrlFragment(name, value) {
+    static getUrlFragment(name, value) {
         return value ? `&${name}=${value}` : '';
     }
 
-    getPropertyFromHref(property, href = this.href) {
-        if (href.indexOf(`${property}=`) >= 0) {
-            const propertyValueToEnd = href.substring(
-                href.indexOf(`${property}=`) + 1 + property.length,
+    getThisAsStateInObject() {
+        return { state: this };
+    }
+
+    replaceWindowHistoryState() {
+        window.history.replaceState(this, this.getReplaceStateTitle(), this.getReplaceStateUrl());
+    }
+
+    getReplaceStateTitle() {
+        if (this.page?.includes('edit')) return `Edit Note ${this.noteId}`;
+        if (this.page?.includes('create')) return 'Create Note';
+        return 'Notes';
+    }
+
+    getReplaceStateUrl() {
+        return `?page=${
+            this.page
+        }${this.getTransformationTypeUrlFragment()}${this.getTransformationPropertyUrlFragment()}${this.getSortDirectionUrlFragment()}${this.getNoteIdUrlFragment()}`;
+    }
+
+    getTransformationTypeUrlFragment() {
+        return NotesState.getUrlFragment('transformationType', this.transformationType);
+    }
+
+    getTransformationPropertyUrlFragment() {
+        return NotesState.getUrlFragment('transformationProperty', this.transformationProperty);
+    }
+
+    getSortDirectionUrlFragment() {
+        return NotesState.getUrlFragment('sortDirection', this.sortDirection);
+    }
+
+    getNoteIdUrlFragment() {
+        return NotesState.getUrlFragment('noteId', this.noteId);
+    }
+
+    getPropertyFromHref(property) {
+        if (this.href.indexOf(`${property}=`) >= 0) {
+            const propertyValueToEnd = this.href.substring(
+                this.href.indexOf(`${property}=`) + 1 + property.length,
             );
             if (propertyValueToEnd.indexOf('&') >= 0) {
                 return propertyValueToEnd.substring(0, propertyValueToEnd.indexOf('&'));
-            } else {
-                return propertyValueToEnd;
             }
-        } else return '';
+
+            return propertyValueToEnd;
+        }
+
+        return '';
     }
 
     getPageFromHref() {
@@ -130,6 +128,6 @@ export default class NotesState {
 
     getNoteIdFromHref() {
         const noteIdString = this.getPropertyFromHref('noteId');
-        return noteIdString ? parseInt(noteIdString) : '';
+        return noteIdString ? parseInt(noteIdString, 10) : '';
     }
 }

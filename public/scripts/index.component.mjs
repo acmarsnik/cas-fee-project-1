@@ -1,4 +1,3 @@
-/* global args */
 import CreateEditNoteComponent from './create-edit-note.component.mjs';
 import NotesComponent from './notes.component.mjs';
 import NotesService from './notes.service.mjs';
@@ -36,8 +35,8 @@ export default class IndexComponent {
                 if (typeof history.onreplacestate === 'function') {
                     history.onreplacestate({ state });
                 }
-
-                return replaceState.apply(history, ...args);
+                /* eslint-disable prefer-rest-params */
+                return replaceState.apply(history, arguments);
             };
         })(window.history);
 

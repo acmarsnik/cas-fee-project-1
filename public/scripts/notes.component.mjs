@@ -25,36 +25,22 @@ export default class NotesComponent {
 
     navigateToCreate() {
         const notesState = new NotesState('', 'create');
-        window.history.replaceState(
-            notesState,
-            notesState.getReplaceStateTitle(),
-            notesState.getReplaceStateUrl(),
-        );
+        notesState.replaceWindowHistoryState();
     }
 
     navigateToEdit($event) {
         const attributes = $event?.target?.attributes;
-        if (
-            attributes &&
-            attributes['note-id'] &&
-            attributes['note-id'].value
-        ) {
+        if (attributes && attributes['note-id'] && attributes['note-id'].value) {
             const noteId = attributes['note-id'].value;
             const notesState = new NotesState('', 'edit', '', '', '', noteId);
-            window.history.replaceState(
-                notesState,
-                notesState.getReplaceStateTitle(),
-                notesState.getReplaceStateUrl(),
-            );
+            notesState.replaceWindowHistoryState();
         }
     }
 
     removeTopLevelElements(topLevelIdPrefix) {
-        document
-            .querySelectorAll(`[id^="${topLevelIdPrefix}"`)
-            .forEach((notesTemplateElement) => {
-                notesTemplateElement.remove();
-            });
+        document.querySelectorAll(`[id^="${topLevelIdPrefix}"`).forEach((notesTemplateElement) => {
+            notesTemplateElement.remove();
+        });
     }
 
     getContext(notes, topLevelIdPrefix, isFiltered) {
@@ -110,9 +96,7 @@ export default class NotesComponent {
         notes.forEach((note) => {
             document
                 .querySelector(`#${topLevelIdPrefix}finished-${note.id}`)
-                .addEventListener('click', () =>
-                    this.updateIsFinished(topLevelIdPrefix, note),
-                );
+                .addEventListener('click', () => this.updateIsFinished(topLevelIdPrefix, note));
         });
     }
 
@@ -128,10 +112,7 @@ export default class NotesComponent {
         const arrowElements = document.querySelectorAll('[id^="arrow-"]');
 
         arrowElements.forEach((arrowElement) => {
-            arrowElement.addEventListener(
-                'click',
-                this.toggleDescriptionsAndArrows,
-            );
+            arrowElement.addEventListener('click', this.toggleDescriptionsAndArrows);
         });
     }
 
@@ -160,22 +141,9 @@ export default class NotesComponent {
     }
 
     sortBy(sortProperty) {
-        const sortDirection = SortUtils.getSortDirection(
-            window.history.state,
-            sortProperty,
-        );
-        const sortedNotesState = new NotesState(
-            '',
-            'notes',
-            'sort',
-            sortProperty,
-            sortDirection,
-        );
-        window.history.replaceState(
-            sortedNotesState,
-            sortedNotesState.getReplaceStateTitle(),
-            sortedNotesState.getReplaceStateUrl(),
-        );
+        const sortDirection = SortUtils.getSortDirection(window.history.state, sortProperty);
+        const sortedNotesState = new NotesState('', 'notes', 'sort', sortProperty, sortDirection);
+        sortedNotesState.replaceWindowHistoryState();
     }
 
     addByImportanceEventListener(topLevelIdPrefix) {
@@ -204,29 +172,17 @@ export default class NotesComponent {
             state?.transformationType !== 'filter' ||
             state?.transformationProperty !== filterProperty
         ) {
-            filteredNotesState = new NotesState(
-                '',
-                'notes',
-                'filter',
-                filterProperty,
-            );
+            filteredNotesState = new NotesState('', 'notes', 'filter', filterProperty);
         } else {
             filteredNotesState = new NotesState('', 'notes');
         }
 
-        window.history.replaceState(
-            filteredNotesState,
-            filteredNotesState.getReplaceStateTitle(),
-            filteredNotesState.getReplaceStateUrl(),
-        );
+        filteredNotesState.replaceWindowHistoryState();
     }
 
     getSortedNotes(notes, sortOptions) {
         return notes.slice().sort((a, b) => {
-            if (
-                sortOptions.property === 'createdDate' ||
-                sortOptions.property === 'finishedDate'
-            )
+            if (sortOptions.property === 'createdDate' || sortOptions.property === 'finishedDate')
                 return SortUtils.sortDates(a, b, sortOptions);
             else if (sortOptions.property === 'importance')
                 return SortUtils.sortNumbers(a, b, sortOptions);
@@ -252,10 +208,7 @@ export default class NotesComponent {
                     ),
                 );
             } else if (transformationOptions.type === 'filter') {
-                notes = this.getFilteredNotes(
-                    notes,
-                    transformationOptions.property,
-                );
+                notes = this.getFilteredNotes(notes, transformationOptions.property);
                 isFiltered = true;
             }
         }
@@ -263,9 +216,7 @@ export default class NotesComponent {
         const notesContainerHtml = this.handlebars.templates.notes(
             this.getContext(notes, topLevelIdPrefix, isFiltered),
         );
-        const indexPageContainer = document.getElementById(
-            'notes-page-container',
-        );
+        const indexPageContainer = document.getElementById('notes-page-container');
         indexPageContainer.innerHTML += notesContainerHtml;
 
         this.addEventListeners(topLevelIdPrefix, notes);
