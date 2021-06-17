@@ -1,9 +1,8 @@
 export default class HandlebarsContexts {
-    static getCreateEditNoteContext(note, idPrefix, topLevelIdPrefix) {
+    static getCreateEditNoteContext(note, topLevelIdPrefix) {
         return {
             note,
             topLevelIdPrefix,
-            idPrefix,
         };
     }
 }

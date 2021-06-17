@@ -1,6 +1,6 @@
 import Note from './note.mjs';
 import Navigation from './navigation.mjs';
-import ElementRemoval from './element-removal.mjs';
+import GeneralDomChanges from './general-dom-changes.mjs';
 import HandlebarsContexts from './handlebars-contexts.mjs';
 
 export default class CreateEditNoteComponent {
@@ -50,8 +50,8 @@ export default class CreateEditNoteComponent {
         cancelButton.addEventListener('click', Navigation.navigateToNotes);
     }
 
-    updateNote(idPrefix, topLevelIdPrefix, noteExists = false, noteId = null) {
-        ElementRemoval.removeElementsWhereIdStartsWith(topLevelIdPrefix);
+    updateNote(topLevelIdPrefix, noteExists = false, noteId = null) {
+        GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
 
         let note = {
             title: null,
@@ -66,7 +66,7 @@ export default class CreateEditNoteComponent {
 
         // eslint-disable-next-line
         const createEditNoteContainerHtml = this.handlebars.templates.createEditNote(
-            HandlebarsContexts.getCreateEditNoteContext(note, idPrefix, topLevelIdPrefix),
+            HandlebarsContexts.getCreateEditNoteContext(note, topLevelIdPrefix),
         );
         const createEditNotePageContainer = document.getElementById(
             'create-edit-note-page-container',

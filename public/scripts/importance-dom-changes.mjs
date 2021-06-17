@@ -1,5 +1,3 @@
-/* global $event */
-
 export default class ImportanceDomChanges {
     static adjustImportanceColorsOnClick($event) {
         const newImportanceValue = ImportanceDomChanges.getNewImportanceValue($event);

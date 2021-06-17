@@ -1,3 +1,4 @@
+/* global args */
 import CreateEditNoteComponent from './create-edit-note.component.mjs';
 import NotesComponent from './notes.component.mjs';
 import NotesService from './notes.service.mjs';
@@ -7,6 +8,7 @@ import TemplateIdUtils from './template-id.util.mjs';
 import NotesState from './notes-state.mjs';
 import TemplateIdPrefixes from './template-id-prefixes.mjs';
 import TransformationOptions from './tranformation-options.mjs';
+import GeneralDomChanges from './general-dom-changes.mjs';
 
 export default class IndexComponent {
     constructor(handlebars) {
@@ -34,15 +36,15 @@ export default class IndexComponent {
                 if (typeof history.onreplacestate === 'function') {
                     history.onreplacestate({ state });
                 }
-                // ... whatever else you want to do
-                // maybe call onhashchange e.handler
-                return replaceState.apply(history, arguments);
+
+                return replaceState.apply(history, ...args);
             };
         })(window.history);
 
         this.notesState = new NotesState(window.location.href);
 
-        window.onreplacestate = history.onreplacestate = (e) => this.showCorrectComponents(e);
+        window.history.onreplacestate = (e) => this.showCorrectComponents(e);
+        window.onreplacestate = (e) => this.showCorrectComponents(e);
 
         this.showCorrectComponents(this.notesState.getThisAsStateInObject());
 
@@ -54,34 +56,24 @@ export default class IndexComponent {
         );
     }
 
-    makeVisible(elementId) {
-        document.getElementById(elementId).classList.remove('hidden');
-    }
-
-    hide(elementId) {
-        document.getElementById(elementId).classList.add('hidden');
-    }
-
     showCorrectComponents(e) {
         if (e.state?.page?.includes('edit')) {
             this.createEditNoteComponent.updateNote(
-                TemplateIdUtils.getPrefix(TemplateIdPrefixes.createEditNote),
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
                 true,
                 e.state?.noteId,
             );
-            this.hide(this.notesPageContainer);
-            this.makeVisible(this.createEditPageContainer);
+            GeneralDomChanges.hide(this.notesPageContainer);
+            GeneralDomChanges.makeVisible(this.createEditPageContainer);
         } else if (e.state?.page?.includes('create')) {
             this.createEditNoteComponent.updateNote(
-                TemplateIdUtils.getPrefix(TemplateIdPrefixes.createEditNote),
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
             );
-            this.hide(this.notesPageContainer);
-            this.makeVisible(this.createEditPageContainer);
+            GeneralDomChanges.hide(this.notesPageContainer);
+            GeneralDomChanges.makeVisible(this.createEditPageContainer);
         } else {
-            this.makeVisible(this.notesPageContainer);
-            this.hide(this.createEditPageContainer);
+            GeneralDomChanges.makeVisible(this.notesPageContainer);
+            GeneralDomChanges.hide(this.createEditPageContainer);
             this.notesComponent.updateNotes(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
                 NotesState.getNotesTransformationOptions(NotesState.getNewFromStateProperty(e)),
