@@ -21,7 +21,7 @@ export default class ImportanceDomChanges {
         return newImportanceValue;
     }
 
-    static getBoltContainerElement() {
+    static getBoltContainerElement($event) {
         let boltContainerElement;
 
         if ($event.target.classList?.value?.includes('bolt-container')) {

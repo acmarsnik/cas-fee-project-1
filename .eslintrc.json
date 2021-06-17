@@ -16,7 +16,9 @@
         "object-curly-newline": "off",
         "object-curly-spacing": "off",
         "linebreak-style": "off",
-        "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }]
+        "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
+        "wrap-iife": [2, "inside"],
+        "no-param-reassign": ["error", { "props": false }]
     },
     "parser": "babel-eslint"
 }

@@ -29,10 +29,10 @@ export default class IndexComponent {
             this.notesImportanceComponent,
         );
         (function setHistoryReplaceState(history) {
-            var replaceState = history.replaceState;
+            const { replaceState } = history;
             history.replaceState = function setHistoryOnReplaceState(state) {
-                if (typeof history.onreplacestate == 'function') {
-                    history.onreplacestate({ state: state });
+                if (typeof history.onreplacestate === 'function') {
+                    history.onreplacestate({ state });
                 }
                 // ... whatever else you want to do
                 // maybe call onhashchange e.handler
