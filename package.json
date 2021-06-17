@@ -17,6 +17,7 @@
     "author": "Michael Gfeller",
     "license": "ISC",
     "devDependencies": {
+        "babel-eslint": "^10.1.0",
         "css-loader": "^5.2.6",
         "eslint": "^7.21.0",
         "eslint-config-airbnb-base": "^14.2.1",

@@ -1,6 +1,8 @@
-const shortDescriptionLimit = 20;
-
 export default class Note {
+    static getShortDescriptionLimit() {
+        return 20;
+    }
+
     constructor(
         finishByDate,
         title,
@@ -19,8 +21,11 @@ export default class Note {
         this.isFinished = finishedDate ? true : false;
         this.fullDescription = description;
         this.shortDescription =
-            description.length > shortDescriptionLimit
-                ? `${description.substring(0, shortDescriptionLimit)} [...]`
+            description.length > Note.getShortDescriptionLimit()
+                ? `${description.substring(
+                      0,
+                      Note.getShortDescriptionLimit(),
+                  )} [...]`
                 : description;
         this.hasExpand = this.shortDescription === description ? false : true;
     }

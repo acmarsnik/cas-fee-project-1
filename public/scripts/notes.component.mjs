@@ -260,7 +260,6 @@ export default class NotesComponent {
             }
         }
 
-        // eslint-disable-next-line
         const notesContainerHtml = this.handlebars.templates.notes(
             this.getContext(notes, topLevelIdPrefix, isFiltered),
         );

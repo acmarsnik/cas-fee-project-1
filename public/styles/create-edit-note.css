@@ -3,8 +3,7 @@
     row-gap: 3rem;
 }
 
-.create-edit-note-page-container
-    .space-between-description-and-importance-labels {
+.create-edit-note-page-container .space-between-description-and-importance-labels {
     grid-row: span 2;
 }
 
@@ -13,8 +12,7 @@
 }
 
 .create-edit-note-page-container .title-label,
-.create-edit-note-page-container
-    .space-between-description-and-importance-labels,
+.create-edit-note-page-container .space-between-description-and-importance-labels,
 .create-edit-note-page-container .description-label,
 .create-edit-note-page-container .importance-label,
 .create-edit-note-page-container .finished-by-label {

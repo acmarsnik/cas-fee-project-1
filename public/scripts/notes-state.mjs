@@ -13,8 +13,7 @@ export default class NotesState {
             this.href = href;
             this.page = this.getPageFromHref();
             this.transformationType = this.getTransformationTypeFromHref();
-            this.transformationProperty =
-                this.getTransformationPropertyFromHref();
+            this.transformationProperty = this.getTransformationPropertyFromHref();
             this.sortDirection = this.getSortDirectionFromHref();
             this.noteId = this.getNoteIdFromHref();
         } else {
@@ -55,8 +54,7 @@ export default class NotesState {
     static areTransformationPropertiesValid(notesState) {
         return (
             notesState.transformationProperty &&
-            ((notesState.transformationType === 'sort' &&
-                notesState.sortDirection) ||
+            ((notesState.transformationType === 'sort' && notesState.sortDirection) ||
                 notesState.transformationType === 'filter')
         );
     }
@@ -78,9 +76,7 @@ export default class NotesState {
             transformationType,
         )}${this.getTransformationPropertyUrlFragment(
             transformationProperty,
-        )}${this.getSortDirectionUrlFragment(
-            sortDirection,
-        )}${this.getNoteIdUrlFragment(noteId)}`;
+        )}${this.getSortDirectionUrlFragment(sortDirection)}${this.getNoteIdUrlFragment(noteId)}`;
     }
 
     getTransformationTypeUrlFragment(sortProperty) {
@@ -109,10 +105,7 @@ export default class NotesState {
                 href.indexOf(`${property}=`) + 1 + property.length,
             );
             if (propertyValueToEnd.indexOf('&') >= 0) {
-                return propertyValueToEnd.substring(
-                    0,
-                    propertyValueToEnd.indexOf('&'),
-                );
+                return propertyValueToEnd.substring(0, propertyValueToEnd.indexOf('&'));
             } else {
                 return propertyValueToEnd;
             }

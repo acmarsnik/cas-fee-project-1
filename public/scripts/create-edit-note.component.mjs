@@ -1,5 +1,7 @@
-import NotesState from './notes-state.mjs';
 import Note from './note.mjs';
+import Navigation from './navigation.mjs';
+import ElementRemoval from './element-removal.mjs';
+import HandlebarsContexts from './handlebars-contexts.mjs';
 
 export default class CreateEditNoteComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -8,23 +10,12 @@ export default class CreateEditNoteComponent {
         this.importanceComponent = importanceComponent;
     }
 
-    navigateToNotes() {
-        const notesState = new NotesState('', 'notes');
-        window.history.replaceState(
-            notesState,
-            notesState.getReplaceStateTitle(),
-            notesState.getReplaceStateUrl(),
-        );
-    }
-
     save(topLevelIdPrefix) {
-        const state = window.history.state;
+        const { state } = window.history;
         const finishByDateValue = document.getElementById(
             `${topLevelIdPrefix}finished-by-input`,
         ).value;
-        const finishByDateYearMonthDay = finishByDateValue
-            ? finishByDateValue.split('-')
-            : null;
+        const finishByDateYearMonthDay = finishByDateValue ? finishByDateValue.split('-') : null;
         const finishByDate = finishByDateValue
             ? new Date(
                   finishByDateYearMonthDay[0],
@@ -33,65 +24,34 @@ export default class CreateEditNoteComponent {
                   12,
               ).toISOString()
             : null;
-        const title = document.getElementById(
-            `${topLevelIdPrefix}title-input`,
-        ).value;
+        const title = document.getElementById(`${topLevelIdPrefix}title-input`).value;
         const importance = document.querySelectorAll(
             '#create-edit-note-page-container .bolt.black',
         ).length;
-        const description = document.getElementById(
-            `${topLevelIdPrefix}description-input`,
-        ).value;
+        const description = document.getElementById(`${topLevelIdPrefix}description-input`).value;
         const noteId = state?.noteId
             ? state.noteId
-            : document.querySelectorAll(`.edit-button button[note-id]`).length +
-              1;
+            : document.querySelectorAll('.edit-button button[note-id]').length + 1;
 
-        const note = new Note(
-            finishByDate,
-            title,
-            importance,
-            description,
-            noteId,
-        );
+        const note = new Note(finishByDate, title, importance, description, noteId);
         if (state?.page?.includes('create')) {
             this.notesService.createNote(note);
         } else {
             this.notesService.updateNote(note);
         }
 
-        this.navigateToNotes();
-    }
-
-    removeTopLevelElements(topLevelIdPrefix) {
-        document
-            .querySelectorAll(`[id^="${topLevelIdPrefix}"`)
-            .forEach((notesTemplateElement) => {
-                notesTemplateElement.remove();
-            });
-    }
-
-    getContext(note, idPrefix, topLevelIdPrefix) {
-        return {
-            note,
-            topLevelIdPrefix,
-            idPrefix,
-        };
+        Navigation.navigateToNotes();
     }
 
     addEventListeners(topLevelIdPrefix) {
-        const saveButton = document.getElementById(
-            `${topLevelIdPrefix}speichern`,
-        );
-        const cancelButton = document.getElementById(
-            `${topLevelIdPrefix}cancel`,
-        );
+        const saveButton = document.getElementById(`${topLevelIdPrefix}speichern`);
+        const cancelButton = document.getElementById(`${topLevelIdPrefix}cancel`);
         saveButton.addEventListener('click', () => this.save(topLevelIdPrefix));
-        cancelButton.addEventListener('click', this.navigateToNotes);
+        cancelButton.addEventListener('click', Navigation.navigateToNotes);
     }
 
     updateNote(idPrefix, topLevelIdPrefix, noteExists = false, noteId = null) {
-        this.removeTopLevelElements(topLevelIdPrefix);
+        ElementRemoval.removeElementsWhereIdStartsWith(topLevelIdPrefix);
 
         let note = {
             title: null,
@@ -105,10 +65,9 @@ export default class CreateEditNoteComponent {
         }
 
         // eslint-disable-next-line
-        const createEditNoteContainerHtml =
-            this.handlebars.templates.createEditNote(
-                this.getContext(note, idPrefix, topLevelIdPrefix),
-            );
+        const createEditNoteContainerHtml = this.handlebars.templates.createEditNote(
+            HandlebarsContexts.getCreateEditNoteContext(note, idPrefix, topLevelIdPrefix),
+        );
         const createEditNotePageContainer = document.getElementById(
             'create-edit-note-page-container',
         );
