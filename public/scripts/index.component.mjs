@@ -14,13 +14,8 @@ export default class IndexComponent {
         this.createEditPageContainer = 'create-edit-note-page-container';
         this.handlebars = handlebars;
         addCompiledTemplatesToHandlebars(this.handlebars);
-        this.notesImportanceComponent = new ImportanceComponent(
-            this.handlebars,
-        );
-        this.createEditNoteImportanceComponent = new ImportanceComponent(
-            this.handlebars,
-            true,
-        );
+        this.notesImportanceComponent = new ImportanceComponent(this.handlebars);
+        this.createEditNoteImportanceComponent = new ImportanceComponent(this.handlebars, true);
         this.notesService = new NotesService();
         this.createEditNoteComponent = new CreateEditNoteComponent(
             this.handlebars,
@@ -33,9 +28,9 @@ export default class IndexComponent {
             this.notesService,
             this.notesImportanceComponent,
         );
-        (function (history) {
+        (function setHistoryReplaceState(history) {
             var replaceState = history.replaceState;
-            history.replaceState = function (state) {
+            history.replaceState = function setHistoryOnReplaceState(state) {
                 if (typeof history.onreplacestate == 'function') {
                     history.onreplacestate({ state: state });
                 }
@@ -47,8 +42,7 @@ export default class IndexComponent {
 
         this.notesState = new NotesState(window.location.href);
 
-        window.onreplacestate = history.onreplacestate = (e) =>
-            this.showCorrectComponents(e);
+        window.onreplacestate = history.onreplacestate = (e) => this.showCorrectComponents(e);
 
         this.showCorrectComponents(this.notesState.getThisAsStateInObject());
 
@@ -72,9 +66,7 @@ export default class IndexComponent {
         if (e.state?.page?.includes('edit')) {
             this.createEditNoteComponent.updateNote(
                 TemplateIdUtils.getPrefix(TemplateIdPrefixes.createEditNote),
-                TemplateIdUtils.getTopLevelPrefix(
-                    TemplateIdPrefixes.createEditNote,
-                ),
+                TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
                 true,
                 e.state?.noteId,
             );
@@ -83,9 +75,7 @@ export default class IndexComponent {
         } else if (e.state?.page?.includes('create')) {
             this.createEditNoteComponent.updateNote(
                 TemplateIdUtils.getPrefix(TemplateIdPrefixes.createEditNote),
-                TemplateIdUtils.getTopLevelPrefix(
-                    TemplateIdPrefixes.createEditNote,
-                ),
+                TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
             );
             this.hide(this.notesPageContainer);
             this.makeVisible(this.createEditPageContainer);
@@ -94,9 +84,7 @@ export default class IndexComponent {
             this.hide(this.createEditPageContainer);
             this.notesComponent.updateNotes(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
-                NotesState.getNotesTransformationOptions(
-                    NotesState.getNewFromStateProperty(e),
-                ),
+                NotesState.getNotesTransformationOptions(NotesState.getNewFromStateProperty(e)),
             );
         }
     }
