@@ -18,7 +18,8 @@
         "linebreak-style": "off",
         "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
         "wrap-iife": [2, "inside"],
-        "no-param-reassign": ["error", { "props": false }]
+        "no-param-reassign": ["error", { "props": false }],
+        "no-unneeded-ternary": ["error", { "defaultAssignment": true }]
     },
     "parser": "babel-eslint"
 }

@@ -18,15 +18,18 @@ export default class Note {
         this.title = title;
         this.importance = importance;
         this.finishedDate = finishedDate;
-        this.isFinished = finishedDate ? true : false;
+        this.isFinished = !!finishedDate;
         this.fullDescription = description;
-        this.shortDescription =
-            description.length > Note.getShortDescriptionLimit()
-                ? `${description.substring(
-                      0,
-                      Note.getShortDescriptionLimit(),
-                  )} [...]`
-                : description;
-        this.hasExpand = this.shortDescription === description ? false : true;
+
+        if (description.length > Note.getShortDescriptionLimit()) {
+            this.shortDescription = `${description.substring(
+                0,
+                Note.getShortDescriptionLimit(),
+            )} [...]`;
+        } else {
+            this.shortDescription = description;
+        }
+
+        this.hasExpand = !(this.shortDescription === description);
     }
 }
