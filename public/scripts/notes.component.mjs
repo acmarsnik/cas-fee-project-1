@@ -2,6 +2,9 @@ import NotesState from './notes-state.mjs';
 import SortUtils from './sort.util.mjs';
 import SortOptions from './sort-options.mjs';
 import FilterUtils from './filter.util.mjs';
+import Navigation from './navigation.mjs';
+import GeneralDomChanges from './general-dom-changes.mjs';
+import HandlebarsContexts from './handlebars-contexts.mjs';
 
 export default class NotesComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -21,53 +24,6 @@ export default class NotesComponent {
             topLevelIdPrefix,
             NotesState.getNotesTransformationOptions(window.history.state),
         );
-    }
-
-    navigateToCreate() {
-        const notesState = new NotesState('', 'create');
-        notesState.replaceWindowHistoryState();
-    }
-
-    navigateToEdit($event) {
-        const attributes = $event?.target?.attributes;
-        if (attributes && attributes['note-id'] && attributes['note-id'].value) {
-            const noteId = attributes['note-id'].value;
-            const notesState = new NotesState('', 'edit', '', '', '', noteId);
-            notesState.replaceWindowHistoryState();
-        }
-    }
-
-    removeTopLevelElements(topLevelIdPrefix) {
-        document.querySelectorAll(`[id^="${topLevelIdPrefix}"`).forEach((notesTemplateElement) => {
-            notesTemplateElement.remove();
-        });
-    }
-
-    getContext(notes, topLevelIdPrefix, isFiltered) {
-        // const a = notes.map(note => note ? {...note, baz: [11,22,33]} : note)
-        const notesAdjustedForDisplay = notes.map((note) => {
-            return {
-                ...note,
-                finishedDate: note.finishedDate
-                    ? new Date(note.finishedDate).toLocaleDateString()
-                    : note.finishedDate,
-                finishByDate: note.finishByDate
-                    ? new Date(note.finishByDate).toLocaleDateString()
-                    : note.finishByDate,
-                shortDescription: note.shortDescription
-                    ? note.shortDescription.replaceAll('\n', '<br />')
-                    : note.shortDescription,
-                fullDescription: note.fullDescription
-                    ? note.fullDescription.replaceAll('\n', '<br />')
-                    : note.fullDescription,
-            };
-        });
-
-        return {
-            notes: notesAdjustedForDisplay,
-            topLevelIdPrefix,
-            isFiltered,
-        };
     }
 
     toggleDescriptionsAndArrows($event) {
@@ -104,7 +60,7 @@ export default class NotesComponent {
         notes.forEach((note) => {
             document
                 .querySelector(`.edit-button button[note-id="${note.id}"]`)
-                .addEventListener('click', this.navigateToEdit);
+                .addEventListener('click', Navigation.navigateToEdit);
         });
     }
 
@@ -119,7 +75,7 @@ export default class NotesComponent {
     addCreateNoteEventListener(topLevelIdPrefix) {
         document
             .getElementById(`${topLevelIdPrefix}create-note`)
-            .addEventListener('click', () => this.navigateToCreate());
+            .addEventListener('click', Navigation.navigateToCreate);
     }
 
     addByFinishDateEventListener(topLevelIdPrefix) {
@@ -195,7 +151,7 @@ export default class NotesComponent {
     }
 
     updateNotes(topLevelIdPrefix, transformationOptions = null) {
-        this.removeTopLevelElements(topLevelIdPrefix);
+        GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
         let notes = this.notesService.getNotes();
         let isFiltered = false;
         if (transformationOptions) {
@@ -214,7 +170,7 @@ export default class NotesComponent {
         }
 
         const notesContainerHtml = this.handlebars.templates.notes(
-            this.getContext(notes, topLevelIdPrefix, isFiltered),
+            HandlebarsContexts.getNotesContext(notes, topLevelIdPrefix, isFiltered),
         );
         const indexPageContainer = document.getElementById('notes-page-container');
         indexPageContainer.innerHTML += notesContainerHtml;
