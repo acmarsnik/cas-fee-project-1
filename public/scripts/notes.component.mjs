@@ -10,6 +10,19 @@ export default class NotesComponent {
         this.importanceComponent = importanceComponent;
     }
 
+    updateIsFinished(topLevelIdPrefix, note) {
+        const updatedNote = {
+            ...note,
+            isFinished: !note.isFinished,
+            finishedDate: !note.isFinished ? new Date().toISOString() : null,
+        };
+        this.notesService.updateNote(updatedNote);
+        this.updateNotes(
+            topLevelIdPrefix,
+            NotesState.getNotesTransformationOptions(window.history.state),
+        );
+    }
+
     navigateToCreate() {
         const notesState = new NotesState('', 'create');
         window.history.replaceState(
@@ -83,6 +96,7 @@ export default class NotesComponent {
     }
 
     addEventListeners(topLevelIdPrefix, notes) {
+        this.addIsFinishedEventListeners(topLevelIdPrefix, notes);
         this.addEditButtonEventListeners(notes);
         this.addArrowEventListeners();
         this.addCreateNoteEventListener(topLevelIdPrefix);
@@ -90,6 +104,16 @@ export default class NotesComponent {
         this.addByCreatedDateEventListener(topLevelIdPrefix);
         this.addByImportanceEventListener(topLevelIdPrefix);
         this.addShowFinishedEventListener(topLevelIdPrefix);
+    }
+
+    addIsFinishedEventListeners(topLevelIdPrefix, notes) {
+        notes.forEach((note) => {
+            document
+                .querySelector(`#${topLevelIdPrefix}finished-${note.id}`)
+                .addEventListener('click', () =>
+                    this.updateIsFinished(topLevelIdPrefix, note),
+                );
+        });
     }
 
     addEditButtonEventListeners(notes) {

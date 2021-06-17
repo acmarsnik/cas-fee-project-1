@@ -1,3 +1,5 @@
+import TransformationOptions from './tranformation-options.mjs';
+
 export default class NotesState {
     constructor(
         href = '',
@@ -37,6 +39,25 @@ export default class NotesState {
             e.state.transformationProperty,
             e.state.sortDirection,
             e.state.noteId,
+        );
+    }
+
+    static getNotesTransformationOptions(notesState) {
+        return NotesState.areTransformationPropertiesValid(notesState)
+            ? new TransformationOptions(
+                  notesState.transformationType,
+                  notesState.transformationProperty,
+                  notesState.sortDirection,
+              )
+            : null;
+    }
+
+    static areTransformationPropertiesValid(notesState) {
+        return (
+            notesState.transformationProperty &&
+            ((notesState.transformationType === 'sort' &&
+                notesState.sortDirection) ||
+                notesState.transformationType === 'filter')
         );
     }
 

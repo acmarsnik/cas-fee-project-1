@@ -56,26 +56,7 @@ export default class IndexComponent {
 
         this.notesComponent.updateNotes(
             TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
-            this.getNotesTransformationOptions(this.notesState),
-        );
-    }
-
-    getNotesTransformationOptions(notesState) {
-        return this.areTransformationPropertiesValid(notesState)
-            ? new TransformationOptions(
-                  notesState.transformationType,
-                  notesState.transformationProperty,
-                  notesState.sortDirection,
-              )
-            : null;
-    }
-
-    areTransformationPropertiesValid(notesState) {
-        return (
-            notesState.transformationProperty &&
-            ((notesState.transformationType === 'sort' &&
-                notesState.sortDirection) ||
-                notesState.transformationType === 'filter')
+            NotesState.getNotesTransformationOptions(this.notesState),
         );
     }
 
@@ -113,7 +94,7 @@ export default class IndexComponent {
             this.hide(this.createEditPageContainer);
             this.notesComponent.updateNotes(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
-                this.getNotesTransformationOptions(
+                NotesState.getNotesTransformationOptions(
                     NotesState.getNewFromStateProperty(e),
                 ),
             );
