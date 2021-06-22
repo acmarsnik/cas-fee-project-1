@@ -3,9 +3,23 @@ body.rainbow {
     color: red;
 }
 
+body.rainbow .notes-app [class$='-page-container'] button {
+    background: rgb(188, 255, 226, 1);
+}
+
+body.rainbow .notes-app [class$='-page-container'] select,
+body.rainbow .notes-app [class$='-page-container'] input,
+body.rainbow .notes-app [class$='-page-container'] textarea {
+    background: rgb(188, 255, 226, 0.8);
+}
+
 body.rainbow .notes-app [class$='-page-container'] button,
 body.rainbow .notes-app [class$='-page-container'] select,
-body.rainbow .notes-app [class$='-page-container'] input[type='checkbox'] {
-    background: #bcffe2;
-    color: rgb(168, 21, 168);
+body.rainbow .notes-app [class$='-page-container'] input,
+body.rainbow .notes-app [class$='-page-container'] textarea {
+    color: rgba(168, 21, 168, 0.9);
+}
+
+body.rainbow .notes-app [class$='-page-container'] select option {
+    background: rgb(188, 255, 226, 1);
 }

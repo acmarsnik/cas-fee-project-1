@@ -3,9 +3,23 @@ body.darkMode {
     color: white;
 }
 
+body.darkMode .notes-app [class$='-page-container'] button {
+    background: rgba(45, 45, 45, 1);
+}
+
+body.darkMode .notes-app [class$='-page-container'] select,
+body.darkMode .notes-app [class$='-page-container'] input,
+body.darkMode .notes-app [class$='-page-container'] textarea {
+    background: rgba(45, 45, 45, 0.4);
+}
+
 body.darkMode .notes-app [class$='-page-container'] button,
 body.darkMode .notes-app [class$='-page-container'] select,
-body.darkMode .notes-app [class$='-page-container'] input[type='checkbox'] {
+body.darkMode .notes-app [class$='-page-container'] input,
+body.darkMode .notes-app [class$='-page-container'] textarea {
+    color: rgba(211, 211, 211, 1);
+}
+
+body.darkMode .notes-app [class$='-page-container'] select option {
     background: rgba(45, 45, 45, 1);
-    color: lightgray;
 }
