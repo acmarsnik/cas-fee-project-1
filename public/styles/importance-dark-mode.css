@@ -1,0 +1,22 @@
+body.darkMode .notes-app [class$='-page-container'] .importance .bolt {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+body.darkMode .notes-app [class$='-page-container'] .importance .bolt::after {
+    border-color: rgba(0, 0, 0, 0);
+}
+body.darkMode .notes-app [class$='-page-container'] .importance .black {
+    border-bottom-color: white;
+}
+
+body.darkMode .notes-app [class$='-page-container'] .importance .black::after {
+    border-bottom-color: white;
+}
+
+body.darkMode .notes-app [class$='-page-container'] .importance .gray {
+    border-bottom-color: rgba(45, 45, 45, 1);
+}
+
+body.darkMode .notes-app [class$='-page-container'] .importance .gray::after {
+    border-bottom-color: rgba(45, 45, 45, 1);
+}

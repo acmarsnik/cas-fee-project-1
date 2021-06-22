@@ -7,16 +7,6 @@ body.blackWhiteStyle {
     color: black;
 }
 
-body.darkMode {
-    background-color: black;
-    color: white;
-}
-
-body.rainbow {
-    background-color: blue;
-    color: red;
-}
-
 [class$='-page-container'] {
     display: grid;
     align-items: flex-start;

@@ -1,0 +1,25 @@
+body.rainbow .notes-page-container .description-padding-left,
+body.rainbow .notes-page-container .description,
+body.rainbow .notes-page-container .space-between-description-and-arrow,
+body.rainbow .notes-page-container .arrow-container,
+body.rainbow .notes-page-container .arrow-padding-right {
+    border-top-color: red;
+    border-bottom-color: red;
+}
+
+body.rainbow .notes-page-container .description-padding-left {
+    border-left-color: red;
+}
+
+body.rainbow .notes-page-container .arrow-padding-right {
+    border-right-color: red;
+}
+
+body.rainbow .notes-page-container .arrow-down::after,
+body.rainbow .notes-page-container .arrow-up::after {
+    -webkit-text-stroke-color: red;
+}
+
+body.rainbow .notes-page-container .arrow-up::after {
+    color: red;
+}

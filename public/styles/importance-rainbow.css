@@ -1,0 +1,23 @@
+body.rainbow .notes-app [class$='-page-container'] .importance .bolt {
+    border-color: rgba(0, 0, 255, 0);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .bolt::after {
+    border-color: rgba(0, 0, 255, 0);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .black {
+    border-bottom-color: red;
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .black::after {
+    border-bottom-color: red;
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .gray {
+    border-bottom-color: rgba(255, 192, 203, 1);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .gray::after {
+    border-bottom-color: rgba(255, 192, 203, 1);
+}

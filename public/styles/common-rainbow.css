@@ -1,0 +1,11 @@
+body.rainbow {
+    background-color: blue;
+    color: red;
+}
+
+body.rainbow .notes-app [class$='-page-container'] button,
+body.rainbow .notes-app [class$='-page-container'] select,
+body.rainbow .notes-app [class$='-page-container'] input[type='checkbox'] {
+    background: #bcffe2;
+    color: rgb(168, 21, 168);
+}

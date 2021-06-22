@@ -1,0 +1,11 @@
+body.darkMode {
+    background-color: black;
+    color: white;
+}
+
+body.darkMode .notes-app [class$='-page-container'] button,
+body.darkMode .notes-app [class$='-page-container'] select,
+body.darkMode .notes-app [class$='-page-container'] input[type='checkbox'] {
+    background: rgba(45, 45, 45, 1);
+    color: lightgray;
+}

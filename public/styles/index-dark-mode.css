@@ -1,0 +1,25 @@
+body.darkMode .notes-page-container .description-padding-left,
+body.darkMode .notes-page-container .description,
+body.darkMode .notes-page-container .space-between-description-and-arrow,
+body.darkMode .notes-page-container .arrow-container,
+body.darkMode .notes-page-container .arrow-padding-right {
+    border-top-color: white;
+    border-bottom-color: white;
+}
+
+body.darkMode .notes-page-container .description-padding-left {
+    border-left-color: white;
+}
+
+body.darkMode .notes-page-container .arrow-padding-right {
+    border-right-color: white;
+}
+
+body.darkMode .notes-page-container .arrow-down::after,
+body.darkMode .notes-page-container .arrow-up::after {
+    -webkit-text-stroke-color: white;
+}
+
+body.darkMode .notes-page-container .arrow-up::after {
+    color: white;
+}
