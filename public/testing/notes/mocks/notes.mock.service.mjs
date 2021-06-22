@@ -2,6 +2,7 @@ export default class NotesMockService {
     constructor(notes) {
         this.notes = notes;
     }
+
     getNotes() {
         return this.notes;
     }
@@ -11,9 +12,7 @@ export default class NotesMockService {
     }
 
     updateOrCreateNote(note) {
-        const indexOfNoteToUpdate = this.notes.findIndex(
-            (n) => n.id === note.id,
-        );
+        const indexOfNoteToUpdate = this.notes.findIndex((n) => n.id === note.id);
         if (indexOfNoteToUpdate >= 0) {
             this.notes[indexOfNoteToUpdate] = note;
         } else {

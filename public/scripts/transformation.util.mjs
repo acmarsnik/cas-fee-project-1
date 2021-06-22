@@ -5,10 +5,11 @@ import FilterUtils from './filter.util.mjs';
 export default class TransformationUtils {
     static transformNotes(notes, transformationOptions) {
         let isFiltered = false;
+        let transformedNotes;
 
         if (transformationOptions) {
             if (transformationOptions.type === 'sort') {
-                notes = SortUtils.getSortedNotes(
+                transformedNotes = SortUtils.getSortedNotes(
                     notes,
                     new SortOptions(
                         transformationOptions.property,
@@ -16,10 +17,10 @@ export default class TransformationUtils {
                     ),
                 );
             } else if (transformationOptions.type === 'filter') {
-                notes = FilterUtils.removeFalsy(notes, transformationOptions.property);
+                transformedNotes = FilterUtils.removeFalsy(notes, transformationOptions.property);
                 isFiltered = true;
             }
         }
-        return { notes, isFiltered };
+        return { notes: transformedNotes, isFiltered };
     }
 }
