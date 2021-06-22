@@ -1,35 +1,26 @@
-import CreateEditNoteComponent from './create-edit-note.component.mjs';
-import NotesComponent from './notes.component.mjs';
-import NotesService from './notes.service.mjs';
-import addCompiledTemplatesToHandlebars from '../templatesCompiled.mjs';
-import ImportanceComponent from './importance.component.mjs';
 import TemplateIdUtils from './template-id.util.mjs';
 import NotesState from './notes-state.mjs';
 import TemplateIdPrefixes from './template-id-prefixes.mjs';
-import TransformationOptions from './tranformation-options.mjs';
 import GeneralDomChanges from './general-dom-changes.mjs';
-import notes from './notes.data.mjs';
 
 export default class IndexComponent {
-    constructor(handlebars) {
-        this.notesPageContainer = 'notes-page-container';
-        this.createEditPageContainer = 'create-edit-note-page-container';
-        this.handlebars = handlebars;
-        addCompiledTemplatesToHandlebars(this.handlebars);
-        this.notesImportanceComponent = new ImportanceComponent(this.handlebars);
-        this.createEditNoteImportanceComponent = new ImportanceComponent(this.handlebars, true);
-        this.notesService = new NotesService(notes);
-        this.createEditNoteComponent = new CreateEditNoteComponent(
-            this.handlebars,
-            this.notesService,
-            this.createEditNoteImportanceComponent,
-            window,
-        );
-        this.notesComponent = new NotesComponent(
-            this.handlebars,
-            this.notesService,
-            this.notesImportanceComponent,
-        );
+    constructor(
+        notesPageContainerSelector,
+        createEditPageContainerSelector,
+        notesComponent,
+        createEditNoteComponent,
+        notesState,
+        transformationOptions,
+    ) {
+        this.notesPageContainerSelector = notesPageContainerSelector;
+        this.createEditPageContainerSelector = createEditPageContainerSelector;
+        this.notesComponent = notesComponent;
+        this.createEditNoteComponent = createEditNoteComponent;
+        this.notesState = notesState;
+        this.transformationOptions = transformationOptions;
+    }
+
+    initialize() {
         (function setHistoryReplaceState(history) {
             const { replaceState } = history;
             history.replaceState = function setHistoryOnReplaceState(state) {
@@ -41,19 +32,14 @@ export default class IndexComponent {
             };
         })(window.history);
 
-        this.notesState = new NotesState(window.location.href);
-
         window.history.onreplacestate = (e) => this.showCorrectComponents(e);
         window.onreplacestate = (e) => this.showCorrectComponents(e);
-
-        this.showCorrectComponents(this.notesState.getThisAsStateInObject());
-
-        this.transformationOptions = new TransformationOptions();
 
         this.notesComponent.updateNotes(
             TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
             NotesState.getNotesTransformationOptions(this.notesState),
         );
+        this.showCorrectComponents(this.notesState.getThisAsStateInObject());
     }
 
     showCorrectComponents(e) {
@@ -63,17 +49,17 @@ export default class IndexComponent {
                 true,
                 e.state?.noteId,
             );
-            GeneralDomChanges.hide(this.notesPageContainer);
-            GeneralDomChanges.makeVisible(this.createEditPageContainer);
+            GeneralDomChanges.hide(this.notesPageContainerSelector);
+            GeneralDomChanges.makeVisible(this.createEditPageContainerSelector);
         } else if (e.state?.page?.includes('create')) {
             this.createEditNoteComponent.updateNote(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
             );
-            GeneralDomChanges.hide(this.notesPageContainer);
-            GeneralDomChanges.makeVisible(this.createEditPageContainer);
+            GeneralDomChanges.hide(this.notesPageContainerSelector);
+            GeneralDomChanges.makeVisible(this.createEditPageContainerSelector);
         } else {
-            GeneralDomChanges.makeVisible(this.notesPageContainer);
-            GeneralDomChanges.hide(this.createEditPageContainer);
+            GeneralDomChanges.makeVisible(this.notesPageContainerSelector);
+            GeneralDomChanges.hide(this.createEditPageContainerSelector);
             this.notesComponent.updateNotes(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
                 NotesState.getNotesTransformationOptions(NotesState.getNewFromStateProperty(e)),
