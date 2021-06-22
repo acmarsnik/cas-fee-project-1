@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash.clonedeep';
 import SortUtils from './sort.util.mjs';
 import SortOptions from './sort-options.mjs';
 import FilterUtils from './filter.util.mjs';
@@ -21,6 +22,9 @@ export default class TransformationUtils {
                 isFiltered = true;
             }
         }
-        return { notes: transformedNotes, isFiltered };
+        return {
+            notes: transformedNotes ? transformedNotes : cloneDeep(notes),
+            isFiltered,
+        };
     }
 }

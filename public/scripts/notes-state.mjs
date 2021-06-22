@@ -49,6 +49,7 @@ export default class NotesState {
 
     static areTransformationPropertiesValid(notesState) {
         return (
+            notesState &&
             notesState.transformationProperty &&
             ((notesState.transformationType === 'sort' && notesState.sortDirection) ||
                 notesState.transformationType === 'filter')

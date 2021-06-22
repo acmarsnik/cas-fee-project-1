@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash.clonedeep';
 import NotesState from './notes-state.mjs';
 
 export default class SortUtils {
@@ -46,7 +47,7 @@ export default class SortUtils {
     }
 
     static getSortedNotes(notes, sortOptions) {
-        return notes.slice().sort((a, b) => {
+        return cloneDeep(notes).sort((a, b) => {
             if (sortOptions.property === 'createdDate' || sortOptions.property === 'finishedDate') {
                 return SortUtils.sortDates(a, b, sortOptions);
             }
@@ -55,7 +56,7 @@ export default class SortUtils {
                 return SortUtils.sortNumbers(a, b, sortOptions);
             }
 
-            return notes;
+            return cloneDeep(notes);
         });
     }
 }

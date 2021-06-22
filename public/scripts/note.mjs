@@ -1,8 +1,6 @@
-export default class Note {
-    static getShortDescriptionLimit() {
-        return 20;
-    }
+import TextUtils from './text.util.mjs';
 
+export default class Note {
     constructor(
         finishByDate,
         title,
@@ -11,6 +9,7 @@ export default class Note {
         id = null,
         finishedDate = null,
         createdDate = null,
+        isForDisplayInHtml = false,
     ) {
         this.id = id;
         this.finishByDate = finishByDate;
@@ -21,7 +20,7 @@ export default class Note {
         this.isFinished = !!finishedDate;
         this.fullDescription = description;
 
-        if (description.length > Note.getShortDescriptionLimit()) {
+        if (!!description && description.length > Note.getShortDescriptionLimit()) {
             this.shortDescription = `${description.substring(
                 0,
                 Note.getShortDescriptionLimit(),
@@ -30,6 +29,15 @@ export default class Note {
             this.shortDescription = description;
         }
 
-        this.hasExpand = !(this.shortDescription === description);
+        if (isForDisplayInHtml) {
+            this.shortDescription = TextUtils.convertLineBreaksForHTML(this.shortDescription);
+            this.fullDescription = TextUtils.convertLineBreaksForHTML(this.fullDescription);
+        }
+
+        this.hasExpand = !(this.shortDescription === this.fullDescription);
+    }
+
+    static getShortDescriptionLimit() {
+        return 20;
     }
 }
