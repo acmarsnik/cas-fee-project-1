@@ -1,3 +1,5 @@
+import NotesState from './notes-state.mjs';
+
 export default class SortUtils {
     static getSortDirection(state, sortProperty) {
         let direction = 'descending';
@@ -27,5 +29,21 @@ export default class SortUtils {
         const bNumber = b[sortProperty] ? b[sortProperty] : 0;
         if (sortDirection === 'ascending') return aNumber - bNumber;
         else return bNumber - aNumber;
+    }
+
+    static sortBy(sortProperty) {
+        const sortDirection = SortUtils.getSortDirection(window.history.state, sortProperty);
+        const sortedNotesState = new NotesState('', 'notes', 'sort', sortProperty, sortDirection);
+        sortedNotesState.replaceWindowHistoryState();
+    }
+
+    static getSortedNotes(notes, sortOptions) {
+        return notes.slice().sort((a, b) => {
+            if (sortOptions.property === 'createdDate' || sortOptions.property === 'finishedDate')
+                return SortUtils.sortDates(a, b, sortOptions);
+            else if (sortOptions.property === 'importance')
+                return SortUtils.sortNumbers(a, b, sortOptions);
+            else return notes;
+        });
     }
 }

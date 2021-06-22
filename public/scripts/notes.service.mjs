@@ -1,24 +1,26 @@
-import notes from './notes.data.mjs';
-
 export default class NotesService {
+    constructor(notes) {
+        this.notes = notes;
+    }
+
     getNotes() {
-        return notes;
+        return this.notes;
     }
 
     getNote(id) {
-        return notes.find((note) => note.id === id);
+        return this.notes.find((note) => note.id === id);
     }
 
     updateNote(note) {
-        const indexOfNoteToUpdate = notes.findIndex((n) => n.id === note.id);
+        const indexOfNoteToUpdate = this.notes.findIndex((n) => n.id === note.id);
         if (indexOfNoteToUpdate >= 0) {
-            notes[indexOfNoteToUpdate] = note;
+            this.notes[indexOfNoteToUpdate] = note;
         } else {
-            notes.push(note);
+            this.notes.push(note);
         }
     }
 
     createNote(note) {
-        notes.push(note);
+        this.notes.push(note);
     }
 }

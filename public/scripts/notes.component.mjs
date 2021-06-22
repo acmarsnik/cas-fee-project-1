@@ -1,10 +1,8 @@
 import NotesState from './notes-state.mjs';
-import SortUtils from './sort.util.mjs';
-import SortOptions from './sort-options.mjs';
-import FilterUtils from './filter.util.mjs';
-import Navigation from './navigation.mjs';
 import GeneralDomChanges from './general-dom-changes.mjs';
 import HandlebarsContexts from './handlebars-contexts.mjs';
+import NotesEventListeners from './notes-event-listeners.mjs';
+import TransformationUtils from './transformation.util.mjs';
 
 export default class NotesComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -26,26 +24,9 @@ export default class NotesComponent {
         );
     }
 
-    toggleDescriptionsAndArrows($event) {
-        const attributes = $event?.target?.attributes;
-        const noteId = attributes ? attributes['note-id'].value : null;
-        const arrowAndDescriptionsElements = document.querySelectorAll(
-            `[id^="arrow-${noteId}"], [id^="description-${noteId}"]`,
-        );
-        arrowAndDescriptionsElements.forEach((arrowAndDescriptionsElement) => {
-            arrowAndDescriptionsElement.classList.toggle('hidden');
-        });
-    }
-
     addEventListeners(topLevelIdPrefix, notes) {
         this.addIsFinishedEventListeners(topLevelIdPrefix, notes);
-        this.addEditButtonEventListeners(notes);
-        this.addArrowEventListeners();
-        this.addCreateNoteEventListener(topLevelIdPrefix);
-        this.addByFinishDateEventListener(topLevelIdPrefix);
-        this.addByCreatedDateEventListener(topLevelIdPrefix);
-        this.addByImportanceEventListener(topLevelIdPrefix);
-        this.addShowFinishedEventListener(topLevelIdPrefix);
+        NotesEventListeners.addEventListeners(topLevelIdPrefix, notes);
     }
 
     addIsFinishedEventListeners(topLevelIdPrefix, notes) {
@@ -56,129 +37,29 @@ export default class NotesComponent {
         });
     }
 
-    addEditButtonEventListeners(notes) {
-        notes.forEach((note) => {
-            document
-                .querySelector(`.edit-button button[note-id="${note.id}"]`)
-                .addEventListener('click', Navigation.navigateToEdit);
-        });
-    }
-
-    addArrowEventListeners() {
-        const arrowElements = document.querySelectorAll('[id^="arrow-"]');
-
-        arrowElements.forEach((arrowElement) => {
-            arrowElement.addEventListener('click', this.toggleDescriptionsAndArrows);
-        });
-    }
-
-    addCreateNoteEventListener(topLevelIdPrefix) {
-        document
-            .getElementById(`${topLevelIdPrefix}create-note`)
-            .addEventListener('click', Navigation.navigateToCreate);
-    }
-
-    addByFinishDateEventListener(topLevelIdPrefix) {
-        document
-            .getElementById(`${topLevelIdPrefix}by-finish-date`)
-            .addEventListener('click', () => {
-                const sortProperty = 'finishedDate';
-                this.sortBy(sortProperty);
-            });
-    }
-
-    addByCreatedDateEventListener(topLevelIdPrefix) {
-        document
-            .getElementById(`${topLevelIdPrefix}by-created-date`)
-            .addEventListener('click', () => {
-                const sortProperty = 'createdDate';
-                this.sortBy(sortProperty);
-            });
-    }
-
-    sortBy(sortProperty) {
-        const sortDirection = SortUtils.getSortDirection(window.history.state, sortProperty);
-        const sortedNotesState = new NotesState('', 'notes', 'sort', sortProperty, sortDirection);
-        sortedNotesState.replaceWindowHistoryState();
-    }
-
-    addByImportanceEventListener(topLevelIdPrefix) {
-        document
-            .getElementById(`${topLevelIdPrefix}by-importance`)
-            .addEventListener('click', () => {
-                const sortProperty = 'importance';
-                this.sortBy(sortProperty);
-            });
-    }
-
-    addShowFinishedEventListener(topLevelIdPrefix) {
-        document
-            .getElementById(`${topLevelIdPrefix}show-finished`)
-            .addEventListener('click', () => {
-                const filterProperty = 'finishedDate';
-                this.filterBy(filterProperty);
-            });
-    }
-
-    filterBy(filterProperty) {
-        const state = window.history.state;
-        let filteredNotesState;
-
-        if (
-            state?.transformationType !== 'filter' ||
-            state?.transformationProperty !== filterProperty
-        ) {
-            filteredNotesState = new NotesState('', 'notes', 'filter', filterProperty);
-        } else {
-            filteredNotesState = new NotesState('', 'notes');
-        }
-
-        filteredNotesState.replaceWindowHistoryState();
-    }
-
-    getSortedNotes(notes, sortOptions) {
-        return notes.slice().sort((a, b) => {
-            if (sortOptions.property === 'createdDate' || sortOptions.property === 'finishedDate')
-                return SortUtils.sortDates(a, b, sortOptions);
-            else if (sortOptions.property === 'importance')
-                return SortUtils.sortNumbers(a, b, sortOptions);
-            else return notes;
-        });
-    }
-
-    getFilteredNotes(notes, filterProperty) {
-        return FilterUtils.removeFalsy(notes, filterProperty);
-    }
-
-    updateNotes(topLevelIdPrefix, transformationOptions = null) {
-        GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
-        let notes = this.notesService.getNotes();
-        let isFiltered = false;
-        if (transformationOptions) {
-            if (transformationOptions.type === 'sort') {
-                notes = this.getSortedNotes(
-                    notes,
-                    new SortOptions(
-                        transformationOptions.property,
-                        transformationOptions.sortDirection,
-                    ),
-                );
-            } else if (transformationOptions.type === 'filter') {
-                notes = this.getFilteredNotes(notes, transformationOptions.property);
-                isFiltered = true;
-            }
-        }
-
+    updateNotesDom(notes, topLevelIdPrefix, isFiltered) {
         const notesContainerHtml = this.handlebars.templates.notes(
             HandlebarsContexts.getNotesContext(notes, topLevelIdPrefix, isFiltered),
         );
         const indexPageContainer = document.getElementById('notes-page-container');
         indexPageContainer.innerHTML += notesContainerHtml;
+    }
 
-        this.addEventListeners(topLevelIdPrefix, notes);
+    addImportanceElements(notes, topLevelIdPrefix) {
         this.importanceComponent.addImportanceElements(
             notes.map((note) => note.importance),
             `[id^="${topLevelIdPrefix}importance-"]:not([id*="padding"]).importance`,
         );
+    }
+
+    updateNotes(topLevelIdPrefix, transformationOptions = null) {
+        GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
+        const { notes, isFiltered } = TransformationUtils.transformNotes(
+            this.notesService.getNotes(),
+            transformationOptions,
+        );
+        this.updateNotesDom(notes, topLevelIdPrefix, isFiltered);
+        this.addEventListeners(topLevelIdPrefix, notes);
+        this.addImportanceElements(notes, topLevelIdPrefix);
     }
 }

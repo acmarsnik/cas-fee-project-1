@@ -9,7 +9,7 @@ export default class HandlebarsContexts {
     static getNotesContext(notes, topLevelIdPrefix, isFiltered) {
         // const a = notes.map(note => note ? {...note, baz: [11,22,33]} : note)
         const notesAdjustedForDisplay = notes.map((note) => {
-            return {
+            const adjustedNote = {
                 ...note,
                 finishedDate: note.finishedDate
                     ? new Date(note.finishedDate).toLocaleDateString()
@@ -24,6 +24,8 @@ export default class HandlebarsContexts {
                     ? note.fullDescription.replaceAll('\n', '<br />')
                     : note.fullDescription,
             };
+
+            return adjustedNote;
         });
 
         return {

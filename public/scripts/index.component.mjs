@@ -8,6 +8,7 @@ import NotesState from './notes-state.mjs';
 import TemplateIdPrefixes from './template-id-prefixes.mjs';
 import TransformationOptions from './tranformation-options.mjs';
 import GeneralDomChanges from './general-dom-changes.mjs';
+import notes from './notes.data.mjs';
 
 export default class IndexComponent {
     constructor(handlebars) {
@@ -17,7 +18,7 @@ export default class IndexComponent {
         addCompiledTemplatesToHandlebars(this.handlebars);
         this.notesImportanceComponent = new ImportanceComponent(this.handlebars);
         this.createEditNoteImportanceComponent = new ImportanceComponent(this.handlebars, true);
-        this.notesService = new NotesService();
+        this.notesService = new NotesService(notes);
         this.createEditNoteComponent = new CreateEditNoteComponent(
             this.handlebars,
             this.notesService,
