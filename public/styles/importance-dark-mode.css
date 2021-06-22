@@ -5,6 +5,7 @@ body.darkMode .notes-app [class$='-page-container'] .importance .bolt {
 body.darkMode .notes-app [class$='-page-container'] .importance .bolt::after {
     border-color: rgba(0, 0, 0, 0);
 }
+
 body.darkMode .notes-app [class$='-page-container'] .importance .black {
     border-bottom-color: white;
 }

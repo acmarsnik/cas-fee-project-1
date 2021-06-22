@@ -17,7 +17,7 @@ body.rainbow .notes-app [class$='-page-container'] button,
 body.rainbow .notes-app [class$='-page-container'] select,
 body.rainbow .notes-app [class$='-page-container'] input,
 body.rainbow .notes-app [class$='-page-container'] textarea {
-    color: rgba(168, 21, 168, 0.9);
+    color: rgba(168, 21, 168, 1);
 }
 
 body.rainbow .notes-app [class$='-page-container'] select option {

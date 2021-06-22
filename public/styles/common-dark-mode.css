@@ -7,6 +7,10 @@ body.darkMode .notes-app [class$='-page-container'] button {
     background: rgba(45, 45, 45, 1);
 }
 
+body.darkMode .notes-app input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 body.darkMode .notes-app [class$='-page-container'] select,
 body.darkMode .notes-app [class$='-page-container'] input,
 body.darkMode .notes-app [class$='-page-container'] textarea {

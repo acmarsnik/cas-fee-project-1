@@ -18,6 +18,10 @@ body.blackWhiteStyle {
     align-items: center;
 }
 
+.notes-app [class$='-page-container'] input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
 .notes-app [class$='-page-container'] div,
 .notes-app [class$='-page-container'] button,
 .notes-app [class$='-page-container'] select,

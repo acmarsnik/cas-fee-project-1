@@ -12,8 +12,6 @@ module.exports = {
         './public/styles/common-dark-mode.css',
         './public/styles/common-rainbow.css',
         './public/styles/create-edit-note.css',
-        './public/styles/create-edit-note-dark-mode.css',
-        './public/styles/create-edit-note-rainbow.css',
     ],
     output: {
         path: __dirname,
