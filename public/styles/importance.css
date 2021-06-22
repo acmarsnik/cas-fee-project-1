@@ -1,5 +1,5 @@
 .notes-app [class$='-page-container'] .importance .bolt {
-    border: 4px solid rgba(0, 0, 0, 0);
+    border: 4px solid rgba(255, 255, 255, 0);
     transform: rotateZ(-160deg);
     padding: 2px;
     width: 0;
@@ -11,11 +11,19 @@
     transform-origin: 50% 50% 0;
 }
 
+body.darkMode .notes-app [class$='-page-container'] .importance .bolt {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .bolt {
+    border-color: rgba(0, 0, 255, 0);
+}
+
 .notes-app [class$='-page-container'] .importance .bolt::after {
     content: '';
     top: -9px;
     left: -8px;
-    border: 5px solid rgba(0, 0, 0, 0);
+    border: 5px solid rgba(255, 255, 255, 0);
     transform: rotateZ(4deg);
     padding: 0;
     width: 0;
@@ -28,6 +36,14 @@
     transform-origin: 50% 50% 0;
 }
 
+body.darkMode .notes-app [class$='-page-container'] .importance .bolt::after {
+    border-color: rgba(0, 0, 0, 0);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .bolt::after {
+    border-color: rgba(0, 0, 255, 0);
+}
+
 .notes-app [class$='-page-container'] .importance .bolt-container.editable {
     min-width: 1px;
     cursor: pointer;
@@ -37,14 +53,46 @@
     border-bottom: 22px solid black;
 }
 
+body.darkMode .notes-app [class$='-page-container'] .importance .black {
+    border-bottom-color: white;
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .black {
+    border-bottom-color: red;
+}
+
 .notes-app [class$='-page-container'] .importance .black::after {
     border-bottom: 25px solid black;
 }
 
+body.darkMode .notes-app [class$='-page-container'] .importance .black::after {
+    border-bottom-color: white;
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .black::after {
+    border-bottom-color: red;
+}
+
 .notes-app [class$='-page-container'] .importance .gray {
-    border-bottom: 22px solid lightgray;
+    border-bottom: 22px solid rgba(220, 220, 220, 1);
+}
+
+body.darkMode .notes-app [class$='-page-container'] .importance .gray {
+    border-bottom-color: rgba(45, 45, 45, 1);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .gray {
+    border-bottom-color: rgba(255, 192, 203, 1);
 }
 
 .notes-app [class$='-page-container'] .importance .gray::after {
-    border-bottom: 25px solid lightgray;
+    border-bottom: 25px solid rgba(220, 220, 220, 1);
+}
+
+body.darkMode .notes-app [class$='-page-container'] .importance .gray::after {
+    border-bottom-color: rgba(45, 45, 45, 1);
+}
+
+body.rainbow .notes-app [class$='-page-container'] .importance .gray::after {
+    border-bottom-color: rgba(255, 192, 203, 1);
 }

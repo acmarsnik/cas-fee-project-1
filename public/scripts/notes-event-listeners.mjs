@@ -2,9 +2,11 @@ import NotesDomChanges from './notes-dom-changes.mjs';
 import Navigation from './navigation.mjs';
 import FilterUtils from './filter.util.mjs';
 import SortUtils from './sort.util.mjs';
+import GeneralDomChanges from './general-dom-changes.mjs';
 
 export default class NotesEventListeners {
     static addEventListeners(topLevelIdPrefix, notes) {
+        NotesEventListeners.addColorPaletteEventListener(topLevelIdPrefix);
         NotesEventListeners.addEditButtonEventListeners(notes);
         NotesEventListeners.addArrowEventListeners();
         NotesEventListeners.addCreateNoteEventListener(topLevelIdPrefix);
@@ -12,6 +14,12 @@ export default class NotesEventListeners {
         NotesEventListeners.addByCreatedDateEventListener(topLevelIdPrefix);
         NotesEventListeners.addByImportanceEventListener(topLevelIdPrefix);
         NotesEventListeners.addShowFinishedEventListener(topLevelIdPrefix);
+    }
+
+    static addColorPaletteEventListener(topLevelIdPrefix) {
+        document
+            .querySelector(`#${topLevelIdPrefix}color-palette-selector select[name="colorPalette"]`)
+            .addEventListener('change', ($event) => GeneralDomChanges.changeColorTheme($event));
     }
 
     static addEditButtonEventListeners(notes) {
