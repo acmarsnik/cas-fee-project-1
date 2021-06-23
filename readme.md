@@ -81,3 +81,12 @@ config file endings from .cs to .cjs to get the entire project off the ground us
 This wasn't contained in the above tutorials and was discovered through my good friends google and stackoverflow :)
 
 ---
+
+### TODOS
+
+-   fix date save month - 1 too high due javascript 0-11 scale
+-   update readme
+-   test that template compile command still works
+-   add color theme changes to state or db to persist the changes
+
+---
