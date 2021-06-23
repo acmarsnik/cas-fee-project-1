@@ -20,7 +20,7 @@ export default class IndexComponent {
         this.transformationOptions = transformationOptions;
     }
 
-    initialize() {
+    async initialize() {
         (function setHistoryReplaceState(history) {
             const { replaceState } = history;
             history.replaceState = function setHistoryOnReplaceState(state) {
@@ -35,16 +35,22 @@ export default class IndexComponent {
         window.history.onreplacestate = (e) => this.showCorrectComponents(e);
         window.onreplacestate = (e) => this.showCorrectComponents(e);
 
-        this.notesComponent.updateNotes(
+        const updateNotesFinished = await this.notesComponent.updateNotes(
             TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
             NotesState.getNotesTransformationOptions(this.notesState),
         );
-        this.showCorrectComponents(this.notesState.getThisAsStateInObject());
+        const showCorrectComponentsFinished = await this.showCorrectComponents(
+            this.notesState.getThisAsStateInObject(),
+        );
+
+        return { updateNotesFinished, showCorrectComponentsFinished };
     }
 
-    showCorrectComponents(e) {
+    async showCorrectComponents(e) {
+        let finished = false;
+
         if (e.state?.page?.includes('edit')) {
-            this.createEditNoteComponent.updateNote(
+            finished = await this.createEditNoteComponent.updateNote(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
                 true,
                 e.state?.noteId,
@@ -52,7 +58,7 @@ export default class IndexComponent {
             GeneralDomChanges.hide(this.notesPageContainerSelector);
             GeneralDomChanges.makeVisible(this.createEditPageContainerSelector);
         } else if (e.state?.page?.includes('create')) {
-            this.createEditNoteComponent.updateNote(
+            finished = await this.createEditNoteComponent.updateNote(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
             );
             GeneralDomChanges.hide(this.notesPageContainerSelector);
@@ -60,10 +66,12 @@ export default class IndexComponent {
         } else {
             GeneralDomChanges.makeVisible(this.notesPageContainerSelector);
             GeneralDomChanges.hide(this.createEditPageContainerSelector);
-            this.notesComponent.updateNotes(
+            finished = await this.notesComponent.updateNotes(
                 TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
                 NotesState.getNotesTransformationOptions(NotesState.getNewFromStateProperty(e)),
             );
         }
+
+        return finished;
     }
 }

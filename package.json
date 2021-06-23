@@ -5,7 +5,7 @@
     "main": "public/scripts/main.js",
     "type": "module",
     "scripts": {
-        "dev": "webpack serve --config webpack.config.cjs --mode development --open chrome",
+        "dev": "node server.js && webpack serve --config webpack.config.cjs --mode development --open chrome",
         "start": "webpack --mode production && node server.js",
         "unit": "karma start karma.conf.cjs ",
         "test": "npm run unit",

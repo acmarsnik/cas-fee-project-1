@@ -11,17 +11,19 @@ export default class NotesComponent {
         this.importanceComponent = importanceComponent;
     }
 
-    updateIsFinished(topLevelIdPrefix, note) {
+    async updateIsFinished(topLevelIdPrefix, note) {
         const updatedNote = {
             ...note,
             isFinished: !note.isFinished,
             finishedDate: !note.isFinished ? new Date().toISOString() : null,
         };
-        this.notesService.updateNote(updatedNote);
-        this.updateNotes(
+        let response = await this.notesService.updateNote(updatedNote);
+        const finished = await this.updateNotes(
             topLevelIdPrefix,
             NotesState.getNotesTransformationOptions(window.history.state),
         );
+
+        return { response, isFinished };
     }
 
     addEventListeners(topLevelIdPrefix, notes) {
@@ -52,14 +54,16 @@ export default class NotesComponent {
         );
     }
 
-    updateNotes(topLevelIdPrefix, transformationOptions = null) {
+    async updateNotes(topLevelIdPrefix, transformationOptions = null) {
         GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
         const { notes, isFiltered } = TransformationUtils.transformNotes(
-            this.notesService.getNotes(),
+            await this.notesService.getNotes(),
             transformationOptions,
         );
         this.updateNotesDom(notes, topLevelIdPrefix, isFiltered);
         this.addEventListeners(topLevelIdPrefix, notes);
         this.addImportanceElements(notes, topLevelIdPrefix);
+
+        return true;
     }
 }

@@ -3,24 +3,45 @@ export default class NotesService {
         this.notes = notes;
     }
 
-    getNotes() {
-        return this.notes;
-    }
+    async getNotes() {
+        const response = await fetch('http://localhost:8080/notes');
 
-    getNote(id) {
-        return this.notes.find((note) => note.id === id);
-    }
+        let notes = [];
 
-    updateNote(note) {
-        const indexOfNoteToUpdate = this.notes.findIndex((n) => n.id === note.id);
-        if (indexOfNoteToUpdate >= 0) {
-            this.notes[indexOfNoteToUpdate] = note;
-        } else {
-            this.notes.push(note);
+        if (response.status === 200) {
+            notes = await response.json();
         }
+
+        return notes;
     }
 
-    createNote(note) {
-        this.notes.push(note);
+    async getNote(id) {
+        return (await this.getNotes()).find((note) => note.id === id);
+    }
+
+    async updateNote(note) {
+        return await this.putOrPostNote(note, 'PUT');
+    }
+
+    async createNote(note) {
+        return await this.putOrPostNote(note, 'POST');
+    }
+
+    async putOrPostNote(note, method) {
+        const response = await fetch('http://localhost:8080/note', {
+            method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(note),
+        });
+        const responseJson = response.json();
+        console.log({
+            responseStatus: response.status,
+            responseStatusText: response.statusText,
+            responseJson,
+        });
+
+        return responseJson;
     }
 }

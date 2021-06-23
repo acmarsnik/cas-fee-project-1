@@ -11,12 +11,16 @@ export default class CreateEditNoteComponent {
         this.importanceComponent = importanceComponent;
     }
 
-    createOrUpdateNote(state, note) {
+    async createOrUpdateNote(state, note) {
+        let response;
+
         if (state?.page?.includes('create')) {
-            this.notesService.createNote(note);
+            response = await this.notesService.createNote(note);
         } else {
-            this.notesService.updateNote(note);
+            response = await this.notesService.updateNote(note);
         }
+
+        return response;
     }
 
     save(topLevelIdPrefix) {
@@ -25,11 +29,11 @@ export default class CreateEditNoteComponent {
         Navigation.navigateToNotes();
     }
 
-    getNote(noteExists, noteId) {
+    async getNote(noteExists, noteId) {
         let note = new Note(undefined, null, 0, null, undefined, undefined, undefined, undefined);
 
         if (noteExists) {
-            note = this.notesService.getNote(noteId);
+            note = await this.notesService.getNote(noteId);
         }
 
         return note;
@@ -52,9 +56,9 @@ export default class CreateEditNoteComponent {
         cancelButton.addEventListener('click', Navigation.navigateToNotes);
     }
 
-    updateNote(topLevelIdPrefix, noteExists = false, noteId = null) {
+    async updateNote(topLevelIdPrefix, noteExists = false, noteId = null) {
         GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
-        const note = this.getNote(noteExists, noteId);
+        const note = await this.getNote(noteExists, noteId);
         this.updateCreateEditNoteDom(note, topLevelIdPrefix);
         this.addEventListeners(topLevelIdPrefix);
         this.importanceComponent.addImportanceElements(
