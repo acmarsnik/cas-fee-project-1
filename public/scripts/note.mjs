@@ -40,4 +40,25 @@ export default class Note {
     static getShortDescriptionLimit() {
         return 20;
     }
+
+    static getNoteForDB(note) {
+        new Note(
+            note.finishByDate,
+            note.title,
+            note.importance,
+            note.description,
+            note.id,
+            note.finishedDate,
+            note.createdDate,
+        );
+        return {
+            finishByDate: note.finishByDate,
+            title: note.title,
+            importance: note.importance,
+            description: TextUtils.convertLineBreaksForDB(note.fullDescription),
+            id: note.id,
+            finishedDate: note.finishedDate,
+            createdDate: note.createdDate,
+        };
+    }
 }

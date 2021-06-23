@@ -23,10 +23,15 @@ export default class CreateEditNoteComponent {
         return response;
     }
 
-    save(topLevelIdPrefix) {
+    async save(topLevelIdPrefix) {
         const { state } = window.history;
-        this.createOrUpdateNote(state, CreateEditNoteDom.getNote(topLevelIdPrefix, state));
+        const response = await this.createOrUpdateNote(
+            state,
+            CreateEditNoteDom.getNote(topLevelIdPrefix, state),
+        );
         Navigation.navigateToNotes();
+
+        return response;
     }
 
     async getNote(noteExists, noteId) {

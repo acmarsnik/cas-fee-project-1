@@ -23,7 +23,7 @@ export default class NotesComponent {
             NotesState.getNotesTransformationOptions(window.history.state),
         );
 
-        return { response, isFinished };
+        return { response, finished };
     }
 
     addEventListeners(topLevelIdPrefix, notes) {
