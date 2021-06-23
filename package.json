@@ -17,7 +17,7 @@
         "test": "npm run unit",
         "stylelint": "stylelint \"**/*.css\"",
         "w3c": "html-validator --file ./index.html  --verbose",
-        "eslint": "eslint ./**/*.js ./**/*.mjs",
+        "eslint": "eslint **/*.mjs  && eslint **/*.js",
         "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
     },
     "author": "Michael Gfeller",
