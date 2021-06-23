@@ -1,4 +1,5 @@
 // server.js
+import cors from 'cors';
 import express from 'express';
 import favicon from 'express-favicon';
 import path from 'path';
@@ -6,7 +7,7 @@ import { fileURLToPath } from 'url';
 import notes from './public/scripts/notes.data.mjs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 const app = express();
 app.use(
     express.urlencoded({
@@ -15,6 +16,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/notes', (req, res) => {
     res.send(notes);

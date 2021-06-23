@@ -4,7 +4,7 @@ export default class NotesService {
     }
 
     async getNotes() {
-        const response = await fetch('http://localhost:8080/notes');
+        const response = await fetch('http://localhost:3000/notes');
 
         let notes = [];
 
@@ -28,7 +28,7 @@ export default class NotesService {
     }
 
     async putOrPostNote(note, method) {
-        const response = await fetch('http://localhost:8080/note', {
+        const response = await fetch('http://localhost:3000/note', {
             method,
             headers: {
                 'Content-Type': 'application/json',
