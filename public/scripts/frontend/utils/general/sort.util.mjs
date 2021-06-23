@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash.clonedeep';
-import NotesState from './notes-state.mjs';
+import NotesState from '../../models/notes-state.mjs';
 
 export default class SortUtils {
     static getSortDirection(state, sortProperty) {

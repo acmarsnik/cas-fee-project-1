@@ -1,4 +1,4 @@
-export default class NotesDomChanges {
+export default class NotesDomUtil {
     static toggleNotesDescriptionAndArrow($event) {
         const attributes = $event?.target?.attributes;
         const noteId = attributes ? attributes['note-id'].value : null;

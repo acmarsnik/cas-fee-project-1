@@ -1,10 +1,8 @@
-import Note from './note.mjs';
+import Note from '../models/note.mjs';
 
 export default class NotesService {
-    baseUrl = 'http://localhost:3000/';
-
-    constructor(notes) {
-        this.notes = notes;
+    constructor(baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
     async getResponseJson(url, defaultJsonResponse = {}, method = 'GET', body = null) {

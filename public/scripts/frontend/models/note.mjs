@@ -1,4 +1,4 @@
-import TextUtils from './text.util.mjs';
+import TextUtils from '../utils/general/text.util.mjs';
 
 export default class Note {
     constructor(

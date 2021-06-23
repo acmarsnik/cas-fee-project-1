@@ -1,7 +1,7 @@
 // webpack.config.js
 module.exports = {
     entry: [
-        './public/scripts/startup.mjs',
+        './public/scripts/frontend/startup.mjs',
         './public/styles/create-edit-note/create-edit-note-base.css',
         './public/styles/importance/importance-base.css',
         './public/styles/importance/importance-dark-mode.css',

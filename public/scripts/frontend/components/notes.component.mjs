@@ -1,8 +1,8 @@
-import NotesState from './notes-state.mjs';
-import GeneralDomChanges from './general-dom-changes.mjs';
-import HandlebarsContexts from './handlebars-contexts.mjs';
-import NotesEventListeners from './notes-event-listeners.mjs';
-import TransformationUtils from './transformation.util.mjs';
+import NotesState from '../models/notes-state.mjs';
+import GeneralDomUtils from '../utils/general/general-dom.util.mjs';
+import HandlebarsContexts from '../utils/general/handlebars-context.util.mjs';
+import NotesEventListeners from '../utils/components/notes-event-listener.util.mjs';
+import TransformationUtils from '../utils/general/transformation.util.mjs';
 
 export default class NotesComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -55,7 +55,7 @@ export default class NotesComponent {
     }
 
     async updateNotes(topLevelIdPrefix, transformationOptions = null) {
-        GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
+        GeneralDomUtils.removeElementsWhereIdStartsWith(topLevelIdPrefix);
         const { notes, isFiltered } = TransformationUtils.transformNotes(
             await this.notesService.getNotes(),
             transformationOptions,

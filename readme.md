@@ -1,20 +1,21 @@
 The following commands are possible:
 
-| Command                                                         | Description                                                                      |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| npm run stylelint                                               | Runs linting tests for CSS files.                                                |
-| npm run w3c                                                     | Runs linting tests for HTML files.                                               |
-| npm run eslint                                                  | Runs linting tests for JS/MJS Files.                                             |
-| npm run all                                                     | Runs all CSS/HTML/JS linting tests.                                              |
-| npm run start                                                   | Starts the Web-Server: http://localhost:8080                                     |
-| npm run test                                                    | Runs unit tests using karma & jasmine: http://localhost:8080                     |
-| handlebars ./public/templates -f ./public/templatesCompiled.mjs | regenerates handlebars compiled templates                                        |
-| ...                                                             | `./public/templates` is the location of the templates to be compiled             |
-| ...                                                             | `./public/templatesCompiled.mjs` is the file that is generated from this command |
-| ...                                                             | after compilation replace: `(function() {` ( at very start of file )             |
-| ...                                                             | with: `export default function addCompiledTemplatesToHandlebars(Handlebars){`    |
-| ...                                                             | and: `})();`                                                                     |
-| ...                                                             | with: `};` ( at very end of file )                                               |
+| Command                                                                          | Description                                                                   |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| npm run stylelint                                                                | Runs linting tests for CSS files.                                             |
+| npm run w3c                                                                      | Runs linting tests for HTML files.                                            |
+| npm run eslint                                                                   | Runs linting tests for JS/MJS Files.                                          |
+| npm run all                                                                      | Runs all CSS/HTML/JS linting tests.                                           |
+| npm run start                                                                    | Starts the Web-Server: http://localhost:8080                                  |
+| npm run test                                                                     | Runs unit tests using karma & jasmine: http://localhost:8080                  |
+| handlebars ./public/templates -f ./public/scripts/frontend/templatesCompiled.mjs | regenerates handlebars compiled templates                                     |
+| ...                                                                              | `./public/templates` is the location of the templates to be compiled          |
+| ...                                                                              | `./public/scripts/frontend/templatesCompiled.mjs` is the file                 |
+| ...                                                                              | that is generated from this command                                           |
+| ...                                                                              | after compilation replace: `(function() {` ( at very start of file )          |
+| ...                                                                              | with: `export default function addCompiledTemplatesToHandlebars(Handlebars){` |
+| ...                                                                              | and: `})();`                                                                  |
+| ...                                                                              | with: `};` ( at very end of file )                                            |
 
 ---
 

@@ -4,7 +4,7 @@ import express from 'express';
 import favicon from 'express-favicon';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import NotesApi from './public/scripts/notes-api.mjs';
+import NotesApi from './public/scripts/backend/notes-api.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

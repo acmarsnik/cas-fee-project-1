@@ -1,9 +1,8 @@
-import TemplateIdUtils from './template-id.util.mjs';
-import NotesState from './notes-state.mjs';
-import TemplateIdPrefixes from './template-id-prefixes.mjs';
-import GeneralDomChanges from './general-dom-changes.mjs';
+import TemplateIdUtils from '../utils/general/template-id.util.mjs';
+import NotesState from '../models/notes-state.mjs';
+import GeneralDomUtils from '../utils/general/general-dom.util.mjs';
 
-export default class IndexComponent {
+export default class NotesAppComponent {
     constructor(
         notesPageContainerSelector,
         createEditPageContainerSelector,
@@ -36,7 +35,7 @@ export default class IndexComponent {
         window.onreplacestate = (e) => this.showCorrectComponents(e);
 
         const updateNotesFinished = await this.notesComponent.updateNotes(
-            TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
+            TemplateIdUtils.getNotesTopLevelPrefix(),
             NotesState.getNotesTransformationOptions(this.notesState),
         );
         const showCorrectComponentsFinished = await this.showCorrectComponents(
@@ -51,23 +50,23 @@ export default class IndexComponent {
 
         if (e.state?.page?.includes('edit')) {
             finished = await this.createEditNoteComponent.updateNote(
-                TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
+                TemplateIdUtils.getCreateEditNoteTopLevelPrefix(),
                 true,
                 e.state?.noteId,
             );
-            GeneralDomChanges.hide(this.notesPageContainerSelector);
-            GeneralDomChanges.makeVisible(this.createEditPageContainerSelector);
+            GeneralDomUtils.hide(this.notesPageContainerSelector);
+            GeneralDomUtils.makeVisible(this.createEditPageContainerSelector);
         } else if (e.state?.page?.includes('create')) {
             finished = await this.createEditNoteComponent.updateNote(
-                TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.createEditNote),
+                TemplateIdUtils.getCreateEditNoteTopLevelPrefix(),
             );
-            GeneralDomChanges.hide(this.notesPageContainerSelector);
-            GeneralDomChanges.makeVisible(this.createEditPageContainerSelector);
+            GeneralDomUtils.hide(this.notesPageContainerSelector);
+            GeneralDomUtils.makeVisible(this.createEditPageContainerSelector);
         } else {
-            GeneralDomChanges.makeVisible(this.notesPageContainerSelector);
-            GeneralDomChanges.hide(this.createEditPageContainerSelector);
+            GeneralDomUtils.makeVisible(this.notesPageContainerSelector);
+            GeneralDomUtils.hide(this.createEditPageContainerSelector);
             finished = await this.notesComponent.updateNotes(
-                TemplateIdUtils.getTopLevelPrefix(TemplateIdPrefixes.notes),
+                TemplateIdUtils.getNotesTopLevelPrefix(),
                 NotesState.getNotesTransformationOptions(NotesState.getNewFromStateProperty(e)),
             );
         }

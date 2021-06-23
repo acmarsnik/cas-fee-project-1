@@ -1,4 +1,4 @@
-import ImportanceDomChanges from './importance-dom-changes.mjs';
+import ImportanceDomUtils from '../utils/components/importance-dom.util.mjs';
 
 export default class ImportanceComponent {
     constructor(handlebars, isEditable = false) {
@@ -40,7 +40,7 @@ export default class ImportanceComponent {
                     if (importanceElement.children[j].classList?.value?.includes('editable')) {
                         importanceElement.children[j].addEventListener(
                             'click',
-                            ImportanceDomChanges.adjustImportanceColorsOnClick,
+                            ImportanceDomUtils.adjustImportanceColorsOnClick,
                         );
                     }
                 }

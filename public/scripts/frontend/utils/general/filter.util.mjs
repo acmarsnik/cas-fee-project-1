@@ -1,4 +1,4 @@
-import NotesState from './notes-state.mjs';
+import NotesState from '../../models/notes-state.mjs';
 
 export default class FilterUtils {
     static removeFalsy(notes, filterProperty) {

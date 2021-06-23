@@ -1,8 +1,8 @@
-import Note from './note.mjs';
-import Navigation from './navigation.mjs';
-import GeneralDomChanges from './general-dom-changes.mjs';
-import HandlebarsContexts from './handlebars-contexts.mjs';
-import CreateEditNoteDom from './create-edit-note-dom.mjs';
+import Note from '../models/note.mjs';
+import Navigation from '../utils/general/navigation.util.mjs';
+import GeneralDomUtils from '../utils/general/general-dom.util.mjs';
+import HandlebarsContextUtils from '../utils/general/handlebars-context.util.mjs';
+import CreateEditNoteDomUtils from '../utils/components/create-edit-note-dom.util.mjs';
 
 export default class CreateEditNoteComponent {
     constructor(handlebars, notesService, importanceComponent) {
@@ -27,7 +27,7 @@ export default class CreateEditNoteComponent {
         const { state } = window.history;
         const response = await this.createOrUpdateNote(
             state,
-            CreateEditNoteDom.getNote(topLevelIdPrefix, state),
+            CreateEditNoteDomUtils.getNote(topLevelIdPrefix, state),
         );
         Navigation.navigateToNotes();
 
@@ -46,7 +46,7 @@ export default class CreateEditNoteComponent {
 
     updateCreateEditNoteDom(note, topLevelIdPrefix) {
         const createEditNoteContainerHtml = this.handlebars.templates.createEditNote(
-            HandlebarsContexts.getCreateEditNoteContext(note, topLevelIdPrefix),
+            HandlebarsContextUtils.getCreateEditNoteContext(note, topLevelIdPrefix),
         );
         const createEditNotePageContainer = document.getElementById(
             'create-edit-note-page-container',
@@ -62,7 +62,7 @@ export default class CreateEditNoteComponent {
     }
 
     async updateNote(topLevelIdPrefix, noteExists = false, noteId = null) {
-        GeneralDomChanges.removeElementsWhereIdStartsWith(topLevelIdPrefix);
+        GeneralDomUtils.removeElementsWhereIdStartsWith(topLevelIdPrefix);
         const note = await this.getNote(noteExists, noteId);
         this.updateCreateEditNoteDom(note, topLevelIdPrefix);
         this.addEventListeners(topLevelIdPrefix);

@@ -1,13 +1,15 @@
-import DateUtils from './date.util.mjs';
-import Note from './note.mjs';
+import DateUtils from '../general/date.util.mjs';
+import Note from '../../models/note.mjs';
 
-export default class CreateEditNoteDom {
+export default class CreateEditNoteDomUtils {
     static getFinishByDateValue(topLevelIdPrefix) {
         return document.getElementById(`${topLevelIdPrefix}finished-by-input`).value;
     }
 
     static getFinishByDateIsoString(topLevelIdPrefix) {
-        return DateUtils.dateInputValueToISOString(this.getFinishByDateValue(topLevelIdPrefix));
+        return DateUtils.dateInputValueToISOString(
+            CreateEditNoteDomUtils.getFinishByDateValue(topLevelIdPrefix),
+        );
     }
 
     static getTitle(topLevelIdPrefix) {
@@ -30,11 +32,11 @@ export default class CreateEditNoteDom {
 
     static getNote(topLevelIdPrefix, state) {
         return new Note(
-            this.getFinishByDateIsoString(topLevelIdPrefix),
-            this.getTitle(topLevelIdPrefix),
-            this.getImportance(),
-            this.getDescription(topLevelIdPrefix),
-            this.getNoteId(state),
+            CreateEditNoteDomUtils.getFinishByDateIsoString(topLevelIdPrefix),
+            CreateEditNoteDomUtils.getTitle(topLevelIdPrefix),
+            CreateEditNoteDomUtils.getImportance(),
+            CreateEditNoteDomUtils.getDescription(topLevelIdPrefix),
+            CreateEditNoteDomUtils.getNoteId(state),
         );
     }
 }

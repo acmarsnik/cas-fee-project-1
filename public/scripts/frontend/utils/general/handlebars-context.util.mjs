@@ -1,17 +1,17 @@
-import Note from './note.mjs';
+import Note from '../../models/note.mjs';
 import DateUtils from './date.util.mjs';
 
-export default class HandlebarsContexts {
+export default class HandlebarsContextUtils {
     static getCreateEditNoteContext(note, topLevelIdPrefix) {
         return {
-            note: HandlebarsContexts.getNoteForCreateEditDisplay(note),
+            note: HandlebarsContextUtils.getNoteForCreateEditDisplay(note),
             topLevelIdPrefix,
         };
     }
 
     static getNotesContext(notes, topLevelIdPrefix, isFiltered) {
         const notesAdjustedForDisplay = notes.map((note) => {
-            const adjustedNote = HandlebarsContexts.getNoteForNotesDisplay(note);
+            const adjustedNote = HandlebarsContextUtils.getNoteForNotesDisplay(note);
             return adjustedNote;
         });
 

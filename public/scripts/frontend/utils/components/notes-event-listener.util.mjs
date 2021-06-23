@@ -1,19 +1,19 @@
-import NotesDomChanges from './notes-dom-changes.mjs';
-import Navigation from './navigation.mjs';
-import FilterUtils from './filter.util.mjs';
-import SortUtils from './sort.util.mjs';
-import GeneralDomChanges from './general-dom-changes.mjs';
+import NotesDomUtils from './notes-dom.util.mjs';
+import Navigation from '../general/navigation.util.mjs';
+import FilterUtils from '../general/filter.util.mjs';
+import SortUtils from '../general/sort.util.mjs';
+import GeneralDomChanges from '../general/general-dom.util.mjs';
 
-export default class NotesEventListeners {
+export default class NotesEventListenerUtils {
     static addEventListeners(topLevelIdPrefix, notes) {
-        NotesEventListeners.addColorPaletteEventListener(topLevelIdPrefix);
-        NotesEventListeners.addEditButtonEventListeners(notes);
-        NotesEventListeners.addArrowEventListeners();
-        NotesEventListeners.addCreateNoteEventListener(topLevelIdPrefix);
-        NotesEventListeners.addByFinishDateEventListener(topLevelIdPrefix);
-        NotesEventListeners.addByCreatedDateEventListener(topLevelIdPrefix);
-        NotesEventListeners.addByImportanceEventListener(topLevelIdPrefix);
-        NotesEventListeners.addShowFinishedEventListener(topLevelIdPrefix);
+        NotesEventListenerUtils.addColorPaletteEventListener(topLevelIdPrefix);
+        NotesEventListenerUtils.addEditButtonEventListeners(notes);
+        NotesEventListenerUtils.addArrowEventListeners();
+        NotesEventListenerUtils.addCreateNoteEventListener(topLevelIdPrefix);
+        NotesEventListenerUtils.addByFinishDateEventListener(topLevelIdPrefix);
+        NotesEventListenerUtils.addByCreatedDateEventListener(topLevelIdPrefix);
+        NotesEventListenerUtils.addByImportanceEventListener(topLevelIdPrefix);
+        NotesEventListenerUtils.addShowFinishedEventListener(topLevelIdPrefix);
     }
 
     static addColorPaletteEventListener(topLevelIdPrefix) {
@@ -34,7 +34,7 @@ export default class NotesEventListeners {
         const arrowElements = document.querySelectorAll('[id^="arrow-"]');
 
         arrowElements.forEach((arrowElement) => {
-            arrowElement.addEventListener('click', NotesDomChanges.toggleNotesDescriptionAndArrow);
+            arrowElement.addEventListener('click', NotesDomUtils.toggleNotesDescriptionAndArrow);
         });
     }
 

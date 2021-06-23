@@ -1,16 +1,16 @@
-export default class ImportanceDomChanges {
+export default class ImportanceDomUtils {
     static adjustImportanceColorsOnClick($event) {
-        const newImportanceValue = ImportanceDomChanges.getNewImportanceValue($event);
+        const newImportanceValue = ImportanceDomUtils.getNewImportanceValue($event);
         const { createEditBoltsToBeBlackElements, createEditBoltsToBeGrayElements } =
-            ImportanceDomChanges.getCreateEditBoltsToBeElements(newImportanceValue);
-        ImportanceDomChanges.adjustElementColors(createEditBoltsToBeBlackElements, 'black', 'gray');
-        ImportanceDomChanges.adjustElementColors(createEditBoltsToBeGrayElements, 'gray', 'black');
+            ImportanceDomUtils.getCreateEditBoltsToBeElements(newImportanceValue);
+        ImportanceDomUtils.adjustElementColors(createEditBoltsToBeBlackElements, 'black', 'gray');
+        ImportanceDomUtils.adjustElementColors(createEditBoltsToBeGrayElements, 'gray', 'black');
     }
 
     static getNewImportanceValue($event) {
-        const boltContainerElement = ImportanceDomChanges.getBoltContainerElement($event);
+        const boltContainerElement = ImportanceDomUtils.getBoltContainerElement($event);
         let newImportanceValue = parseInt(boltContainerElement.dataset?.boltNumber, 10);
-        const previousImportanceValue = ImportanceDomChanges.getPreviousImportanceValue();
+        const previousImportanceValue = ImportanceDomUtils.getPreviousImportanceValue();
 
         if (newImportanceValue === previousImportanceValue) {
             newImportanceValue -= 1;
