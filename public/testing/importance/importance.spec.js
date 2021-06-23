@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/runtime.js';
-import ImportanceComponent from '../../scripts/importance.component.mjs';
-import addCompiledTemplatesToHandlebars from '../../templatesCompiled.mjs';
+import ImportanceComponent from '../../scripts/frontend/components/importance.component.mjs';
+import addCompiledTemplatesToHandlebars from '../../scripts/frontend/templatesCompiled.mjs';
 import ImportanceHelpersUtil from './helpers/importance-helpers.util.mjs';
 
 addCompiledTemplatesToHandlebars(Handlebars);
@@ -18,8 +18,7 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const boltContainersLength =
-            document.querySelectorAll('.bolt-container').length;
+        const boltContainersLength = document.querySelectorAll('.bolt-container').length;
         expect(boltContainersLength).toBe(15);
     });
     it('should create 0 bolt elements when there are 0 importance containers', () => {
@@ -32,8 +31,7 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const boltElementsLength =
-            document.querySelectorAll('.bolt.black').length;
+        const boltElementsLength = document.querySelectorAll('.bolt.black').length;
         expect(boltElementsLength).toBe(0);
     });
 
@@ -64,12 +62,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const allHiddenBoltElementsLength =
-            document.querySelectorAll('.bolt.black.hidden').length;
+        const allHiddenBoltElementsLength = document.querySelectorAll('.bolt.black.hidden').length;
         const importanceListSum = importanceList.reduce((a, b) => a + b);
-        expect(allHiddenBoltElementsLength).toBe(
-            importanceList.length * 5 - importanceListSum,
-        );
+        expect(allHiddenBoltElementsLength).toBe(importanceList.length * 5 - importanceListSum);
     });
 
     it('should generate 0 visible bolts in 1st importance container when 1st importance number is 0', () => {
@@ -82,10 +77,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const firstImportanceContainerVisibleBoltElementsLength =
-            document.querySelectorAll(
-                '[id="template__notes__top-level__importance-1"] .bolt.black:not(.hidden)',
-            ).length;
+        const firstImportanceContainerVisibleBoltElementsLength = document.querySelectorAll(
+            '[id="template__notes__top-level__importance-1"] .bolt.black:not(.hidden)',
+        ).length;
         expect(firstImportanceContainerVisibleBoltElementsLength).toBe(0);
     });
     it('should generate 5 hidden bolts in 1st importance container when 1st importance number is 0', () => {
@@ -98,10 +92,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const firstImportanceContainerHiddenBoltElementsLength =
-            document.querySelectorAll(
-                '[id="template__notes__top-level__importance-1"] .bolt.black.hidden',
-            ).length;
+        const firstImportanceContainerHiddenBoltElementsLength = document.querySelectorAll(
+            '[id="template__notes__top-level__importance-1"] .bolt.black.hidden',
+        ).length;
         expect(firstImportanceContainerHiddenBoltElementsLength).toBe(5);
     });
     it('should generate 3 visible bolt in 2nd importance container when 2nd importance number is 3', () => {
@@ -114,10 +107,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const secondImportanceContainerVisibleBoltElementsLength =
-            document.querySelectorAll(
-                '[id="template__notes__top-level__importance-2"] .bolt.black:not(.hidden)',
-            ).length;
+        const secondImportanceContainerVisibleBoltElementsLength = document.querySelectorAll(
+            '[id="template__notes__top-level__importance-2"] .bolt.black:not(.hidden)',
+        ).length;
         expect(secondImportanceContainerVisibleBoltElementsLength).toBe(3);
     });
     it('should generate 2 hidden bolts in 1st importance container when 2nd importance number is 3', () => {
@@ -130,10 +122,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const secondImportanceContainerHiddenBoltElementsLength =
-            document.querySelectorAll(
-                '[id="template__notes__top-level__importance-2"] .bolt.black.hidden',
-            ).length;
+        const secondImportanceContainerHiddenBoltElementsLength = document.querySelectorAll(
+            '[id="template__notes__top-level__importance-2"] .bolt.black.hidden',
+        ).length;
         expect(secondImportanceContainerHiddenBoltElementsLength).toBe(2);
     });
     it('should generate 5 visible bolts in last importance container when last importance number is 5', () => {
@@ -146,10 +137,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const thirdImportanceContainerVisibleBoltElementsLength =
-            document.querySelectorAll(
-                '[id="template__notes__top-level__importance-14"] .bolt.black:not(.hidden)',
-            ).length;
+        const thirdImportanceContainerVisibleBoltElementsLength = document.querySelectorAll(
+            '[id="template__notes__top-level__importance-14"] .bolt.black:not(.hidden)',
+        ).length;
         expect(thirdImportanceContainerVisibleBoltElementsLength).toBe(5);
     });
     it('should generate 0 hidden bolts in last importance container when last importance number is 5', () => {
@@ -162,10 +152,9 @@ describe('Importance component', () => {
             importanceList,
             '[id^="template__notes__top-level__importance-"]:not([id*="padding"]).importance',
         );
-        const thirdImportanceContainerHiddenBoltElementsLength =
-            document.querySelectorAll(
-                '[id="template__notes__top-level__importance-2"] .bolt.black.hidden',
-            ).length;
+        const thirdImportanceContainerHiddenBoltElementsLength = document.querySelectorAll(
+            '[id="template__notes__top-level__importance-2"] .bolt.black.hidden',
+        ).length;
         expect(thirdImportanceContainerHiddenBoltElementsLength).toBe(0);
     });
 });

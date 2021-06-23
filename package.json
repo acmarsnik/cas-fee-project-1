@@ -17,19 +17,18 @@
         "test": "npm run unit",
         "stylelint": "stylelint \"**/*.css\"",
         "w3c": "html-validator --file ./index.html  --verbose",
-        "eslint": "eslint **/*.mjs  && eslint **/*.js",
+        "eslint": "eslint **/*.mjs && eslint **/*.js",
+        "eslint-fix": "eslint **/*.mjs --fix  && eslint **/*.js --fix",
         "all": "npm run stylelint && npm run w3c  && npm run eslint  && node -e \"console.log('npm run all completed')\""
     },
     "author": "Michael Gfeller",
     "license": "ISC",
     "devDependencies": {
         "babel-eslint": "^10.1.0",
-        "cors": "^2.8.5",
         "css-loader": "^5.2.6",
         "eslint": "^7.21.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-plugin-import": "^2.22.1",
-        "express-favicon": "^2.0.1",
         "html-validator-cli": "^7.0.1",
         "jasmine-core": "^3.7.1",
         "karma": "^6.3.3",
@@ -48,7 +47,9 @@
         "webpack-dev-server": "^3.11.2"
     },
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.17.1",
+        "express-favicon": "^2.0.1",
         "handlebars": "^4.7.7",
         "lodash.clonedeep": "^4.5.0",
         "mongodb": "^3.6.9"

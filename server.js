@@ -6,8 +6,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import NotesApi from './public/scripts/backend/notes-api.mjs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(
@@ -25,12 +25,12 @@ app.use(cors());
     await notesApi.connectToDb();
     NotesApi.initializeRouting(app, notesApi);
 
-    app.use(favicon(__dirname + '\\favicon.ico'));
+    app.use(favicon(`${dirname}\\favicon.ico`));
     // the __dirname is the current directory from where the script is running
-    app.use(express.static(__dirname));
+    app.use(express.static(dirname));
     // send the user to index html page inspite of the url
     app.get('*', (_, res) => {
-        res.sendFile(path.resolve(__dirname, 'index.html'));
+        res.sendFile(path.resolve(dirname, 'index.html'));
     });
 
     app.listen(port);

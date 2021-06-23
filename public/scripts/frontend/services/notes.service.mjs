@@ -1,42 +1,25 @@
 import Note from '../models/note.mjs';
+import ApiUtils from '../utils/api/api.util.mjs';
 
 export default class NotesService {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
     }
 
-    async getResponseJson(url, defaultJsonResponse = {}, method = 'GET', body = null) {
-        const response = await fetch(url, {
-            method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body,
-        });
-
-        let responseJson = defaultJsonResponse;
-
-        if (response.status === 200) {
-            responseJson = await response.json();
-        } else {
-            console.error({
-                responseStatus: response.status,
-                responseStatusText: response.statusText,
-                responseText: response.text(),
-            });
-        }
-
-        return responseJson;
-    }
-
     async putOrPostNote(note, method) {
-        return await this.getResponseJson(`${this.baseUrl}note`, {}, method, JSON.stringify(note));
+        const response = await ApiUtils.getResponseJson(
+            `${this.baseUrl}note`,
+            {},
+            method,
+            JSON.stringify(note),
+        );
+
+        return response;
     }
 
     async getNotes() {
-        return (await this.getResponseJson(`${this.baseUrl}notes`, [])).map(
-            (note) =>
-                new Note(
+        const notes = (await ApiUtils.getResponseJson(`${this.baseUrl}notes`, [])).map(
+            (note) => new Note(
                     note.finishByDate,
                     note.title,
                     note.importance,
@@ -47,10 +30,12 @@ export default class NotesService {
                     true,
                 ),
         );
+
+        return notes;
     }
 
     async getNote(id) {
-        const note = await this.getResponseJson(`${this.baseUrl}note/${id}`, {});
+        const note = await ApiUtils.getResponseJson(`${this.baseUrl}note/${id}`, {});
         return new Note(
             note.finishByDate,
             note.title,
@@ -63,10 +48,12 @@ export default class NotesService {
     }
 
     async updateNote(note) {
-        return await this.putOrPostNote(Note.getNoteForDB(note), 'PUT');
+        const response = await this.putOrPostNote(Note.getNoteForDB(note), 'PUT');
+        return response;
     }
 
     async createNote(note) {
-        return await this.putOrPostNote(Note.getNoteForDB(note), 'POST');
+        const response = await this.putOrPostNote(Note.getNoteForDB(note), 'POST');
+        return response;
     }
 }

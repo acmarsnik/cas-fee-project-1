@@ -44,7 +44,6 @@ export default class NotesApi {
             await this.dbClient.connect();
             connectionSuccessful = true;
         } catch (e) {
-            console.error(e);
             connectionSuccessful = false;
         }
 
@@ -67,7 +66,7 @@ export default class NotesApi {
         const result = await this.dbClient
             .db('project-1')
             .collection('notes')
-            .findOne({ id: parseInt(id) });
+            .findOne({ id: parseInt(id, 10) });
         return result;
     }
 

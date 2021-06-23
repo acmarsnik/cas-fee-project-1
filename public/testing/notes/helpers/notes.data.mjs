@@ -1,4 +1,4 @@
-import Note from './note.mjs';
+import Note from '../../../scripts/frontend/models/note.mjs';
 
 const today = new Date();
 const yesterday = new Date();

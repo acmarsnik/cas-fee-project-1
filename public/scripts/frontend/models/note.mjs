@@ -42,15 +42,6 @@ export default class Note {
     }
 
     static getNoteForDB(note) {
-        new Note(
-            note.finishByDate,
-            note.title,
-            note.importance,
-            note.description,
-            note.id,
-            note.finishedDate,
-            note.createdDate,
-        );
         return {
             finishByDate: note.finishByDate,
             title: note.title,

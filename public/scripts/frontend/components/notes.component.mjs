@@ -17,7 +17,7 @@ export default class NotesComponent {
             isFinished: !note.isFinished,
             finishedDate: !note.isFinished ? new Date().toISOString() : null,
         };
-        let response = await this.notesService.updateNote(updatedNote);
+        const response = await this.notesService.updateNote(updatedNote);
         const finished = await this.updateNotes(
             topLevelIdPrefix,
             NotesState.getNotesTransformationOptions(window.history.state),

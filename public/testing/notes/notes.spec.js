@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars/runtime.js';
-import addCompiledTemplatesToHandlebars from '../../templatesCompiled.mjs';
+import addCompiledTemplatesToHandlebars from '../../scripts/frontend/templatesCompiled.mjs';
 import NotesHelpersUtil from './helpers/notes-helpers.util.mjs';
 import SampleNotes from './mocks/notes.mock.data.mjs';
 
