@@ -1,6 +1,36 @@
+import MongoClient from 'mongodb';
+
 export default class NotesApi {
     static getMongoUri(username, password) {
         return `mongodb+srv://${username}:${password}@cluster0.4ucsz.mongodb.net/project-1?retryWrites=true&w=majority`;
+    }
+
+    static async getMongoClient(username, password) {
+        const uri = NotesApi.getMongoUri(username, password);
+        const mongoClient = await new MongoClient(uri);
+        return mongoClient;
+    }
+
+    static initializeRouting(app, notesApi) {
+        app.get('/notes', async (_, res) => {
+            res.send(await notesApi.find());
+        });
+
+        app.get('/note/:id', async (req, res) => {
+            res.send(await notesApi.findOne(req.params.id));
+        });
+
+        app.put('/note', async (req, res) => {
+            res.send(await notesApi.update(req.body));
+        });
+
+        app.post('/note', async (req, res) => {
+            res.send(await notesApi.insertOne(req.body));
+        });
+
+        app.delete('/note:id', async (req, res) => {
+            res.send(await notesApi.deleteOne(req.params.id));
+        });
     }
 
     constructor(dbClient) {
