@@ -8,6 +8,8 @@ The following commands are possible:
 | npm run all                                                                      | Runs all CSS/HTML/JS linting tests.                                           |
 | npm run start                                                                    | Starts the Web-Server: http://localhost:8080                                  |
 | npm run test                                                                     | Runs unit tests using karma & jasmine: http://localhost:8080                  |
+| npm run backend-dev                                                              | starts backend in dev mode and live updates changes                           |
+| npm run frontend-dev                                                             | starts frontend in dev mode and live updates changes                          |
 | handlebars ./public/templates -f ./public/scripts/frontend/templatesCompiled.mjs | regenerates handlebars compiled templates                                     |
 | ...                                                                              | `./public/templates` is the location of the templates to be compiled          |
 | ...                                                                              | `./public/scripts/frontend/templatesCompiled.mjs` is the file                 |
@@ -84,8 +86,6 @@ This wasn't contained in the above tutorials and was discovered through my good 
 
 ### TODOS
 
--   fix date save month - 1 too high due javascript 0-11 scale
--   update readme
 -   test that template compile command still works
 -   add color theme changes to state or db to persist the changes
 
