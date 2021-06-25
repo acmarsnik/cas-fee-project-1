@@ -1,6 +1,7 @@
 import NotesComponent from '../../../scripts/frontend/components/notes.component.mjs';
-import NotesMockService from '../mocks/notes.mock.service.mjs';
 import ImportanceComponent from '../../../scripts/frontend/components/importance.component.mjs';
+import NotesService from '../../../scripts/frontend/services/notes.service.mjs';
+import ApiUtilsMock from '../mocks/api.util.mock.mjs';
 
 export default class NotesHelpersUtil {
     static addIndexPageContainer(showIndexPageContainer = false) {
@@ -44,9 +45,9 @@ export default class NotesHelpersUtil {
         );
     }
 
-    static getNotesComponent(handlebars, notes = []) {
+    static getNotesComponent(handlebars, getResponseJson) {
         const importanceComponent = new ImportanceComponent(handlebars);
-        const notesMockService = new NotesMockService(notes);
+        const notesMockService = new NotesService('fakeurl/', new ApiUtilsMock(getResponseJson));
         return new NotesComponent(handlebars, notesMockService, importanceComponent);
     }
 }
