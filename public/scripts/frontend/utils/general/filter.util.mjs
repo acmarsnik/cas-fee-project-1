@@ -13,11 +13,18 @@ export default class FilterUtils {
             state?.transformationType !== 'filter' ||
             state?.transformationProperty !== filterProperty
         ) {
-            filteredNotesState = new NotesState('', 'notes', 'filter', filterProperty);
+            filteredNotesState = new NotesState(
+                '',
+                'notes',
+                'filter',
+                filterProperty,
+                '',
+                0,
+                state.colorPalette,
+            );
         } else {
-            filteredNotesState = new NotesState('', 'notes');
+            filteredNotesState = new NotesState('', 'notes', '', '', '', 0, state.colorPalette);
         }
-
         filteredNotesState.replaceWindowHistoryState();
     }
 }

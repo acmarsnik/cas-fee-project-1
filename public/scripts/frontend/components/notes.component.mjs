@@ -39,9 +39,9 @@ export default class NotesComponent {
         });
     }
 
-    updateNotesDom(notes, topLevelIdPrefix, isFiltered) {
+    updateNotesDom(notes, topLevelIdPrefix, isFiltered, colorPalette) {
         const notesContainerHtml = this.handlebars.templates.notes(
-            HandlebarsContexts.getNotesContext(notes, topLevelIdPrefix, isFiltered),
+            HandlebarsContexts.getNotesContext(notes, topLevelIdPrefix, isFiltered, colorPalette),
         );
         const indexPageContainer = document.getElementById('notes-page-container');
         indexPageContainer.innerHTML += notesContainerHtml;
@@ -60,7 +60,10 @@ export default class NotesComponent {
             await this.notesService.getNotes(),
             transformationOptions,
         );
-        this.updateNotesDom(notes, topLevelIdPrefix, isFiltered);
+        const colorPalette = window.history.state?.colorPalette
+            ? window.history.state?.colorPalette
+            : 'blackWhiteStyle';
+        this.updateNotesDom(notes, topLevelIdPrefix, isFiltered, colorPalette);
         this.addEventListeners(topLevelIdPrefix, notes);
         this.addImportanceElements(notes, topLevelIdPrefix);
 

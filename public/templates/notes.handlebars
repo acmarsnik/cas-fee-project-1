@@ -3,10 +3,10 @@
 </div>
 <div id="{{topLevelIdPrefix}}space-between-create-note-and-color-palette" class="space-between-create-note-and-color-palette"></div>
 <div id="{{topLevelIdPrefix}}color-palette-selector" class="color-palette-selector">
-<select  name="colorPalette">
-    <option value="blackWhiteStyle">BlackWhite-Style</option>
-    <option value="darkMode">Dark Mode</option>
-    <option value="rainbow">Rainbow</option>
+<select name="colorPalette">
+    <option value="blackWhiteStyle" {{#if isBlackWhiteStyleSelected}}selected{{/if}}>BlackWhite-Style</option>
+    <option value="darkMode" {{#if isDarkModeSelected}}selected{{/if}}>Dark Mode</option>
+    <option value="rainbow" {{#if isRainbowSelected}}selected{{/if}}>Rainbow</option>
 </select>
 </div>
 <div id="{{topLevelIdPrefix}}by-finish-date" class="by-finish-date"><button>By finish Date</button></div>

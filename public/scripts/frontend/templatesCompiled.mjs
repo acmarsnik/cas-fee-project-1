@@ -366,12 +366,15 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
     });
     templates['notes'] = template({
         1: function (container, depth0, helpers, partials, data) {
-            return '            Show all\r\n';
+            return 'selected';
         },
         3: function (container, depth0, helpers, partials, data) {
+            return '            Show all\r\n';
+        },
+        5: function (container, depth0, helpers, partials, data) {
             return '            Show finished\r\n';
         },
-        5: function (container, depth0, helpers, partials, data, blockParams, depths) {
+        7: function (container, depth0, helpers, partials, data, blockParams, depths) {
             var stack1,
                 helper,
                 alias1 = container.lambda,
@@ -640,8 +643,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(6, data, 0, blockParams, depths),
-                        inverse: container.program(8, data, 0, blockParams, depths),
+                        fn: container.program(8, data, 0, blockParams, depths),
+                        inverse: container.program(10, data, 0, blockParams, depths),
                         data: data,
                         loc: { start: { line: 55, column: 8 }, end: { line: 59, column: 15 } },
                     },
@@ -655,7 +658,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(10, data, 0, blockParams, depths),
+                        fn: container.program(12, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
                         loc: { start: { line: 61, column: 27 }, end: { line: 63, column: 24 } },
@@ -728,8 +731,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(12, data, 0, blockParams, depths),
-                        inverse: container.program(14, data, 0, blockParams, depths),
+                        fn: container.program(14, data, 0, blockParams, depths),
+                        inverse: container.program(16, data, 0, blockParams, depths),
                         data: data,
                         loc: { start: { line: 74, column: 8 }, end: { line: 88, column: 15 } },
                     },
@@ -801,7 +804,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(16, data, 0, blockParams, depths),
+                        fn: container.program(18, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
                         loc: { start: { line: 98, column: 8 }, end: { line: 109, column: 15 } },
@@ -919,13 +922,13 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "'>Edit</button>\r\n    </div>\r\n"
             );
         },
-        6: function (container, depth0, helpers, partials, data) {
+        8: function (container, depth0, helpers, partials, data) {
             return "            <input type='checkbox' checked />\r\n";
         },
-        8: function (container, depth0, helpers, partials, data) {
+        10: function (container, depth0, helpers, partials, data) {
             return "            <input type='checkbox' />\r\n";
         },
-        10: function (container, depth0, helpers, partials, data) {
+        12: function (container, depth0, helpers, partials, data) {
             var helper,
                 lookupProperty =
                     container.lookupProperty ||
@@ -961,7 +964,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 '\r\n                ]'
             );
         },
-        12: function (container, depth0, helpers, partials, data) {
+        14: function (container, depth0, helpers, partials, data) {
             var stack1,
                 helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
@@ -1067,7 +1070,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 '\r\n            </p>\r\n'
             );
         },
-        14: function (container, depth0, helpers, partials, data) {
+        16: function (container, depth0, helpers, partials, data) {
             var stack1,
                 helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
@@ -1173,7 +1176,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 '\r\n            </p>\r\n'
             );
         },
-        16: function (container, depth0, helpers, partials, data) {
+        18: function (container, depth0, helpers, partials, data) {
             var helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
                 alias2 = container.hooks.helperMissing,
@@ -1347,7 +1350,52 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                           })
                         : helper),
                 ) +
-                'color-palette-selector" class="color-palette-selector">\r\n<select  name="colorPalette">\r\n    <option value="blackWhiteStyle">BlackWhite-Style</option>\r\n    <option value="darkMode">Dark Mode</option>\r\n    <option value="rainbow">Rainbow</option>\r\n</select>\r\n</div>\r\n<div id="' +
+                'color-palette-selector" class="color-palette-selector">\r\n<select name="colorPalette">\r\n    <option value="blackWhiteStyle" ' +
+                ((stack1 = lookupProperty(helpers, 'if').call(
+                    alias1,
+                    depth0 != null ? lookupProperty(depth0, 'isBlackWhiteStyleSelected') : depth0,
+                    {
+                        name: 'if',
+                        hash: {},
+                        fn: container.program(1, data, 0, blockParams, depths),
+                        inverse: container.noop,
+                        data: data,
+                        loc: { start: { line: 7, column: 36 }, end: { line: 7, column: 84 } },
+                    },
+                )) != null
+                    ? stack1
+                    : '') +
+                '>BlackWhite-Style</option>\r\n    <option value="darkMode" ' +
+                ((stack1 = lookupProperty(helpers, 'if').call(
+                    alias1,
+                    depth0 != null ? lookupProperty(depth0, 'isDarkModeSelected') : depth0,
+                    {
+                        name: 'if',
+                        hash: {},
+                        fn: container.program(1, data, 0, blockParams, depths),
+                        inverse: container.noop,
+                        data: data,
+                        loc: { start: { line: 8, column: 29 }, end: { line: 8, column: 70 } },
+                    },
+                )) != null
+                    ? stack1
+                    : '') +
+                '>Dark Mode</option>\r\n    <option value="rainbow" ' +
+                ((stack1 = lookupProperty(helpers, 'if').call(
+                    alias1,
+                    depth0 != null ? lookupProperty(depth0, 'isRainbowSelected') : depth0,
+                    {
+                        name: 'if',
+                        hash: {},
+                        fn: container.program(1, data, 0, blockParams, depths),
+                        inverse: container.noop,
+                        data: data,
+                        loc: { start: { line: 9, column: 28 }, end: { line: 9, column: 68 } },
+                    },
+                )) != null
+                    ? stack1
+                    : '') +
+                '>Rainbow</option>\r\n</select>\r\n</div>\r\n<div id="' +
                 alias4(
                     ((helper =
                         (helper =
@@ -1442,8 +1490,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'if',
                         hash: {},
-                        fn: container.program(1, data, 0, blockParams, depths),
-                        inverse: container.program(3, data, 0, blockParams, depths),
+                        fn: container.program(3, data, 0, blockParams, depths),
+                        inverse: container.program(5, data, 0, blockParams, depths),
                         data: data,
                         loc: { start: { line: 17, column: 8 }, end: { line: 21, column: 15 } },
                     },
@@ -1457,7 +1505,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     {
                         name: 'each',
                         hash: {},
-                        fn: container.program(5, data, 0, blockParams, depths),
+                        fn: container.program(7, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
                         loc: { start: { line: 24, column: 0 }, end: { line: 125, column: 9 } },

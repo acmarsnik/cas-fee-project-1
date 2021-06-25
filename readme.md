@@ -83,9 +83,3 @@ config file endings from .cs to .cjs to get the entire project off the ground us
 This wasn't contained in the above tutorials and was discovered through my good friends google and stackoverflow :)
 
 ---
-
-### TODOS
-
--   add color theme changes to state or db to persist the changes
-
----

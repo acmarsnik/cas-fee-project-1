@@ -9,7 +9,7 @@ export default class HandlebarsContextUtils {
         };
     }
 
-    static getNotesContext(notes, topLevelIdPrefix, isFiltered) {
+    static getNotesContext(notes, topLevelIdPrefix, isFiltered, colorPalette) {
         const notesAdjustedForDisplay = notes.map((note) => {
             const adjustedNote = HandlebarsContextUtils.getNoteForNotesDisplay(note);
             return adjustedNote;
@@ -19,6 +19,9 @@ export default class HandlebarsContextUtils {
             notes: notesAdjustedForDisplay,
             topLevelIdPrefix,
             isFiltered,
+            isBlackWhiteStyleSelected: colorPalette === 'blackWhiteStyle',
+            isDarkModeSelected: colorPalette === 'darkMode',
+            isRainbowSelected: colorPalette === 'rainbow',
         };
     }
 

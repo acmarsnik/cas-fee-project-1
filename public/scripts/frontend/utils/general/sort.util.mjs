@@ -41,8 +41,17 @@ export default class SortUtils {
     }
 
     static sortBy(sortProperty) {
+        const { state } = window.history;
         const sortDirection = SortUtils.getSortDirection(window.history.state, sortProperty);
-        const sortedNotesState = new NotesState('', 'notes', 'sort', sortProperty, sortDirection);
+        const sortedNotesState = new NotesState(
+            '',
+            'notes',
+            'sort',
+            sortProperty,
+            sortDirection,
+            0,
+            state.colorPalette,
+        );
         sortedNotesState.replaceWindowHistoryState();
     }
 

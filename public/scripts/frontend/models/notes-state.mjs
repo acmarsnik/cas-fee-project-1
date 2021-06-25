@@ -8,6 +8,7 @@ export default class NotesState {
         transformationProperty = '',
         sortDirection = '',
         noteId = 0,
+        colorPalette = 'blackWhiteStyle',
     ) {
         if (href) {
             this.href = href;
@@ -16,6 +17,7 @@ export default class NotesState {
             this.transformationProperty = this.getTransformationPropertyFromHref();
             this.sortDirection = this.getSortDirectionFromHref();
             this.noteId = this.getNoteIdFromHref();
+            this.colorPalette = this.getColorPaletteFromHref();
         } else {
             this.href = href;
             this.page = page;
@@ -23,6 +25,7 @@ export default class NotesState {
             this.transformationProperty = transformationProperty;
             this.sortDirection = sortDirection;
             this.noteId = noteId ? parseInt(noteId, 10) : noteId;
+            this.colorPalette = colorPalette;
         }
     }
 
@@ -34,6 +37,7 @@ export default class NotesState {
             e.state.transformationProperty,
             e.state.sortDirection,
             e.state.noteId,
+            e.state.colorPalette,
         );
     }
 
@@ -77,7 +81,7 @@ export default class NotesState {
     getReplaceStateUrl() {
         return `?page=${
             this.page
-        }${this.getTransformationTypeUrlFragment()}${this.getTransformationPropertyUrlFragment()}${this.getSortDirectionUrlFragment()}${this.getNoteIdUrlFragment()}`;
+        }${this.getTransformationTypeUrlFragment()}${this.getTransformationPropertyUrlFragment()}${this.getSortDirectionUrlFragment()}${this.getNoteIdUrlFragment()}${this.getColorPaletteUrlFragment()}`;
     }
 
     getTransformationTypeUrlFragment() {
@@ -94,6 +98,10 @@ export default class NotesState {
 
     getNoteIdUrlFragment() {
         return NotesState.getUrlFragment('noteId', this.noteId);
+    }
+
+    getColorPaletteUrlFragment() {
+        return NotesState.getUrlFragment('colorPalette', this.colorPalette);
     }
 
     getPropertyFromHref(property) {
@@ -130,5 +138,9 @@ export default class NotesState {
     getNoteIdFromHref() {
         const noteIdString = this.getPropertyFromHref('noteId');
         return noteIdString ? parseInt(noteIdString, 10) : '';
+    }
+
+    getColorPaletteFromHref() {
+        return this.getPropertyFromHref('colorPalette');
     }
 }
