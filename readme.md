@@ -86,7 +86,6 @@ This wasn't contained in the above tutorials and was discovered through my good 
 
 ### TODOS
 
--   test that template compile command still works
 -   add color theme changes to state or db to persist the changes
 
 ---
