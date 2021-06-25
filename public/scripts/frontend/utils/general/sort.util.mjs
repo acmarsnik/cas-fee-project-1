@@ -50,7 +50,7 @@ export default class SortUtils {
             sortProperty,
             sortDirection,
             0,
-            state.colorPalette,
+            state?.colorPalette ? state.colorPalette : 'blackWhiteStyle',
         );
         sortedNotesState.replaceWindowHistoryState();
     }

@@ -8,6 +8,7 @@ export default class FilterUtils {
     static filterBy(filterProperty) {
         const { state } = window.history;
         let filteredNotesState;
+        const colorPalette = state?.colorPalette ? state.colorPalette : 'blackWhiteStyle';
 
         if (
             state?.transformationType !== 'filter' ||
@@ -20,10 +21,10 @@ export default class FilterUtils {
                 filterProperty,
                 '',
                 0,
-                state.colorPalette,
+                colorPalette,
             );
         } else {
-            filteredNotesState = new NotesState('', 'notes', '', '', '', 0, state.colorPalette);
+            filteredNotesState = new NotesState('', 'notes', '', '', '', 0, colorPalette);
         }
         filteredNotesState.replaceWindowHistoryState();
     }

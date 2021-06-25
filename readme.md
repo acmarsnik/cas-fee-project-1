@@ -6,10 +6,12 @@ The following commands are possible:
 | npm run w3c                                                                      | Runs linting tests for HTML files.                                            |
 | npm run eslint                                                                   | Runs linting tests for JS/MJS Files.                                          |
 | npm run all                                                                      | Runs all CSS/HTML/JS linting tests.                                           |
-| npm run start                                                                    | Starts the Web-Server: http://localhost:8080                                  |
-| npm run test                                                                     | Runs unit tests using karma & jasmine: http://localhost:8080                  |
+| npm run start                                                                    | Starts the Web-Server: http://localhost:3000                                  |
+| npm run test                                                                     | Runs unit tests using karma & jasmine: http://localhost:9876                  |
 | npm run backend-dev                                                              | starts backend in dev mode and live updates changes                           |
+| ...                                                                              | http://localhost:3000                                                         |
 | npm run frontend-dev                                                             | starts frontend in dev mode and live updates changes                          |
+| ...                                                                              | http://localhost:8080                                                         |
 | handlebars ./public/templates -f ./public/scripts/frontend/templatesCompiled.mjs | regenerates handlebars compiled templates                                     |
 | ...                                                                              | `./public/templates` is the location of the templates to be compiled          |
 | ...                                                                              | `./public/scripts/frontend/templatesCompiled.mjs` is the file                 |

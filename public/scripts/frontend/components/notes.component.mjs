@@ -61,7 +61,7 @@ export default class NotesComponent {
             transformationOptions,
         );
         const colorPalette = window.history.state?.colorPalette
-            ? window.history.state?.colorPalette
+            ? window.history.state.colorPalette
             : 'blackWhiteStyle';
         this.updateNotesDom(notes, topLevelIdPrefix, isFiltered, colorPalette);
         this.addEventListeners(topLevelIdPrefix, notes);

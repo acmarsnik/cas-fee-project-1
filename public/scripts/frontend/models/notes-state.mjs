@@ -31,13 +31,13 @@ export default class NotesState {
 
     static getNewFromStateProperty(e) {
         return new NotesState(
-            e.state.href,
-            e.state.page,
-            e.state.transformationType,
-            e.state.transformationProperty,
-            e.state.sortDirection,
-            e.state.noteId,
-            e.state.colorPalette,
+            e.state?.href ? e.state.href : '',
+            e.state?.page ? e.state.page : 'notes',
+            e.state?.transformationType ? e.state.transformationType : '',
+            e.state?.transformationProperty ? e.state.transformationProperty : '',
+            e.state?.sortDirection ? e.state.sortDirection : '',
+            e.state?.noteId ? e.state.noteId : 0,
+            e.state?.colorPalette ? e.state.colorPalette : 'blackWhiteStyle',
         );
     }
 
