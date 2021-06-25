@@ -14,12 +14,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -41,10 +36,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'topLevelIdPrefix',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 1, column: 11 },
-                                  end: { line: 1, column: 31 },
-                              },
+                              loc: { start: { line: 1, column: 11 }, end: { line: 1, column: 31 } },
                           })
                         : helper),
                 ) +
@@ -63,20 +55,14 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'topLevelIdPrefix',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 4, column: 8 },
-                                  end: { line: 4, column: 28 },
-                              },
+                              loc: { start: { line: 4, column: 8 }, end: { line: 4, column: 28 } },
                           })
                         : helper),
                 ) +
                 "title-input'\r\n    class='title-input'\r\n    value='" +
                 alias4(
                     alias5(
-                        (stack1 =
-                            depth0 != null
-                                ? lookupProperty(depth0, 'note')
-                                : depth0) != null
+                        (stack1 = depth0 != null ? lookupProperty(depth0, 'note') : depth0) != null
                             ? lookupProperty(stack1, 'title')
                             : stack1,
                         depth0,
@@ -97,10 +83,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'topLevelIdPrefix',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 9, column: 8 },
-                                  end: { line: 9, column: 28 },
-                              },
+                              loc: { start: { line: 9, column: 8 }, end: { line: 9, column: 28 } },
                           })
                         : helper),
                 ) +
@@ -129,10 +112,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "description-input'\r\n    class='description-input'\r\n>" +
                 alias4(
                     alias5(
-                        (stack1 =
-                            depth0 != null
-                                ? lookupProperty(depth0, 'note')
-                                : depth0) != null
+                        (stack1 = depth0 != null ? lookupProperty(depth0, 'note') : depth0) != null
                             ? lookupProperty(stack1, 'fullDescription')
                             : stack1,
                         depth0,
@@ -251,10 +231,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "finished-by-input'\r\n    class='finished-by-input'\r\n    type='date'\r\n    value='" +
                 alias4(
                     alias5(
-                        (stack1 =
-                            depth0 != null
-                                ? lookupProperty(depth0, 'note')
-                                : depth0) != null
+                        (stack1 = depth0 != null ? lookupProperty(depth0, 'note') : depth0) != null
                             ? lookupProperty(stack1, 'finishByDate')
                             : stack1,
                         depth0,
@@ -320,12 +297,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -337,9 +309,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'editability') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'editability')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'editability') : depth0)) !=
+                        null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -347,10 +318,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'editability',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 1, column: 27 },
-                                  end: { line: 1, column: 42 },
-                              },
+                              loc: { start: { line: 1, column: 27 }, end: { line: 1, column: 42 } },
                           })
                         : helper),
                 ) +
@@ -359,9 +327,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'boltNumber') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'boltNumber')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'boltNumber') : depth0)) !=
+                        null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -369,10 +336,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'boltNumber',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 1, column: 61 },
-                                  end: { line: 1, column: 75 },
-                              },
+                              loc: { start: { line: 1, column: 61 }, end: { line: 1, column: 75 } },
                           })
                         : helper),
                 ) +
@@ -391,10 +355,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'colorAndVisibility',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 2, column: 21 },
-                                  end: { line: 2, column: 43 },
-                              },
+                              loc: { start: { line: 2, column: 21 }, end: { line: 2, column: 43 } },
                           })
                         : helper),
                 ) +
@@ -410,15 +371,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
         3: function (container, depth0, helpers, partials, data) {
             return '            Show finished\r\n';
         },
-        5: function (
-            container,
-            depth0,
-            helpers,
-            partials,
-            data,
-            blockParams,
-            depths,
-        ) {
+        5: function (container, depth0, helpers, partials, data, blockParams, depths) {
             var stack1,
                 helper,
                 alias1 = container.lambda,
@@ -429,12 +382,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -455,9 +403,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -477,9 +423,8 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'finishByDate') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'finishByDate')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'finishByDate') : depth0)) !=
+                        null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -508,9 +453,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -539,9 +482,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -561,9 +502,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'title') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'title')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'title') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -592,9 +531,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -623,9 +560,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -654,9 +589,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -685,9 +618,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -705,25 +636,14 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "'\r\n        class='finished'\r\n    >\r\n" +
                 ((stack1 = lookupProperty(helpers, 'if').call(
                     alias3,
-                    depth0 != null
-                        ? lookupProperty(depth0, 'isFinished')
-                        : depth0,
+                    depth0 != null ? lookupProperty(depth0, 'isFinished') : depth0,
                     {
                         name: 'if',
                         hash: {},
                         fn: container.program(6, data, 0, blockParams, depths),
-                        inverse: container.program(
-                            8,
-                            data,
-                            0,
-                            blockParams,
-                            depths,
-                        ),
+                        inverse: container.program(8, data, 0, blockParams, depths),
                         data: data,
-                        loc: {
-                            start: { line: 55, column: 8 },
-                            end: { line: 59, column: 15 },
-                        },
+                        loc: { start: { line: 55, column: 8 }, end: { line: 59, column: 15 } },
                     },
                 )) != null
                     ? stack1
@@ -731,19 +651,14 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "        <span>Finished</span>\r\n        <span class='date'>" +
                 ((stack1 = lookupProperty(helpers, 'if').call(
                     alias3,
-                    depth0 != null
-                        ? lookupProperty(depth0, 'finishedDate')
-                        : depth0,
+                    depth0 != null ? lookupProperty(depth0, 'finishedDate') : depth0,
                     {
                         name: 'if',
                         hash: {},
                         fn: container.program(10, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
-                        loc: {
-                            start: { line: 61, column: 27 },
-                            end: { line: 63, column: 24 },
-                        },
+                        loc: { start: { line: 61, column: 27 }, end: { line: 63, column: 24 } },
                     },
                 )) != null
                     ? stack1
@@ -762,9 +677,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -793,9 +706,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -813,25 +724,14 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "'\r\n        class='description'\r\n    >\r\n" +
                 ((stack1 = lookupProperty(helpers, 'if').call(
                     alias3,
-                    depth0 != null
-                        ? lookupProperty(depth0, 'shortDescription')
-                        : depth0,
+                    depth0 != null ? lookupProperty(depth0, 'shortDescription') : depth0,
                     {
                         name: 'if',
                         hash: {},
                         fn: container.program(12, data, 0, blockParams, depths),
-                        inverse: container.program(
-                            14,
-                            data,
-                            0,
-                            blockParams,
-                            depths,
-                        ),
+                        inverse: container.program(14, data, 0, blockParams, depths),
                         data: data,
-                        loc: {
-                            start: { line: 74, column: 8 },
-                            end: { line: 88, column: 15 },
-                        },
+                        loc: { start: { line: 74, column: 8 }, end: { line: 88, column: 15 } },
                     },
                 )) != null
                     ? stack1
@@ -850,9 +750,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -881,9 +779,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -901,19 +797,14 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 "'\r\n        class='arrow-container'\r\n    >\r\n" +
                 ((stack1 = lookupProperty(helpers, 'if').call(
                     alias3,
-                    depth0 != null
-                        ? lookupProperty(depth0, 'hasExpand')
-                        : depth0,
+                    depth0 != null ? lookupProperty(depth0, 'hasExpand') : depth0,
                     {
                         name: 'if',
                         hash: {},
                         fn: container.program(16, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
-                        loc: {
-                            start: { line: 98, column: 8 },
-                            end: { line: 109, column: 15 },
-                        },
+                        loc: { start: { line: 98, column: 8 }, end: { line: 109, column: 15 } },
                     },
                 )) != null
                     ? stack1
@@ -932,9 +823,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -963,9 +852,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -994,9 +881,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -1016,9 +901,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias4),
                     typeof helper === alias5
@@ -1047,12 +930,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -1064,26 +942,20 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'finishedDate') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'finishedDate')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'finishedDate') : depth0)) !=
+                        null
                             ? helper
                             : container.hooks.helperMissing),
                     typeof helper === 'function'
-                        ? helper.call(
-                              depth0 != null
-                                  ? depth0
-                                  : container.nullContext || {},
-                              {
-                                  name: 'finishedDate',
-                                  hash: {},
-                                  data: data,
-                                  loc: {
-                                      start: { line: 62, column: 16 },
-                                      end: { line: 62, column: 32 },
-                                  },
+                        ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+                              name: 'finishedDate',
+                              hash: {},
+                              data: data,
+                              loc: {
+                                  start: { line: 62, column: 16 },
+                                  end: { line: 62, column: 32 },
                               },
-                          )
+                          })
                         : helper),
                 ) +
                 '\r\n                ]'
@@ -1099,12 +971,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -1116,9 +983,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1161,9 +1026,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1214,12 +1077,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -1231,9 +1089,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1276,9 +1132,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1328,12 +1182,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -1345,9 +1194,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1367,9 +1214,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1389,9 +1234,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1411,9 +1254,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                     ((helper =
                         (helper =
                             lookupProperty(helpers, 'id') ||
-                            (depth0 != null
-                                ? lookupProperty(depth0, 'id')
-                                : depth0)) != null
+                            (depth0 != null ? lookupProperty(depth0, 'id') : depth0)) != null
                             ? helper
                             : alias2),
                     typeof helper === alias3
@@ -1432,15 +1273,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
             );
         },
         compiler: [8, '>= 4.3.0'],
-        main: function (
-            container,
-            depth0,
-            helpers,
-            partials,
-            data,
-            blockParams,
-            depths,
-        ) {
+        main: function (container, depth0, helpers, partials, data, blockParams, depths) {
             var stack1,
                 helper,
                 alias1 = depth0 != null ? depth0 : container.nullContext || {},
@@ -1450,12 +1283,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 lookupProperty =
                     container.lookupProperty ||
                     function (parent, propertyName) {
-                        if (
-                            Object.prototype.hasOwnProperty.call(
-                                parent,
-                                propertyName,
-                            )
-                        ) {
+                        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
                             return parent[propertyName];
                         }
                         return undefined;
@@ -1477,10 +1305,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'topLevelIdPrefix',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 1, column: 9 },
-                                  end: { line: 1, column: 29 },
-                              },
+                              loc: { start: { line: 1, column: 9 }, end: { line: 1, column: 29 } },
                           })
                         : helper),
                 ) +
@@ -1499,10 +1324,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'topLevelIdPrefix',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 4, column: 9 },
-                                  end: { line: 4, column: 29 },
-                              },
+                              loc: { start: { line: 4, column: 9 }, end: { line: 4, column: 29 } },
                           })
                         : helper),
                 ) +
@@ -1521,10 +1343,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                               name: 'topLevelIdPrefix',
                               hash: {},
                               data: data,
-                              loc: {
-                                  start: { line: 5, column: 9 },
-                                  end: { line: 5, column: 29 },
-                              },
+                              loc: { start: { line: 5, column: 9 }, end: { line: 5, column: 29 } },
                           })
                         : helper),
                 ) +
@@ -1619,25 +1438,14 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                 'show-finished" class="show-finished">\r\n    <button>\r\n' +
                 ((stack1 = lookupProperty(helpers, 'if').call(
                     alias1,
-                    depth0 != null
-                        ? lookupProperty(depth0, 'isFiltered')
-                        : depth0,
+                    depth0 != null ? lookupProperty(depth0, 'isFiltered') : depth0,
                     {
                         name: 'if',
                         hash: {},
                         fn: container.program(1, data, 0, blockParams, depths),
-                        inverse: container.program(
-                            3,
-                            data,
-                            0,
-                            blockParams,
-                            depths,
-                        ),
+                        inverse: container.program(3, data, 0, blockParams, depths),
                         data: data,
-                        loc: {
-                            start: { line: 17, column: 8 },
-                            end: { line: 21, column: 15 },
-                        },
+                        loc: { start: { line: 17, column: 8 }, end: { line: 21, column: 15 } },
                     },
                 )) != null
                     ? stack1
@@ -1652,10 +1460,7 @@ export default function addCompiledTemplatesToHandlebars(Handlebars) {
                         fn: container.program(5, data, 0, blockParams, depths),
                         inverse: container.noop,
                         data: data,
-                        loc: {
-                            start: { line: 24, column: 0 },
-                            end: { line: 125, column: 9 },
-                        },
+                        loc: { start: { line: 24, column: 0 }, end: { line: 125, column: 9 } },
                     },
                 )) != null
                     ? stack1
