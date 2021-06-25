@@ -24,19 +24,25 @@ export default class CreateEditNoteDomUtils {
         return document.getElementById(`${topLevelIdPrefix}description-input`).value;
     }
 
-    static getNoteId(state) {
-        return state?.noteId
-            ? state.noteId
-            : document.querySelectorAll('.edit-button button[note-id]').length + 1;
+    static async getNoteId(state, notesService) {
+        let noteId = state?.noteId;
+
+        if (!noteId) {
+            noteId = await notesService.getNextNoteId();
+        }
+
+        return noteId;
     }
 
-    static getNote(topLevelIdPrefix, state) {
+    static async getNote(topLevelIdPrefix, state, notesService) {
+        const noteId = await CreateEditNoteDomUtils.getNoteId(state, notesService);
+
         return new Note(
             CreateEditNoteDomUtils.getFinishByDateIsoString(topLevelIdPrefix),
             CreateEditNoteDomUtils.getTitle(topLevelIdPrefix),
             CreateEditNoteDomUtils.getImportance(),
             CreateEditNoteDomUtils.getDescription(topLevelIdPrefix),
-            CreateEditNoteDomUtils.getNoteId(state),
+            noteId,
         );
     }
 }

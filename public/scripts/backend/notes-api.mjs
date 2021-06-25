@@ -90,6 +90,14 @@ export default class NotesApi {
         return result;
     }
 
+    async getNextNoteId() {
+        const notes = await this.find();
+        const maxId = notes.reduce((prev, current) =>
+            prev.id > current.id ? prev.id : current.id,
+        );
+        return maxId + 1;
+    }
+
     async deleteOne(note) {
         const result = await this.dbClient
             .db('project-1')
