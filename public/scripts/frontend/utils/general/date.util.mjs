@@ -8,7 +8,7 @@ export default class DateUtils {
         const dateInputIsoString = dateInputValue
             ? new Date(
                   dateInputYearMonthDay[0],
-                  dateInputYearMonthDay[1],
+                  parseInt(dateInputYearMonthDay[1], 10) - 1,
                   dateInputYearMonthDay[2],
                   12,
               ).toISOString()
